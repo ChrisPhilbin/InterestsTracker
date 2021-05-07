@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     introContainer: {
@@ -21,7 +22,7 @@ const Home = () => {
             <Typography variant="h2" gutterBottom>
                 We help managers build real relationships with their employees.
             </Typography>
-            <Button variant="contained" color="primary">Start Connecting</Button>
+            <Button component={Link} to="/build" variant="contained" color="primary">Start Connecting</Button>
         </Container>
     )
 }
