@@ -1,4 +1,5 @@
 import React from 'react'
+import rootReducer from './reducers/Index'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
