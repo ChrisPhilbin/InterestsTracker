@@ -1,7 +1,8 @@
 import React, { useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import EmployeeCard from '../components/employees/EmployeeCard'
 
-const List = () => {
+const EmployeeList = () => {
 
     let dispatch = useDispatch()
 
@@ -28,10 +29,12 @@ const List = () => {
     } else {
         return(
         <>
-            <h3>This is the build component</h3>
+            {employees.map((employee) => (
+                <EmployeeCard employee={employee} />
+            ))}
         </>
         )
     }
 }
 
-export default List
+export default EmployeeList
