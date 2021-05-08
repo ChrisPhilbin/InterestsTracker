@@ -6,6 +6,7 @@ import dayjs from 'dayjs'
 import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,8 +23,12 @@ const EmployeeCard = (props) => {
 
     const classes = useStyles()
 
+    dayjs.extend(relativeTime)
+
     let employee = props.employee
-    // let lastInteraction = dayjs(props.employee.lastInteraction).fromNow()
+    let lastInteraction = dayjs(props.employee.last_interaction).fromNow()
+    console.log(props.employee.last_interaction, "last interaction from the employee passed in")
+    console.log(lastInteraction, "last interaction")
 
     return(
         <Grid item xs={12} sm={6} key={employee.id}>
@@ -33,7 +38,7 @@ const EmployeeCard = (props) => {
                         {employee.name}
                     </Typography>
                     <Typography color="textSecondary">
-                        {/* Last interaction: {lastInteraction >= 4 ? <span className="classes.overdue">{lastInteraction}</span> : {lastInteraction} } */}
+                        Last interaction: {lastInteraction}
                     </Typography>
                 </CardContent>
             </Card>
