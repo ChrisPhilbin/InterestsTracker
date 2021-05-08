@@ -22,7 +22,7 @@ const Home = () => {
             <Typography variant="h2" gutterBottom>
                 We help managers build real relationships with their employees.
             </Typography>
-            <Button component={Link} to="/build" variant="contained" color="primary">Start Connecting</Button>
+            <Button component={Link} to="/list" variant="contained" color="primary">Start Connecting</Button>
         </Container>
     )
 }
