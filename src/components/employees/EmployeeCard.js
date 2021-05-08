@@ -23,7 +23,7 @@ const EmployeeCard = (props) => {
     const classes = useStyles()
 
     let employee = props.employee
-    let lastInteraction = dayjs(props.employee.lastInteraction).fromNow()
+    // let lastInteraction = dayjs(props.employee.lastInteraction).fromNow()
 
     return(
         <Grid item xs={12} sm={6} key={employee.id}>
@@ -32,8 +32,8 @@ const EmployeeCard = (props) => {
                     <Typography variant="h5" component="h2">
                         {employee.name}
                     </Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                        Last interaction: {lastInteraction >= 4 ? <span className="classes.overdue">{lastInteraction}</span> : {lastInteraction} }
+                    <Typography color="textSecondary">
+                        {/* Last interaction: {lastInteraction >= 4 ? <span className="classes.overdue">{lastInteraction}</span> : {lastInteraction} } */}
                     </Typography>
                 </CardContent>
             </Card>
