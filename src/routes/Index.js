@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Home from '../static/Home'
-import List from '../static/List'
+import List from '../static/EmployeeList'
 
 const Routes = () => {
     return(
