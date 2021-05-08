@@ -7,7 +7,6 @@ import {composeWithDevTools } from 'redux-devtools-extension'
 import Routes from './routes/Index'
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)))
-
 const App = () => {
   return(
     <>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { fetchAllEmployees } from '../actions/EmployeeActions'
 import EmployeeCard from '../components/employees/EmployeeCard'
 
 const EmployeeList = () => {
@@ -8,11 +9,15 @@ const EmployeeList = () => {
 
     let loading   = useSelector(state => state.employees.loading)
     let hasErrors = useSelector(state => state.employees.hasErrors)
-    let employees = useSelector(state => state.employees.interests)
+    let employees = useSelector(state => state.employees.employees)
 
     useEffect(() => {
-        console.log("component has mounted!")
+        dispatch(fetchAllEmployees())
     },[])
+
+    console.log(employees, "employees array from dispatch")
+    console.log(loading, "loading?")
+    console.log(hasErrors, "has errors?")
 
     if (loading) {
         return(
@@ -26,7 +31,7 @@ const EmployeeList = () => {
                 Error. Something went wrong!
             </>
         )
-    } else {
+    } else if (employees) {
         return(
         <>
             {employees.map((employee) => (
