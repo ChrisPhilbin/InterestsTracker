@@ -1,4 +1,4 @@
-import * as actions from '../actions/EmplyeeActions'
+import * as actions from '../actions/EmployeeActions'
 
 export const initialEmployeesState = {
     employees: [],
@@ -8,7 +8,7 @@ export const initialEmployeesState = {
 
 export default function employeesReducer(state = initialEmployeesState, action) {
     switch (action.type) {
-        case actions.GET_EMPLOYEESS: {
+        case actions.GET_EMPLOYEES: {
             return {...state, loading: true }
         }
         case actions.GET_EMPLOYEES_SUCCESS: {

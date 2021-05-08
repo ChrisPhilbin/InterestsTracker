@@ -11,7 +11,7 @@ export const getInterestsSuccess = (interests) => (
 )
 
 export const getInterestsFailure = (error) => (
-    { type: GET_INTERESTS, payload: error }
+    { type: GET_INTERESTS_FAILURE, payload: error }
 )
 
 export const fetchInterests = (employee_id) => {
