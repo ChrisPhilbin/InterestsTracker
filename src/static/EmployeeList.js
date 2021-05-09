@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllEmployees } from '../actions/EmployeeActions'
-import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
 import EmployeeCard from '../components/employees/EmployeeCard'
 
 const EmployeeList = () => {
@@ -31,11 +31,13 @@ const EmployeeList = () => {
         )
     } else if (employees) {
         return(
-        <Container style={{columns: '2 auto'}}>
-            {employees.map((employee) => (
-                <EmployeeCard employee={employee} key={employee.id}/>
-            ))}
-        </Container>
+            <Grid container spacing={3} style={{marginTop: 30}}>
+                {employees.map((employee) => (
+                    <Grid item xs={12} sm={6} key={employee.id}>
+                        <EmployeeCard employee={employee} key={employee.id}/>
+                    </Grid>
+                ))}
+            </Grid>
         )
     }
 }

@@ -5,7 +5,6 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import dayjs from 'dayjs'
-import Grid from '@material-ui/core/Grid'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
         right: '15px',
     },
     root: {
-        minWidth: 470
+        minWidth: 470,
     }
 }))
 
@@ -40,25 +39,23 @@ const EmployeeCard = (props) => {
     let minutesSinceLastInteraction = Math.round((((currentDate - previousDate)/1000)/60))
 
     return(
-        <Grid item xs={12} sm={6} key={employee.id}>
-            <Card className={classes.root} variant="outlined">
-                <CardContent>
-                    <span className={classes.checkDate}>
-                        { minutesSinceLastInteraction > 5760 ? <WarningIcon style={{color: 'red', fontSize: 45}}/> : <CheckCircleOutlineIcon  style={{color: 'green', fontSize: 45}}/>}
-                    </span>
-                    <Typography variant="h5" component="h2">
-                        {employee.name}
-                    </Typography>
-                    <Typography color="textSecondary">
-                        Last interaction: {lastInteraction}
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button component={Link} to={`/employee/${employee.id}`} size="small" color="primary">View/Edit Details</Button>
-                    <Button size="small" color="primary">Delete</Button>
-                </CardActions>
-            </Card>
-        </Grid>
+        <Card variant="outlined">
+            <CardContent>
+                <span className={classes.checkDate}>
+                    { minutesSinceLastInteraction > 5760 ? <WarningIcon style={{color: 'red', fontSize: 45}}/> : <CheckCircleOutlineIcon  style={{color: 'green', fontSize: 45}}/>}
+                </span>
+                <Typography variant="h5" component="h2">
+                    {employee.name}
+                </Typography>
+                <Typography color="textSecondary">
+                    Last interaction: {lastInteraction}
+                </Typography>
+            </CardContent>
+            <CardActions>
+                <Button component={Link} to={`/employee/${employee.id}`} size="small" color="primary">View/Edit Details</Button>
+                <Button size="small" color="primary">Delete</Button>
+            </CardActions>
+        </Card>
     )
 }
 
