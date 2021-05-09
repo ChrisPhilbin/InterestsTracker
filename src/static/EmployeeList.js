@@ -1,6 +1,7 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllEmployees } from '../actions/EmployeeActions'
+import Container from '@material-ui/core/Container'
 import EmployeeCard from '../components/employees/EmployeeCard'
 
 const EmployeeList = () => {
@@ -13,11 +14,8 @@ const EmployeeList = () => {
 
     useEffect(() => {
         dispatch(fetchAllEmployees())
-    },[])
+    },[dispatch])
 
-    console.log(employees, "employees array from dispatch")
-    console.log(loading, "loading?")
-    console.log(hasErrors, "has errors?")
 
     if (loading) {
         return(
@@ -33,11 +31,11 @@ const EmployeeList = () => {
         )
     } else if (employees) {
         return(
-        <>
+        <Container style={{columns: '2 auto'}}>
             {employees.map((employee) => (
-                <EmployeeCard employee={employee} />
+                <EmployeeCard employee={employee} key={employee.id}/>
             ))}
-        </>
+        </Container>
         )
     }
 }

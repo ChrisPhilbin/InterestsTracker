@@ -39,10 +39,6 @@ const EmployeeCard = (props) => {
 
     let minutesSinceLastInteraction = Math.round((((currentDate - previousDate)/1000)/60))
 
-    console.log(employee, "employee object")
-
-
-
     return(
         <Grid item xs={12} sm={6} key={employee.id}>
             <Card className={classes.root} variant="outlined">

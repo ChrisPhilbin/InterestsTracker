@@ -16,12 +16,10 @@ export const getEmployeesFailure = (error) => (
 
 export const fetchAllEmployees = () => {
     return (dispatch) => {
-        console.log("Hello from fetchAllEmployees")
         dispatch(getEmployees())
         fetch('http://localhost:3001/employees')
         .then(response => response.json())
         .then(data => {
-            console.log(data, "data coming back from fetch")
             dispatch(getEmployeesSuccess(data))
         })
         .catch(error => {
