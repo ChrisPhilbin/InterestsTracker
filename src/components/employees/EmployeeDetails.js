@@ -30,8 +30,6 @@ const EmployeeDetails = (props) => {
     let employeeLoading    = useSelector(state => state.employees.loading)
     let employeeHasErrors  = useSelector(state => state.employees.hasErrors)
 
-    console.log(interests, "interests")
-
     if (interestsLoading || employeeLoading) {
         return(
             <>
