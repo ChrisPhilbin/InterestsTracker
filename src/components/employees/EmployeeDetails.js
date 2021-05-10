@@ -8,6 +8,7 @@ import Typoegraphy from '@material-ui/core/Typography'
 import DisplayAllEmployeeInterests from '../interests/DisplayAllEmployeeInterests'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import useFormatDate from '../../hooks/useFormatDate'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,6 +35,8 @@ const EmployeeDetails = (props) => {
 
     let lastInteraction = dayjs(employee.last_interaction).fromNow()
 
+    let hireDate = useFormatDate(employee.hire_date)
+
     if (loading) {
         return(
             <>
@@ -52,7 +55,7 @@ const EmployeeDetails = (props) => {
                 <Paper elevation={3} style={{ padding: 15 }}>
                     <Typoegraphy variant="h4" gutterBottom>{employee.name}</Typoegraphy>
 
-                    <Typoegraphy variant="subtitle1" gutterBottom>Hire date: {new Date(employee.hire_date).toString()}</Typoegraphy>
+                    <Typoegraphy variant="subtitle1" gutterBottom>Hire date: {hireDate}</Typoegraphy>
 
                     <Typoegraphy variant="subtitle1" gutterBottom>Last interaction: {lastInteraction}</Typoegraphy>
 
