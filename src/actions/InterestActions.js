@@ -17,7 +17,7 @@ export const getInterestsFailure = (error) => (
 export const fetchEmployeeInterests = (employee_id) => {
     return (dispatch) => {
         dispatch(getInterests)
-        fetch()
+        fetch(`http://localhost:3001/employees/${employee_id}/interests`)
         .then(response => response.json())
         .then(data => {
             dispatch(getInterestsSuccess(data))
