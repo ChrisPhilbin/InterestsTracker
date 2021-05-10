@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import WarningIcon from '@material-ui/icons/Warning';
-
+import useCheckDate from '../../hooks/useCheckDate'
 
 const useStyles = makeStyles((theme) => ({
     checkDate: {
@@ -33,16 +33,11 @@ const EmployeeCard = (props) => {
     let employee = props.employee
     let lastInteraction = dayjs(props.employee.last_interaction).fromNow()
 
-    let currentDate = new Date()
-    let previousDate = new Date(props.employee.last_interaction)
-
-    let minutesSinceLastInteraction = Math.round((((currentDate - previousDate)/1000)/60))
-
     return(
         <Card variant="outlined">
             <CardContent>
                 <span className={classes.checkDate}>
-                    { minutesSinceLastInteraction > 5760 ? <WarningIcon style={{color: 'red', fontSize: 45}}/> : <CheckCircleOutlineIcon  style={{color: 'green', fontSize: 45}}/>}
+                    { useCheckDate(props.employee.last_interaction) ? <WarningIcon style={{color: 'red', fontSize: 45}}/> : <CheckCircleOutlineIcon  style={{color: 'green', fontSize: 45}}/>}
                 </span>
                 <Typography variant="h5" component="h2">
                     {employee.name}

@@ -12,6 +12,7 @@ const Routes = () => {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/employees" component={EmployeeList} />
                 <Route exact path="/employees/:employee_id" component={EmployeeDetails} />
+                {/* <Route exact path="/employees/:employee_id" render={(props) => <EmployeeDetails {...props}/>} /> */}
             </Switch>
         </Router>
     )
