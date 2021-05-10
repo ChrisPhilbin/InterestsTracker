@@ -19,6 +19,14 @@ class InterestsController < ApplicationController
         render :json => @interests
     end
 
+    #DELETE /employees/:employee_id/interests/:interest_id
+    def destroy
+        @employee = Employee.find(params[:employee_id])
+        @interest = @employee.interests.find(params[:id])
+        @interest.destroy
+        render :json => @interest
+    end
+
     private
 
     def interest_params
