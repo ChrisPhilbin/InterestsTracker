@@ -11,6 +11,8 @@ const useStyles = makeStyles((theme) => ({
 
 const EmployeeDetails = (props) => {
 
+    console.log(props.match.params, "props passed in to EE details")
+
     const dispatch = useDispatch()
 
     useEffect(() => {

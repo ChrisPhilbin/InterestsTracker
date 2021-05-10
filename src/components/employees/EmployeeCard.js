@@ -52,7 +52,7 @@ const EmployeeCard = (props) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button component={Link} to={`/employee/${employee.id}`} size="small" color="primary">View/Edit Details</Button>
+                <Link to={`/employees/${employee.id}`} style={{ textDecoration: 'none'}}><Button size="small" color="primary">View/Edit Details</Button></Link>
                 <Button size="small" color="primary">Delete</Button>
             </CardActions>
         </Card>

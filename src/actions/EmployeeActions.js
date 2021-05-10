@@ -2,6 +2,10 @@ export const GET_EMPLOYEES         = "GET_EMPLOYEES"
 export const GET_EMPLOYEES_SUCCESS = "GET_EMPLOYEES_SUCCESS"
 export const GET_EMPLOYEES_FAILURE = "GET_EMPLOYEES_FAILURE"
 
+export const GET_ONE_EMPLOYEE         = "GET_ONE_EMPLOYEE"
+export const GET_ONE_EMPLOYEE_SUCCESS = "GET_ONE_EMPLOYEE_SUCCESS"
+export const GET_ONE_EMPLOYEE_FAILURE = "GET_ONE_EMPLOYEE_FAILURE"
+
 export const getEmployees = () => (
     { type: GET_EMPLOYEES }
 )
@@ -24,6 +28,32 @@ export const fetchAllEmployees = () => {
         })
         .catch(error => {
             dispatch(getEmployeesFailure(error))
+        })
+    }
+}
+
+export const getOneEmployee = () => (
+    { type: GET_ONE_EMPLOYEE }
+)
+
+export const getOneEmployeeSuccess = (employee) => (
+    { type: GET_ONE_EMPLOYEE_SUCCESS, payload: employee }
+)
+
+export const GetOneEmployeeFailure = (error) => (
+    { type: GET_ONE_EMPLOYEE_FAILURE, payload: error }
+)
+
+export const fetchOneEmployee = (employee_id) => {
+    return (dispatch) => {
+        dispatch(getOneEmployee())
+        fetch(`http://localhost:3001/employees/${employee_id}`)
+        .then(response => response.json())
+        .then(data => {
+            dispatch(getOneEmployeeSuccess(data))
+        })
+        .catch(error => {
+            dispatch(GetOneEmployeeFailure(error))
         })
     }
 }
