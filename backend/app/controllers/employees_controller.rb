@@ -28,6 +28,7 @@ class EmployeesController < ApplicationController
     def destroy
         @employee = Employee.find(params[:id])
         @employee.destroy
+        render :json => @employee
     end
 
 

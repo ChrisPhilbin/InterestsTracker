@@ -10,6 +10,8 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import useFormatDate from '../../hooks/useFormatDate'
 import useCheckDate from '../../hooks/useCheckDate'
+import ShowLoading from '../../util/ShowLoading'
+import ShowErrors from '../../util/ShowErrors'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,13 +44,13 @@ const EmployeeDetails = (props) => {
     if (loading) {
         return(
             <>
-                Loading... Please wait
+                <ShowLoading />
             </>
         )
     } else if (hasErrors) {
         return(
             <>
-                Something went wrong
+                <ShowErrors />
             </>
         )
     } else if (employee) {

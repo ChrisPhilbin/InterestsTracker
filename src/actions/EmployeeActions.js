@@ -9,6 +9,9 @@ export const GET_ONE_EMPLOYEE_FAILURE = "GET_ONE_EMPLOYEE_FAILURE"
 export const EMPLOYEE_CREATED_SUCCESS = "EMPLOYEE_CREATED_SUCCESS"
 export const EMPLOYEE_CREATED_FAILURE = "EMPLOYEE_CREATED_FAILURE"
 
+export const EMPLOYEE_DELETED_SUCCESS = "EMPLOYEE_DELETED_SUCCESS"
+export const EMPLOYEE_DELETED_FAILURE = "EMPLOYEE_DELETED_FAILURE"
+
 export const getEmployees = () => (
     { type: GET_EMPLOYEES }
 )
@@ -86,12 +89,21 @@ export const fetchPostNewEmployee = (employee) => {
     }
 }
 
+export const employeeDeletedSuccess = (employee) => (
+    { type: EMPLOYEE_DELETED_SUCCESS, payload: employee }
+)
+
+export const employeeDeletedFailure = (error) => (
+    { type: EMPLOYEE_DELETED_FAILURE, payload: error }
+)
+
 export const deleteOneEmployee = (employee_id) => {
     return (dispatch) => {
         fetch(`http://localhost:3001/employees/${employee_id}`, {
             method: "DELETE",
             headers: { 'Content-Type': 'application/json' }
         })
-        .then(alert("Employee has been deleted!"))
+        .then(response => response.json())
+        .then(data => dispatch(employeeDeletedSuccess(data)))
     }
 }

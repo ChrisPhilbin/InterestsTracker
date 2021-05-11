@@ -15,7 +15,7 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import { fetchPostNewEmployee } from '../../actions/EmployeeActions'
 
-const CreateEmployee = () => {
+const CreateEmployee = (props) => {
 
     let [name, setName]                 = useState('')
     let [selectedDate, setSelectedDate] = React.useState(new Date());
@@ -28,6 +28,7 @@ const CreateEmployee = () => {
             hire_date: selectedDate
         }
         dispatch(fetchPostNewEmployee(employee))
+        props.history.push('/employees')
     }
 
     return(

@@ -25,6 +25,8 @@ export default function employeesReducer(state = initialEmployeesState, action) 
             return { ...state, loading: false, employee: action.payload }
         case actions.EMPLOYEE_CREATED_FAILURE:
             return { ...state, loading: false, hasErrors: true }
+        case actions.EMPLOYEE_DELETED_SUCCESS:
+            return { employees: state.employees.filter(employee => employee.name !== action.payload.name) }
         default:
             return state
     }
