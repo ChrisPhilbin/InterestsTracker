@@ -9,7 +9,7 @@ class EmployeesController < ApplicationController
     #POST /employees
     def create
         @employee = Employee.create!(employee_params)
-        json_response(@employee)
+        render :json => @employee
     end
 
     #GET /employees/:employee_id

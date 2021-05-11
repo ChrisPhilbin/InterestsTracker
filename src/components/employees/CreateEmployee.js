@@ -13,11 +13,14 @@ import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import { fetchPostNewEmployee } from '../../actions/EmployeeActions'
 
 const CreateEmployee = () => {
 
     let [name, setName]                 = useState('')
     let [selectedDate, setSelectedDate] = React.useState(new Date());
+
+    const dispatch = useDispatch()
 
     const handleCreateNewEmployee = () => {
         let employee = {
@@ -27,7 +30,6 @@ const CreateEmployee = () => {
         dispatch(fetchPostNewEmployee(employee))
     }
 
-    console.log(selectedDate, "date")
     return(
         <Grid style={{ padding: 40 }}>
             <Typography variant="h4" gutterBottom>Add a new employee</Typography>

@@ -74,7 +74,7 @@ export const fetchPostNewEmployee = (employee) => {
         fetch('http://localhost:3001/employees', {
             method: 'POST',
             body: JSON.stringify(employee),
-            headers: {'Content-Type': 'application/json'}
+            headers: { 'Content-Type': 'application/json' }
         })
         .then(response => response.json())
         .then(data => {
@@ -83,5 +83,15 @@ export const fetchPostNewEmployee = (employee) => {
         .catch(error => {
             dispatch(employeeCreatedFailure(error))
         })
+    }
+}
+
+export const deleteOneEmployee = (employee_id) => {
+    return (dispatch) => {
+        fetch(`http://localhost:3001/employees/${employee_id}`, {
+            method: "DESTROY",
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(dispatch(fetchAllEmployees()))
     }
 }

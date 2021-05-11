@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -9,8 +10,9 @@ import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import WarningIcon from '@material-ui/icons/Warning';
+import WarningIcon from '@material-ui/icons/Warning'
 import useCheckDate from '../../hooks/useCheckDate'
+import { deleteOneEmployee } from '../../actions/EmployeeActions'
 
 const useStyles = makeStyles((theme) => ({
     checkDate: {
@@ -28,12 +30,19 @@ const EmployeeCard = (props) => {
 
     const classes = useStyles()
 
+    const dispatch = useDispatch()
+
     dayjs.extend(relativeTime)
 
     let employee = props.employee
     let lastInteraction = dayjs(props.employee.last_interaction).fromNow()
-    console.log(props, "props")
-
+    
+    const handleDelete = (employee_id) => {
+        if (window.confirm("Are you sure?")) {
+            dispatch(deleteOneEmployee(employee_id))
+        }
+    }
+    
     return(
         <Card variant="outlined">
             <CardContent>
@@ -49,7 +58,7 @@ const EmployeeCard = (props) => {
             </CardContent>
             <CardActions>
                 <Link to={`/employees/${employee.id}`} style={{ textDecoration: 'none'}}><Button size="small" color="primary">View/Edit Details</Button></Link>
-                <Button size="small" color="primary">Delete</Button>
+                <Button size="small" color="primary" onClick={() => handleDelete(employee.id)}>Delete</Button>
             </CardActions>
         </Card>
     )
