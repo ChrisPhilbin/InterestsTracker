@@ -1,10 +1,13 @@
-export const GET_EMPLOYEES         = "GET_EMPLOYEES"
-export const GET_EMPLOYEES_SUCCESS = "GET_EMPLOYEES_SUCCESS"
-export const GET_EMPLOYEES_FAILURE = "GET_EMPLOYEES_FAILURE"
+export const GET_EMPLOYEES            = "GET_EMPLOYEES"
+export const GET_EMPLOYEES_SUCCESS    = "GET_EMPLOYEES_SUCCESS"
+export const GET_EMPLOYEES_FAILURE    = "GET_EMPLOYEES_FAILURE"
 
 export const GET_ONE_EMPLOYEE         = "GET_ONE_EMPLOYEE"
 export const GET_ONE_EMPLOYEE_SUCCESS = "GET_ONE_EMPLOYEE_SUCCESS"
 export const GET_ONE_EMPLOYEE_FAILURE = "GET_ONE_EMPLOYEE_FAILURE"
+
+export const EMPLOYEE_CREATED_SUCCESS = "EMPLOYEE_CREATED_SUCCESS"
+export const EMPLOYEE_CREATED_FAILURE = "EMPLOYEE_CREATED_FAILURE"
 
 export const getEmployees = () => (
     { type: GET_EMPLOYEES }
@@ -54,6 +57,31 @@ export const fetchOneEmployee = (employee_id) => {
         })
         .catch(error => {
             dispatch(GetOneEmployeeFailure(error))
+        })
+    }
+}
+
+export const employeeCreatedSuccess = (employee) => (
+    { type: EMPLOYEE_CREATED_SUCCESS, payload: employee }
+)
+
+export const employeeCreatedFailure = (error) => (
+    { type: EMPLOYEE_CREATED_FAILURE, payload: error }
+)
+
+export const fetchPostNewEmployee = (employee) => {
+    return (dispatch) => {
+        fetch('http://localhost:3001/employees', {
+            method: 'POST',
+            body: JSON.stringify(employee),
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then(response => response.json())
+        .then(data => {
+            dispatch(employeeCreatedSuccess(data))
+        })
+        .catch(error => {
+            dispatch(employeeCreatedFailure(error))
         })
     }
 }

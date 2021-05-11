@@ -19,6 +19,14 @@ const CreateEmployee = () => {
     let [name, setName]                 = useState('')
     let [selectedDate, setSelectedDate] = React.useState(new Date());
 
+    const handleCreateNewEmployee = () => {
+        let employee = {
+            name: name,
+            hire_date: selectedDate
+        }
+        dispatch(fetchPostNewEmployee(employee))
+    }
+
     console.log(selectedDate, "date")
     return(
         <Grid style={{ padding: 40 }}>
@@ -54,7 +62,7 @@ const CreateEmployee = () => {
             </Grid>
 
             <Grid item>
-                <Button variant="contained" color="primary" style={{ marginTop: 15 }}>Create</Button>
+                <Button variant="contained" color="primary" style={{ marginTop: 15 }} onClick={() => handleCreateNewEmployee()}>Create</Button>
             </Grid>
         </Grid>
     )
