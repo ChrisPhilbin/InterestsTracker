@@ -1,4 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import 'date-fns'
+import DateFnsUtils from '@date-io/date-fns'
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers'
 import { useDispatch } from 'react-redux'
 import Container from '@material-ui/core/Container'
 import Paper from '@material-ui/core/Paper'
@@ -9,12 +16,12 @@ import Typography from '@material-ui/core/Typography'
 
 const CreateEmployee = () => {
 
-    let [name, setName] = useState('')
+    let [name, setName]                 = useState('')
+    let [selectedDate, setSelectedDate] = React.useState(new Date());
 
-    console.log(name, "name")
-
+    console.log(selectedDate, "date")
     return(
-        <Grid spacing={3} style={{ padding: 40 }}>
+        <Grid style={{ padding: 40 }}>
             <Typography variant="h4" gutterBottom>Add a new employee</Typography>
 
             <Grid item>
@@ -24,8 +31,26 @@ const CreateEmployee = () => {
                     label="Full name"
                     defaultValue="Michael Smith"
                     variant="outlined"
-                    onChange={(e) => e.target.value}
+                    onChange={(e) => setName(e.target.value)}
                 />
+            </Grid>
+
+            <Grid item>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker
+                        disableToolbar
+                        variant="inline"
+                        format="MM/dd/yyyy"
+                        margin="normal"
+                        id="date-picker-inline"
+                        label="Hire date"
+                        value={selectedDate}
+                        onChange={date => setSelectedDate(date)}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
+                    />
+                </MuiPickersUtilsProvider>
             </Grid>
 
             <Grid item>
