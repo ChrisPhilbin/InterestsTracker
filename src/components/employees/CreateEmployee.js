@@ -8,6 +8,11 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
 const CreateEmployee = () => {
+
+    let [name, setName] = useState('')
+
+    console.log(name, "name")
+
     return(
         <Grid spacing={3} style={{ padding: 40 }}>
             <Typography variant="h4" gutterBottom>Add a new employee</Typography>
@@ -19,6 +24,7 @@ const CreateEmployee = () => {
                     label="Full name"
                     defaultValue="Michael Smith"
                     variant="outlined"
+                    onChange={(e) => e.target.value}
                 />
             </Grid>
 
