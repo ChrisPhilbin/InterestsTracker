@@ -89,9 +89,9 @@ export const fetchPostNewEmployee = (employee) => {
 export const deleteOneEmployee = (employee_id) => {
     return (dispatch) => {
         fetch(`http://localhost:3001/employees/${employee_id}`, {
-            method: "DESTROY",
+            method: "DELETE",
             headers: { 'Content-Type': 'application/json' }
         })
-        .then(dispatch(fetchAllEmployees()))
+        .then(alert("Employee has been deleted!"))
     }
 }
