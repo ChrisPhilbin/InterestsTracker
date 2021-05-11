@@ -32,6 +32,7 @@ const EmployeeCard = (props) => {
 
     let employee = props.employee
     let lastInteraction = dayjs(props.employee.last_interaction).fromNow()
+    console.log(props, "props")
 
     return(
         <Card variant="outlined">

@@ -9,6 +9,7 @@ import DisplayAllEmployeeInterests from '../interests/DisplayAllEmployeeInterest
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import useFormatDate from '../../hooks/useFormatDate'
+import useCheckDate from '../../hooks/useCheckDate'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +37,7 @@ const EmployeeDetails = (props) => {
     let lastInteraction = dayjs(employee.last_interaction).fromNow()
 
     let hireDate = useFormatDate(employee.hire_date)
+    let isRecent = useCheckDate(employee.last_interaction)
 
     if (loading) {
         return(
@@ -57,7 +59,7 @@ const EmployeeDetails = (props) => {
 
                     <Typoegraphy variant="subtitle1" gutterBottom>Hire date: {hireDate}</Typoegraphy>
 
-                    <Typoegraphy variant="subtitle1" gutterBottom>Last interaction: {lastInteraction}</Typoegraphy>
+                    <Typoegraphy variant="subtitle1" gutterBottom style={ isRecent ? { color: 'red' } : { color: 'green'} }>Last interaction: {lastInteraction}</Typoegraphy>
 
                     <Typoegraphy variant="h5" gutterBottom>Interests & Hobbies</Typoegraphy>
 

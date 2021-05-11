@@ -4,10 +4,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from '../static/Home'
 import EmployeeList from '../static/EmployeeList'
 import EmployeeDetails from '../components/employees/EmployeeDetails'
+import TopNav from '../navigation/TopNav'
 
 const Routes = () => {
     return(
         <Router>
+            <TopNav />
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/employees" component={EmployeeList} />
