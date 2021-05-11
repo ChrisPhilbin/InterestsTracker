@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import { fetchOneEmployee } from '../../actions/EmployeeActions'
+import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typoegraphy from '@material-ui/core/Typography'
@@ -15,7 +17,14 @@ import ShowErrors from '../../util/ShowErrors'
 
 
 const useStyles = makeStyles((theme) => ({
-
+    editButton: {
+        float: 'right',
+        top: '10px',
+        right: '15px',
+    },
+    widget: {
+        padding: 15
+    }
 }))
 
 const EmployeeDetails = (props) => {
@@ -55,20 +64,45 @@ const EmployeeDetails = (props) => {
         )
     } else if (employee) {
         return (
-            <Container maxWidth="md" style={{ paddingTop: 45 }}>
-                <Paper elevation={3} style={{ padding: 15 }}>
-                    <Typoegraphy variant="h4" gutterBottom>{employee.name}</Typoegraphy>
+            <>
+                <Container maxWidth="lg" style={{ paddingTop: 45 }}>
+                    <Paper elevation={3} style={{ padding: 15 }}>
+                        <span className={classes.editButton}><Button variant="contained" color="primary">Edit details</Button></span>
+                        <Typoegraphy variant="h4" gutterBottom>{employee.name}</Typoegraphy>
 
-                    <Typoegraphy variant="subtitle1" gutterBottom>Hire date: {hireDate}</Typoegraphy>
+                        <Typoegraphy variant="subtitle1" gutterBottom>Hire date: {hireDate}</Typoegraphy>
 
-                    <Typoegraphy variant="subtitle1" gutterBottom style={ isRecent ? { color: 'red' } : { color: 'green'} }>Last interaction: {lastInteraction}</Typoegraphy>
+                        <Typoegraphy variant="subtitle1" gutterBottom style={ isRecent ? { color: 'red' } : { color: 'green'} }>Last interaction: {lastInteraction}</Typoegraphy>
 
-                    <Typoegraphy variant="h5" gutterBottom>Interests & Hobbies</Typoegraphy>
+                        <Typoegraphy variant="h5" gutterBottom>Interests & Hobbies</Typoegraphy>
 
-                    <DisplayAllEmployeeInterests employee_id={employee_id} />
+                    </Paper>
+                </Container>
 
-                </Paper>
-            </Container>
+                <Container maxWidth="lg" style={{ paddingTop: 45 }}>
+                    <Grid container spacing={3}>
+                        <Grid item xs={3}>
+                            <Paper elevation={3} className={classes.widget}>
+                                <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Interests/Hobbies</Typoegraphy>
+
+                                <DisplayAllEmployeeInterests employee_id={employee_id} />
+                            </Paper>
+                        </Grid>
+
+                        <Grid item xs={3}>
+                            <Paper elevation={3} className={classes.widget}>
+                                <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Pets</Typoegraphy>
+                            </Paper>
+                        </Grid>
+
+                        <Grid item xs={3}>
+                            <Paper elevation={3} className={classes.widget}>
+                                <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Notes</Typoegraphy>
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </Container>
+            </>
         )
     } 
 
