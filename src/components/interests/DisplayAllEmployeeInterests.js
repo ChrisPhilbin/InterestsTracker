@@ -11,7 +11,6 @@ import Typoegraphy from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import ShowLoading from '../../util/ShowLoading'
 import ShowErrors from '../../util/ShowErrors'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
@@ -27,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
         left: 0
     },
     widget: {
-        padding: 15
+        padding: 15,
+        borderRadius: 15
     }
 }))
 
@@ -43,7 +43,7 @@ const DisplayAllEmployeeInterests = (props) => {
         dispatch(fetchEmployeeInterests(employee_id))
     },[dispatch])
 
-    let [open, setOpen]         = useState(false)
+    let [open, setOpen]               = useState(false)
     let [newInterest, setNewInterest] = useState('')
 
     let interests = useSelector(state => state.interests.interests)
@@ -104,9 +104,9 @@ const DisplayAllEmployeeInterests = (props) => {
                     <AddCircleIcon style={{ fontSize: 30 }} />
                 </IconButton>
                 
-                <Paper elevation={3} className={classes.widget}>
+                <Paper elevation={3} className={classes.widget} square={false}>
                     <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Interests/Hobbies</Typoegraphy>
-                    <List dense="true">
+                    <List dense={true}>
                         {interests.map((interest) => (
                             <ListItem key={interest.id}>
                                 <ListItemText

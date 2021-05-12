@@ -2,7 +2,7 @@ class PetsController < ApplicationController
 
     #GET /employees/:employee_id/pets
     def index
-        @pets = Pets.where(employee_id: params[:id])
+        @pets = Pet.where(employee_id: params[:employee_id])
         render :json => @pets
     end
 

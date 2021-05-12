@@ -12,9 +12,15 @@ export default function petssReducer(state = initialInterestsState, action) {
             return {...state, loading: true }
         }
         case actions.GET_PETS_SUCCESS: {
-            return {...state, loading: false, pets: state.pets.concat(action.payload) }
+            return {...state, loading: false, pets: action.payload }
         }
         case actions.GET_PETS_FAILURE: {
+            return {...state, loading: false, hasErrors: true }
+        }
+        case actions.PET_CREATED_SUCCESS: {
+            return {...state, loading: false, pets: state.pets.concat(action.payload) }
+        }
+        case actions.PET_CREATED_FAILURE: {
             return {...state, loading: false, hasErrors: true }
         }
         default:

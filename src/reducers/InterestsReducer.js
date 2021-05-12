@@ -12,7 +12,7 @@ export default function interestsReducer(state = initialInterestsState, action) 
             return {...state, loading: true }
         }
         case actions.GET_INTERESTS_SUCCESS: {
-            return {...state, loading: false, interests: [...action.payload] }
+            return {...state, loading: false, interests: action.payload }
         }
         case actions.GET_INTERESTS_FAILURE: {
             return {...state, loading: false, hasErrors: true }

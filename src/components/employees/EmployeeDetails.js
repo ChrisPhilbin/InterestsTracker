@@ -16,6 +16,7 @@ import ShowLoading from '../../util/ShowLoading'
 import ShowErrors from '../../util/ShowErrors'
 import IconButton from '@material-ui/core/IconButton'
 import AddCircleIcon from '@material-ui/icons/AddCircle'
+import DisplayAllEmployeePets from '../pets/DisplayAllEmployeePets'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -91,16 +92,7 @@ const EmployeeDetails = (props) => {
                         </Grid>
 
                         <Grid item xs={3}>
-                            <IconButton
-                                className={classes.addItemIcon}
-                                color="primary"
-                                aria-label="Add new pet"
-                            >
-                                <AddCircleIcon style={{ fontSize: 30 }} />
-                            </IconButton>
-                            <Paper elevation={3} className={classes.widget}>
-                                <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Pets</Typoegraphy>
-                            </Paper>
+                            <DisplayAllEmployeePets employee_id={employee_id} />
                         </Grid>
 
                         <Grid item xs={3}>
