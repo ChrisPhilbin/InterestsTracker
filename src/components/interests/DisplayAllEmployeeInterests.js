@@ -46,6 +46,8 @@ const DisplayAllEmployeeInterests = (props) => {
     let [open, setOpen]         = useState(false)
     let [interest, setInterest] = useState('')
 
+    console.log(interest, "value of interest")
+
     let interests = useSelector(state => state.interests.interests)
     let loading   = useSelector(state => state.interests.loading)
     let hasErrors = useSelector(state => state.interests.hasErrors)
@@ -78,6 +80,7 @@ const DisplayAllEmployeeInterests = (props) => {
                             id="name"
                             label="Interest name"
                             fullWidth
+                            onChange={(e) => setInterest(e.target.value)}
                         />
                     </DialogContent>
                     <DialogActions>
