@@ -30,7 +30,7 @@ class InterestsController < ApplicationController
     private
 
     def interest_params
-        params.permit(:name)
+        params.permit(:name, :employee_id)
     end
 
 end

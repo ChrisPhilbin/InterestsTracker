@@ -39,15 +39,16 @@ export const interestCreatedFailure = (error) => (
     { type: CREATE_INTEREST_FAILURE, payload: error }
 )
 
-export const fetchPostNewInterest = (employee_id, interest) => {
+export const fetchPostNewInterest = (interest) => {
     return (dispatch) => {
-        fetch(`http://localhost:3001/employees/${employee_id}/interests`, {
+        fetch(`http://localhost:3001/employees/${interest.employee_id}/interests`, {
             method: 'POST',
             body: JSON.stringify(interest),
             headers: { 'Content-Type': 'application/json' }
         })
         .then(response => response.json())
         .then(data => {
+            console.log(data, "data coming back")
             dispatch(interestCreatedSuccess(data))
         })
         .catch(error => {

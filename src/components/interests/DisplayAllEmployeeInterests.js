@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchEmployeeInterests } from '../../actions/InterestActions'
+import { fetchEmployeeInterests, fetchPostNewInterest } from '../../actions/InterestActions'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -44,16 +44,18 @@ const DisplayAllEmployeeInterests = (props) => {
     },[dispatch])
 
     let [open, setOpen]         = useState(false)
-    let [interest, setInterest] = useState('')
-
-    console.log(interest, "value of interest")
+    let [newInterest, setNewInterest] = useState('')
 
     let interests = useSelector(state => state.interests.interests)
     let loading   = useSelector(state => state.interests.loading)
     let hasErrors = useSelector(state => state.interests.hasErrors)
 
     const handleSubmit = () => {
-        alert("Submit!")
+        let interestSubmit = {
+            name: newInterest,
+            employee_id: employee_id
+        }
+        dispatch(fetchPostNewInterest(interestSubmit))
         setOpen(false)
     }
 
@@ -80,7 +82,7 @@ const DisplayAllEmployeeInterests = (props) => {
                             id="name"
                             label="Interest name"
                             fullWidth
-                            onChange={(e) => setInterest(e.target.value)}
+                            onChange={(e) => setNewInterest(e.target.value)}
                         />
                     </DialogContent>
                     <DialogActions>
