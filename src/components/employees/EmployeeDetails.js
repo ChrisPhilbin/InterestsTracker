@@ -81,40 +81,62 @@ const EmployeeDetails = (props) => {
 
                         <Typoegraphy variant="subtitle1" gutterBottom style={ isRecent ? { color: 'red' } : { color: 'green'} }>Last interaction: {lastInteraction}</Typoegraphy>
 
-                        <Typoegraphy variant="h5" gutterBottom>Interests & Hobbies</Typoegraphy>
-
                     </Paper>
                 </Container>
 
                 <Container maxWidth="lg" style={{ paddingTop: 45 }}>
                     <Grid container spacing={3}>
                         <Grid item xs={3}>
-                            <IconButton
-                                className={classes.addItemIcon}
-                                color="primary"
-                                aria-label="Add new Interest"
-                            >
-                                <AddCircleIcon style={{ fontSize: 30 }} />
-                            </IconButton>
-                            <Paper elevation={3} className={classes.widget}>
-                                <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Interests/Hobbies</Typoegraphy>
-
-                                <DisplayAllEmployeeInterests employee_id={employee_id} />
-                            </Paper>
+                            <DisplayAllEmployeeInterests employee_id={employee_id} />
                         </Grid>
 
                         <Grid item xs={3}>
+                            <IconButton
+                                className={classes.addItemIcon}
+                                color="primary"
+                                aria-label="Add new pet"
+                            >
+                                <AddCircleIcon style={{ fontSize: 30 }} />
+                            </IconButton>
                             <Paper elevation={3} className={classes.widget}>
                                 <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Pets</Typoegraphy>
                             </Paper>
                         </Grid>
 
                         <Grid item xs={3}>
+                            <IconButton
+                                className={classes.addItemIcon}
+                                color="primary"
+                                aria-label="Add new sport & team"
+                            >
+                                <AddCircleIcon style={{ fontSize: 30 }} />
+                            </IconButton>
+                            <Paper elevation={3} className={classes.widget}>
+                                <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Sports Teams</Typoegraphy>
+                            </Paper>
+                        </Grid>
+
+                        <Grid item xs={3}>
+                            <IconButton
+                                className={classes.addItemIcon}
+                                color="primary"
+                                aria-label="Add new note"
+                            >
+                                <AddCircleIcon style={{ fontSize: 30 }} />
+                            </IconButton>
                             <Paper elevation={3} className={classes.widget}>
                                 <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Notes</Typoegraphy>
                             </Paper>
                         </Grid>
                     </Grid>
+                </Container>
+
+                <Container maxWidth="lg" style={{ paddingTop: 45 }}>
+                    <Paper elevation={3} style={{ padding: 15 }}>
+                        <Typoegraphy variant="h4" gutterBottom>{employee.name}'s Newsfeed</Typoegraphy>
+                        <Typoegraphy variant="subtitle2"><em>Inspired by {employee.name}'s interests, hobbies, pets, and sports teams</em></Typoegraphy>
+
+                    </Paper>
                 </Container>
             </>
         )
