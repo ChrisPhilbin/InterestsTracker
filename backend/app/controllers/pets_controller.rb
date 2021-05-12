@@ -9,7 +9,7 @@ class PetsController < ApplicationController
     #POST /employees/:employee_id/pets
     def create
         @pet = Pet.create!(pet_params)
-        render :json => pet
+        render :json => @pet
     end
 
     #GET /employees/:employee_id/pets/:pet_id
@@ -30,7 +30,7 @@ class PetsController < ApplicationController
     private
 
     def pet_params
-        params.permit(:name, :type, :birthday, :notes)
+        params.permit(:name, :kind, :birthday, :notes, :employee_id)
     end
 
 end
