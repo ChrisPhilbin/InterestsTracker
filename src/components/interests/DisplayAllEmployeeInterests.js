@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchEmployeeInterests } from '../../actions/InterestActions'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
 
 
 const DisplayAllEmployeeInterests = (props) => {
@@ -34,9 +37,15 @@ const DisplayAllEmployeeInterests = (props) => {
     } else if (interests) {
         return(
             <>
-                {interests.map((interest) => (
-                    <li key={interest.id}>{interest.name}</li>
-                ))}
+                <List dense="true">
+                    {interests.map((interest) => (
+                        <ListItem key={interest.id}>
+                            <ListItemText
+                                primary={interest.name}
+                            />
+                        </ListItem>
+                    ))}
+                </List>
             </>
         )
     }

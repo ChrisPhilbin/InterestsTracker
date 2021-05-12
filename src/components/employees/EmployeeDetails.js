@@ -14,9 +14,16 @@ import useFormatDate from '../../hooks/useFormatDate'
 import useCheckDate from '../../hooks/useCheckDate'
 import ShowLoading from '../../util/ShowLoading'
 import ShowErrors from '../../util/ShowErrors'
+import IconButton from '@material-ui/core/IconButton'
+import AddCircleIcon from '@material-ui/icons/AddCircle'
 
 
 const useStyles = makeStyles((theme) => ({
+    addItemIcon: {
+        float: 'right',
+        bottom: '0px',
+        left: 0
+    },
     editButton: {
         float: 'right',
         top: '10px',
@@ -82,6 +89,13 @@ const EmployeeDetails = (props) => {
                 <Container maxWidth="lg" style={{ paddingTop: 45 }}>
                     <Grid container spacing={3}>
                         <Grid item xs={3}>
+                            <IconButton
+                                className={classes.addItemIcon}
+                                color="primary"
+                                aria-label="Add new Interest"
+                            >
+                                <AddCircleIcon style={{ fontSize: 30 }} />
+                            </IconButton>
                             <Paper elevation={3} className={classes.widget}>
                                 <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Interests/Hobbies</Typoegraphy>
 
