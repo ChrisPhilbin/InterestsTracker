@@ -54,7 +54,7 @@ const DisplayAllEmployeeSports = (props) => {
 
     const handleSubmit = () => {
         let sportSubmit = {
-            name: newSport,
+            teamname: newSport,
             city: newSportCity,
             employee_id: employee_id
         }
@@ -62,9 +62,9 @@ const DisplayAllEmployeeSports = (props) => {
         setOpen(false)
     }
 
-    const handleDelete = pet_id => {
+    const handleDelete = sport_id => {
         if (window.confirm("Are you sure?")) {
-            dispatch(fetchDeleteSport(employee_id, pet_id))
+            dispatch(fetchDeleteSport(employee_id, sport_id))
         }
     }
 
@@ -126,7 +126,7 @@ const DisplayAllEmployeeSports = (props) => {
                     <List dense={true}>
                         {sports.map((sport) => (
                             <ListItem key={sport.id}>
-                                <span><HighlightOffIcon style={{ size: 10, color: 'red' }} onClick={() => handleDelete(sport.id)} /></span>&nbsp;<ListItemText primary={`${sport.name} ${sport.city}`} />
+                                <span><HighlightOffIcon style={{ size: 10, color: 'red' }} onClick={() => handleDelete(sport.id)} /></span>&nbsp;<ListItemText primary={`${sport.city} ${sport.teamname}`} />
                             </ListItem>
                         ))}
                     </List>

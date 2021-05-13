@@ -24,7 +24,7 @@ export const getSportsFailure = (error) => (
 
 export const fetchEmployeeSports = (employee_id) => {
     return (dispatch) => {
-        fetch (`http://localhost:3001/employee/${employee_id}/sports`)
+        fetch (`http://localhost:3001/employees/${employee_id}/sports`)
         .then(response => response.json())
         .then(data => {
             dispatch(getSportsSuccess(data))

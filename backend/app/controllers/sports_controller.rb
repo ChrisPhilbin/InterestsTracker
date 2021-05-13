@@ -20,15 +20,15 @@ class SportsController < ApplicationController
 
     #DELETE /employees/:employee_id/sports/:sport_id
     def destroy
-        @sport = Sport.find(params[:sport_id])
+        @sport = Sport.find(params[:id])
         @sport.destroy
-        render :json @sport
+        render :json => @sport
     end
 
     private
 
     def sport_params
-        sport.permit(:teamname, :city, :employee_id)
+        params.permit(:teamname, :city, :employee_id)
     end
-    
+
 end
