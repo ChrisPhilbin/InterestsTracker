@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchEmployeePets, fetchPostNewPet } from '../../actions/PetActions'
+import { fetchEmployeePets, fetchPostNewPet, fetchDeletePet } from '../../actions/PetActions'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -18,6 +18,7 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 
 const useStyles = makeStyles((theme) => ({
     addItemIcon: {
@@ -59,6 +60,12 @@ const DisplayAllEmployeePets = (props) => {
         }
         dispatch(fetchPostNewPet(petSubmit))
         setOpen(false)
+    }
+
+    const handleDelete = pet_id => {
+        if (window.confirm("Are you sure?")) {
+            dispatch(fetchDeletePet(employee_id, pet_id))
+        }
     }
 
     if (loading) {
@@ -119,9 +126,7 @@ const DisplayAllEmployeePets = (props) => {
                     <List dense={true}>
                         {pets.map((pet) => (
                             <ListItem key={pet.id}>
-                                <ListItemText
-                                    primary={pet.name}
-                                />
+                                <span><HighlightOffIcon style={{ size: 10, color: 'red' }} onClick={() => handleDelete(pet.id)} /></span>&nbsp;<ListItemText primary={pet.name} />
                             </ListItem>
                         ))}
                     </List>

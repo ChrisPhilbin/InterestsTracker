@@ -1,8 +1,12 @@
 export const GET_PETS            = "GET_PETS"
 export const GET_PETS_SUCCESS    = "GET_PETS_SUCCESS"
 export const GET_PETS_FAILURE    = "GET_PETS_FAILURE"
+
 export const PET_CREATED_SUCCESS = "PET_CREATED_SUCCESS"
 export const PET_CREATED_FAILURE = "PET_CREATED_FAILURE"
+
+export const PET_DELETED_SUCCESS = "PET_DELETED_SUCCESS"
+export const PET_DELETED_FAILURE = "PET_DELETED_FAILURE"
 
 export const getPets = () => (
     { type: GET_PETS }
@@ -51,6 +55,30 @@ export const fetchPostNewPet = (pet) => {
         })
         .catch(error => {
             dispatch(petCreatedFailure(error))
+        })
+    }
+}
+
+export const petDeletedSuccess = (pet) => (
+    { type: PET_DELETED_SUCCESS, payload: pet }
+)
+
+export const petDeletedFailure = (error) => (
+    { type: PET_DELETED_FAILURE, payload: error }
+)
+
+export const fetchDeletePet = (employee_id, pet_id) => {
+    return (dispatch) => {
+        fetch(`http://localhost:3001/employees/${employee_id}/pets/${pet_id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type':'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            dispatch(petDeletedSuccess(data))
+        })
+        .catch(error => {
+            dispatch(petDeletedFailure(error))
         })
     }
 }

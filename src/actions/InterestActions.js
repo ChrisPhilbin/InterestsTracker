@@ -51,7 +51,6 @@ export const fetchPostNewInterest = (interest) => {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data, "data coming back")
             dispatch(interestCreatedSuccess(data))
         })
         .catch(error => {

@@ -23,6 +23,9 @@ export default function petssReducer(state = initialInterestsState, action) {
         case actions.PET_CREATED_FAILURE: {
             return {...state, loading: false, hasErrors: true }
         }
+        case actions.PET_DELETED_SUCCESS: {
+            return { pets: state.pets.filter(pet => pet.name !== action.payload.name) }
+        }
         default:
             return state
     }
