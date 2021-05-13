@@ -21,8 +21,7 @@ class PetsController < ApplicationController
 
     #DELETE /employees/:employee_id/pets/:pet_id
     def destroy
-        @employee = Employee.find(params[:employee_id])
-        @pet = @employee.interests.find(params[:id])
+        @pet = Pet.find(params[:id])
         @pet.destroy
         render :json => @pet
     end
