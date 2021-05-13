@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchEmployeeInterests, fetchPostNewInterest } from '../../actions/InterestActions'
+import { fetchEmployeeInterests, fetchPostNewInterest, fetchDeleteInterest } from '../../actions/InterestActions'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -18,6 +18,7 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 
 const useStyles = makeStyles((theme) => ({
     addItemIcon: {
@@ -57,6 +58,12 @@ const DisplayAllEmployeeInterests = (props) => {
         }
         dispatch(fetchPostNewInterest(interestSubmit))
         setOpen(false)
+    }
+
+    const handleDelete = interest_id => {
+        if (window.confirm("Are you sure?")) {
+            dispatch(fetchDeleteInterest(employee_id, interest_id))
+        }
     }
 
     if (loading) {
@@ -109,7 +116,7 @@ const DisplayAllEmployeeInterests = (props) => {
                     <List dense={true}>
                         {interests.map((interest) => (
                             <ListItem key={interest.id}>
-                                <ListItemText
+                                <span><HighlightOffIcon style={{ size: 10, color: 'red' }} onClick={() => handleDelete(interest.id)} /></span>&nbsp;<ListItemText
                                     primary={interest.name}
                                 />
                             </ListItem>

@@ -54,7 +54,7 @@ const DisplayAllEmployeePets = (props) => {
     const handleSubmit = () => {
         let petSubmit = {
             name: newPet,
-            type: newPetType,
+            kind: newPetType,
             employee_id: employee_id
         }
         dispatch(fetchPostNewPet(petSubmit))

@@ -5,6 +5,9 @@ export const GET_INTERESTS_FAILURE = "GET_INTERESTS_FAILURE"
 export const CREATE_INTEREST_FAILURE = "CREATE_INTEREST_FAILURE"
 export const CREATE_INTEREST_SUCCESS = "CREATE_INTEREST_SUCCESS"
 
+export const INTEREST_DELETED_SUCCESS = "INTEREST_DELETED_SUCCESS"
+export const INTEREST_DELETED_FAILURE = "INTEREST_DELETED_FAILURE"
+
 export const getInterests = () => (
     { type: GET_INTERESTS }
 )
@@ -53,6 +56,30 @@ export const fetchPostNewInterest = (interest) => {
         })
         .catch(error => {
             dispatch(interestCreatedFailure(error))
+        })
+    }
+}
+
+export const interestDeletedSuccess = (interest) => (
+    { type: INTEREST_DELETED_SUCCESS, payload: interest }
+)
+
+export const interestDeletedFailure = (error) => (
+    { type: INTEREST_DELETED_FAILURE, payload: error }
+)
+
+export const fetchDeleteInterest = (employee_id, interest_id) => {
+    return (dispatch) => {
+        fetch(`http://localhost:3001/employees/${employee_id}/interests/${interest_id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type':'application/json'}
+        })
+        .then(response => response.json())
+        .then(data => {
+            dispatch(interestDeletedSuccess(data))
+        })
+        .catch(error => {
+            dispatch(interestDeletedFailure(error))
         })
     }
 }
