@@ -24,7 +24,7 @@ export default function sportsReducer(state = initialInterestsState, action) {
             return {...state, loading: false, hasErrors: true }
         }
         case actions.SPORT_DELETED_SUCCESS: {
-            return { sports: state.sports.filter(sport => sport.name !== action.payload.name) }
+            return { sports: state.sports.filter(sport => sport.teamname !== action.payload.teamname) }
         }
         default:
             return state
