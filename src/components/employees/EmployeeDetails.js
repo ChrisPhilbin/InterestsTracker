@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typoegraphy from '@material-ui/core/Typography'
 import DisplayAllEmployeeInterests from '../interests/DisplayAllEmployeeInterests'
+import DisplayAllEmployeeSports from '../sports/DisplayAllEmployeeSports'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import useFormatDate from '../../hooks/useFormatDate'
@@ -96,16 +97,7 @@ const EmployeeDetails = (props) => {
                         </Grid>
 
                         <Grid item xs={3}>
-                            <IconButton
-                                className={classes.addItemIcon}
-                                color="primary"
-                                aria-label="Add new sport & team"
-                            >
-                                <AddCircleIcon style={{ fontSize: 30 }} />
-                            </IconButton>
-                            <Paper elevation={3} className={classes.widget}>
-                                <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Sports Teams</Typoegraphy>
-                            </Paper>
+                            <DisplayAllEmployeeSports employee_id={employee_id} />
                         </Grid>
 
                         <Grid item xs={3}>
