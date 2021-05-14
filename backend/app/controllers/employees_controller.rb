@@ -1,5 +1,7 @@
 class EmployeesController < ApplicationController
 
+    require 'pry'
+
     #GET /employees
     def index
         @employees = Employee.all
@@ -9,6 +11,7 @@ class EmployeesController < ApplicationController
     #POST /employees
     def create
         @employee = Employee.create!(employee_params)
+        binding.pry
         render :json => @employee
     end
 
@@ -35,7 +38,7 @@ class EmployeesController < ApplicationController
     private
 
     def employee_params
-        params.permit(:name, :hire_date, :last_interaction, :headshot)
+        params.require(:employee).permit(:name, :hire_date, :last_interaction, :headshot)
     end
 
 end

@@ -28,7 +28,8 @@ const CreateEmployee = (props) => {
         let employee = {
             name: name,
             headshot: headshot,
-            hire_date: selectedDate
+            hire_date: selectedDate,
+            last_interaction: new Date()
         }
         dispatch(fetchPostNewEmployee(employee))
         props.history.push('/employees')
