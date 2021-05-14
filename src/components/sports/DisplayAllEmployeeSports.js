@@ -122,7 +122,7 @@ const DisplayAllEmployeeSports = (props) => {
                 </IconButton>
                 
                 <Paper elevation={3} className={classes.widget} square={false}>
-                    <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Pets</Typoegraphy>
+                    <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Favorite Teams</Typoegraphy>
                     <List dense={true}>
                         {sports.map((sport) => (
                             <ListItem key={sport.id}>

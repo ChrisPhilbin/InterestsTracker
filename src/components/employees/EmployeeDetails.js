@@ -109,7 +109,7 @@ const EmployeeDetails = (props) => {
                                 <AddCircleIcon style={{ fontSize: 30 }} />
                             </IconButton>
                             <Paper elevation={3} className={classes.widget}>
-                                <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Notes</Typoegraphy>
+                                <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Goals/Aspirations</Typoegraphy>
                             </Paper>
                         </Grid>
                     </Grid>
