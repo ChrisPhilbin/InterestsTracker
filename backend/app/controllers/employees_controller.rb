@@ -35,7 +35,7 @@ class EmployeesController < ApplicationController
     private
 
     def employee_params
-        params.permit(:name, :hire_date, :last_interaction)
+        params.permit(:name, :hire_date, :last_interaction, :headshot)
     end
 
 end
