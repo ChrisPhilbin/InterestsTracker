@@ -74,6 +74,7 @@ export const employeeCreatedFailure = (error) => (
 
 export const fetchPostNewEmployee = (employee) => {
     return (dispatch) => {
+        console.log(employee, "employee object passed into create EE action")
         fetch('http://localhost:3001/employees', {
             method: 'POST',
             body: JSON.stringify(employee),
