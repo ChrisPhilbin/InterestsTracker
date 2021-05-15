@@ -91,14 +91,15 @@ const DisplayAllEmployeePets = (props) => {
                             id="name"
                             label="Pet name"
                             fullWidth
+                            variant="outlined"
                             onChange={(e) => setNewPet(e.target.value)}
                         />
                         <TextField
-                            autoFocus
                             margin="dense"
                             id="name"
                             label="Pet Type"
                             fullWidth
+                            variant="outlined"
                             onChange={(e) => setNewPetType(e.target.value)}
                         />
                     </DialogContent>

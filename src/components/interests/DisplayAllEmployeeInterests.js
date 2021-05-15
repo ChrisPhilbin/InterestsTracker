@@ -89,6 +89,7 @@ const DisplayAllEmployeeInterests = (props) => {
                             id="name"
                             label="Interest name"
                             fullWidth
+                            variant="outlined"
                             onChange={(e) => setNewInterest(e.target.value)}
                         />
                     </DialogContent>

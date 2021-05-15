@@ -91,14 +91,15 @@ const DisplayAllEmployeeSports = (props) => {
                             id="name"
                             label="Sports team name"
                             fullWidth
+                            variant="outlined"
                             onChange={(e) => setNewSport(e.target.value)}
                         />
                         <TextField
-                            autoFocus
                             margin="dense"
                             id="name"
                             label="City"
                             fullWidth
+                            variant="outlined"
                             onChange={(e) => setNewSportCity(e.target.value)}
                         />
                     </DialogContent>
