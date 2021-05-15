@@ -7,8 +7,6 @@ import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typoegraphy from '@material-ui/core/Typography'
-import DisplayAllEmployeeInterests from '../interests/DisplayAllEmployeeInterests'
-import DisplayAllEmployeeSports from '../sports/DisplayAllEmployeeSports'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import useFormatDate from '../../hooks/useFormatDate'
@@ -17,8 +15,10 @@ import ShowLoading from '../../util/ShowLoading'
 import ShowErrors from '../../util/ShowErrors'
 import IconButton from '@material-ui/core/IconButton'
 import AddCircleIcon from '@material-ui/icons/AddCircle'
+import DisplayAllEmployeeInterests from '../interests/DisplayAllEmployeeInterests'
+import DisplayAllEmployeeSports from '../sports/DisplayAllEmployeeSports'
+import DisplayAllEmployeeNotes from '../notes/DisplayAllEmployeeNotes'
 import DisplayAllEmployeePets from '../pets/DisplayAllEmployeePets'
-
 
 const useStyles = makeStyles((theme) => ({
     addItemIcon: {
@@ -101,16 +101,7 @@ const EmployeeDetails = (props) => {
                         </Grid>
 
                         <Grid item xs={3}>
-                            <IconButton
-                                className={classes.addItemIcon}
-                                color="primary"
-                                aria-label="Add new note"
-                            >
-                                <AddCircleIcon style={{ fontSize: 30 }} />
-                            </IconButton>
-                            <Paper elevation={3} className={classes.widget}>
-                                <Typoegraphy variant="h5" style={{textAlign: 'center'}} gutterBottom>Goals/Aspirations</Typoegraphy>
-                            </Paper>
+                            <DisplayAllEmployeeNotes employee_id={employee_id} />
                         </Grid>
                     </Grid>
                 </Container>

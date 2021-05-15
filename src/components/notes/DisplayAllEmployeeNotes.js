@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchEmployeeNotes, fetchPostNewNote, fetchDeleteNote } from '../../actions/SportActions'
+import { fetchEmployeeNotes, fetchPostNewNote, fetchDeleteNote } from '../../actions/NoteActions'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -53,7 +53,7 @@ const DisplayAllEmployeeNotes = (props) => {
 
     const handleSubmit = () => {
         let noteSubmit = {
-            content: newNote,
+            contents: newNote,
             employee_id: employee_id
         }
         dispatch(fetchPostNewNote(noteSubmit))
@@ -88,7 +88,10 @@ const DisplayAllEmployeeNotes = (props) => {
                             margin="dense"
                             id="content"
                             label="Notes/Thoughts/Ideas..."
+                            multiline
+                            rows={6}
                             fullWidth
+                            variant="outlined"
                             onChange={(e) => setNewNote(e.target.value)}
                         />
                     </DialogContent>
@@ -116,7 +119,7 @@ const DisplayAllEmployeeNotes = (props) => {
                     <List dense={true}>
                         {notes.map((note) => (
                             <ListItem key={note.id}>
-                                <span><HighlightOffIcon style={{ size: 10, color: 'red' }} onClick={() => handleDelete(note.id)} /></span>&nbsp;<ListItemText primary={`${note.content}`} />
+                                <span><HighlightOffIcon style={{ size: 10, color: 'red' }} onClick={() => handleDelete(note.id)} /></span>&nbsp;<ListItemText primary={`${note.contents}`} />
                             </ListItem>
                         ))}
                     </List>

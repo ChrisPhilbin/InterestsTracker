@@ -22,7 +22,7 @@ export const getNotesFailure = (error) => (
     { type: GET_NOTES_FAILURE, payload: error }
 )
 
-export const fecthAllEmployeeNotes = (employee_id) => {
+export const fetchEmployeeNotes = (employee_id) => {
     return (dispatch) => {
         dispatch(getNotes)
         fetch(`http://localhost:3001/employees/${employee_id}/notes`)
