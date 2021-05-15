@@ -1,8 +1,14 @@
 import { EMPLOYEE_CREATED_SUCCESS } from "./EmployeeActions"
 
-export const GET_NOTES          = "GET_NOTES"
-export const GET_NOTES_SUCCESS  = "GET_NOTES_SUCCESS"
-export const GET_NOTES_FAILUIRE = "GET_NOTES_FAILURE"
+export const GET_NOTES            = "GET_NOTES"
+export const GET_NOTES_SUCCESS    = "GET_NOTES_SUCCESS"
+export const GET_NOTES_FAILURE    = "GET_NOTES_FAILURE"
+
+export const NOTE_CREATED_SUCCESS = "NOTE_CREATED_SUCCESS"
+export const NOTE_CREATED_FAILURE = "NOTE_CREATED_FAILURE"
+
+export const NOTE_DELETED_SUCCESS = "NOTE_DELETED_SUCCESS"
+export const NOTE_DELETED_FAILURE = "NOTE_DELETED_FAILURE"
 
 export const getNotes = () => (
     { type: GET_NOTES }
@@ -13,11 +19,11 @@ export const GetNotesSuccess = (notes) => (
 )
 
 export const getNotesFailure = (error) => (
-    { type: GET_NOTES_FAILUIRE, payload: error }
+    { type: GET_NOTES_FAILURE, payload: error }
 )
 
 export const fecthAllEmployeeNotes = (employee_id) => {
-    return (disptach) => {
+    return (dispatch) => {
         dispatch(getNotes)
         fetch(`http://localhost:3001/employees/${employee_id}/notes`)
         .then(response => response.json())
@@ -51,6 +57,30 @@ export const fetchPostNewNote = (note) => {
         })
         .catch(error => {
             dispatch(notecreatedFailure(error))
+        })
+    }
+}
+
+export const noteDeletedSuccess = (note) => (
+    { type: NOTE_DELETED_SUCCESS, payload: note }
+)
+
+export const noteDeletedFailure = (error) => (
+    { type: NOTE_DELETED_FAILURE, payload: error }
+)
+
+export const fetchDeleteNote = (employee_id, note_id) => {
+    return (dispatch) => {
+        fetch(`http://localhost:3001/employees/${employee_id}/notes/${note_id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type':'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            dispatch(noteDeletedSuccess(data))
+        })
+        .catch(error => {
+            dispatch(noteDeletedFailure(error))
         })
     }
 }
