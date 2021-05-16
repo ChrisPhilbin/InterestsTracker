@@ -41,7 +41,6 @@ class EmployeesController < ApplicationController
         render :json => @news
     end
 
-
     private
 
     def employee_params
