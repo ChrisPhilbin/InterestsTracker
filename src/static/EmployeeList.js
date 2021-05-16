@@ -9,6 +9,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle'
 import { Link } from 'react-router-dom'
 import ShowLoading from '../util/ShowLoading'
 import ShowErrors from '../util/ShowErrors'
+import Container from '@material-ui/core/Container'
 
 const useStyles = makeStyles((theme) => ({
     floatingButton: {
@@ -46,7 +47,7 @@ const EmployeeList = () => {
         )
     } else if (employees) {
         return(
-            <>
+            <Container maxWidth="lg">
                 <IconButton
                     className={classes.floatingButton}
                     color="primary"
@@ -64,7 +65,7 @@ const EmployeeList = () => {
                         </Grid>
                     ))}
                 </Grid>
-            </>
+            </Container>
         )
     }
 }
