@@ -36,7 +36,8 @@ class EmployeesController < ApplicationController
 
     #GET /employees/:employee_id/newsfeed
     def newsfeed 
-        @employee = Employee.find(:params[:id])
+        binding.pry
+        @employee = Employee.find(params[:employee_id])
         @news = Employee.update_all_employee_interests(@employee.interests, @employee.pets, @employee.sports)
         render :json => @news
     end

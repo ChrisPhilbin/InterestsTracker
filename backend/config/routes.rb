@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  get '/employees/:employee_id/newsfeed', to: 'employees#newsfeed'
+
   resources :employees do
-    get '/newsfeed', to: 'employees#newsfeed'
     resources :interests
     resources :pets
     resources :sports
