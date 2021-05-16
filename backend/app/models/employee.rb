@@ -1,4 +1,7 @@
 class Employee < ApplicationRecord
+
+    require 'pry'
+
     has_many :interests
     has_many :pets
     has_many :sports
@@ -39,6 +42,8 @@ class Employee < ApplicationRecord
             return {}
         end
 
+        binding.pry
+
         news = []
 
         combinedArr.each do |i|
@@ -46,10 +51,10 @@ class Employee < ApplicationRecord
 	      	"q=#{i}&"\
 	      	"from=#{Time.now.strftime("%Y-%m-%d")}&"\
 	      	"sortBy=popularity&"\
-	      	"pageSize=3&"\
+	      	"pageSize=2&"\
 	      	"apiKey=#{ENV['API_KEY']}"
 
-			req = open(url)
+			req = URI.open(url)
 
 			# response_body = req.read
 			response_body = JSON.parse(req.read)
@@ -58,7 +63,7 @@ class Employee < ApplicationRecord
 
 		end
 
-        return news.first
+        return news
 
     end
 
