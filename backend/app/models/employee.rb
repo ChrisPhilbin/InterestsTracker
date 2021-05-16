@@ -58,6 +58,8 @@ class Employee < ApplicationRecord
 
 		end
 
+        return news.first
+
     end
 
 end
