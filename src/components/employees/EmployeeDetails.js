@@ -19,6 +19,7 @@ import DisplayAllEmployeeInterests from '../interests/DisplayAllEmployeeInterest
 import DisplayAllEmployeeSports from '../sports/DisplayAllEmployeeSports'
 import DisplayAllEmployeeNotes from '../notes/DisplayAllEmployeeNotes'
 import DisplayAllEmployeePets from '../pets/DisplayAllEmployeePets'
+import DisplayAllEmployeeNews from '../newsfeed/DisplayAllEmployeeNews'
 
 const useStyles = makeStyles((theme) => ({
     addItemIcon: {
@@ -107,11 +108,7 @@ const EmployeeDetails = (props) => {
                 </Container>
 
                 <Container maxWidth="lg" style={{ paddingTop: 45 }}>
-                    <Paper elevation={3} style={{ padding: 15 }}>
-                        <Typoegraphy variant="h4" gutterBottom>{employee.name}'s Newsfeed</Typoegraphy>
-                        <Typoegraphy variant="subtitle2"><em>Inspired by {employee.name}'s interests, hobbies, pets, and sports teams</em></Typoegraphy>
-
-                    </Paper>
+                    <DisplayAllEmployeeNews employee_id={employee_id} employee_name={employee.name} />
                 </Container>
             </>
         )

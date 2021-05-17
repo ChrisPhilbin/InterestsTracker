@@ -42,8 +42,6 @@ class Employee < ApplicationRecord
             return {}
         end
 
-        binding.pry
-
         news = []
 
         combinedArr.each do |i|
@@ -59,11 +57,13 @@ class Employee < ApplicationRecord
 			# response_body = req.read
 			response_body = JSON.parse(req.read)
 
-			news << response_body
+            data = Dish(response_body)
+
+            news << data.articles
 
 		end
 
-        return news
+        return news.flatten!
 
     end
 

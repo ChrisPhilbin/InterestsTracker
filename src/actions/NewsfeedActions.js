@@ -19,7 +19,7 @@ export const fetchEmployeeNewsfeed = (employee_id) => {
         fetch(`http://localhost:3001/employees/${employee_id}/newsfeed`)
         .then(response => response.json())
         .then(data => {
-            dispatch(getNewsfeedSuccess(data.articles))
+            dispatch(getNewsfeedSuccess(data))
         })
         .catch(error => {
             dispatch(getNewsfeedFailure(error))
