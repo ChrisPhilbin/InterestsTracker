@@ -3,10 +3,10 @@ class Employee < ApplicationRecord
     require 'pry'
     require 'hash_dot'
 
-    has_many :interests
-    has_many :pets
-    has_many :sports
-    has_many :notes
+    has_many :interests, :dependent => :delete_all
+    has_many :pets,      :dependent => :delete_all
+    has_many :sports,    :dependent => :delete_all
+    has_many :notes,     :dependent => :delete_all
 
     mount_uploader :headshot, HeadshotUploader
 
