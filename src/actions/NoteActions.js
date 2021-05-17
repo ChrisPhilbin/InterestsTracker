@@ -1,5 +1,3 @@
-import { EMPLOYEE_CREATED_SUCCESS } from "./EmployeeActions"
-
 export const GET_NOTES            = "GET_NOTES"
 export const GET_NOTES_SUCCESS    = "GET_NOTES_SUCCESS"
 export const GET_NOTES_FAILURE    = "GET_NOTES_FAILURE"
