@@ -50,7 +50,7 @@ class Employee < ApplicationRecord
 	      	"q=#{i}&"\
 	      	"from=#{Time.now.strftime("%Y-%m-%d")}&"\
 	      	"sortBy=popularity&"\
-	      	"pageSize=2&"\
+	      	"pageSize=1&"\
 	      	"apiKey=#{ENV['API_KEY']}"
 
 			req = URI.open(url)
