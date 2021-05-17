@@ -24,6 +24,10 @@ class Employee < ApplicationRecord
         Employee.where(birthday: 0.days.ago .. 14.days.from_now)
     end
 
+    def self.upcoming_work_anniversaries
+        Employee.where(hire_date: 20.days.ago .. 14.days.from_now)
+    end
+
     def self.update_all_employee_interests(interests, pets, teams)
         combinedArr = []
 

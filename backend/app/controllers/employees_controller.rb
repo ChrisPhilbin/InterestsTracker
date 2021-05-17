@@ -41,10 +41,17 @@ class EmployeesController < ApplicationController
         render :json => @news
     end
 
+    def dashboard
+        @todays_birthdays            = Employee.todays_birthdays
+        @upcoming_birthdays          = Employee.upcoming_birthdays
+        @upcoming_work_anniversaries = Employee.upcoming_work_anniversaries
+        render :json => { todays_birthdays: @todays_birthdays, upcoming_birthdays: @upcoming_birthdays, upcoming_work_anniversaries: @upcoming_work_anniversaries }
+    end
+
     private
 
     def employee_params
-        params.require(:employee).permit(:name, :hire_date, :last_interaction, :headshot)
+        params.require(:employee).permit(:name, :hire_date, :last_interaction, :headshot, :birthday)
     end
 
 end
