@@ -1,6 +1,7 @@
 class Employee < ApplicationRecord
 
     require 'pry'
+    require 'hash_dot'
 
     has_many :interests
     has_many :pets
@@ -57,7 +58,7 @@ class Employee < ApplicationRecord
 			# response_body = req.read
 			response_body = JSON.parse(req.read)
 
-            data = Dish(response_body)
+            data = response_body.to_dot
 
             news << data.articles
 

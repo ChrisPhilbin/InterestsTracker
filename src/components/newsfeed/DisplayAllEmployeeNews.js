@@ -44,7 +44,11 @@ const DisplayAllEmployeeNews = (props) => {
                     <Typoegraphy variant="h4" gutterBottom>{employee_name}'s Newsfeed</Typoegraphy>
 
                     {newsfeed.map((article) => (
-                        <div>{article.title}</div>
+                        <div>
+                            <strong><a href={article.url}>{article.title}</a></strong> <br />
+                            {article.description}
+                            &nbsp;<br />
+                        </div>
                     ))}
                 </Paper>
             </>
