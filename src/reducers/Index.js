@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import alertsReducer from './AlertsReducer'
 import employeesReducer from './EmployeesReducer'
 import interestsReducer from './InterestsReducer'
 import newsfeedReducer from './NewsfeedsReducer'
@@ -7,6 +8,7 @@ import sportsReducer from './SportsReducer'
 import notesReducer from './NotesReducer'
 
 const rootReducer = combineReducers({
+    alerts:    alertsReducer,
     employees: employeesReducer,
     interests: interestsReducer,
     newsfeeds: newsfeedReducer,
