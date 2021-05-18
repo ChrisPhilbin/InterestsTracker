@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom'
 import ShowLoading from '../util/ShowLoading'
 import ShowErrors from '../util/ShowErrors'
 import Container from '@material-ui/core/Container'
+import EmployeeDashboard from '../components/dashboard/EmployeeDashboard'
 
 const useStyles = makeStyles((theme) => ({
     floatingButton: {
@@ -57,6 +58,10 @@ const EmployeeList = () => {
                 >
                     <AddCircleIcon style={{ fontSize: 60 }} />
                 </IconButton>
+
+                <Grid container spacing={3} style={{ marginTop: 30 }}>
+                    <EmployeeDashboard />
+                </Grid>
 
                 <Grid container spacing={3} style={{marginTop: 30}}>
                     {employees.map((employee) => (
