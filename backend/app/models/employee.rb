@@ -10,10 +10,6 @@ class Employee < ApplicationRecord
 
     mount_uploader :headshot, HeadshotUploader
 
-    def newsfeed
-
-    end
-
     def self.todays_birthdays
         #return array of employee objects whos birthday it is today based on MM/DD
         Employee.where("strftime('%m%d', birthday) = ?", Date.today.strftime('%m%d'))
@@ -33,7 +29,16 @@ class Employee < ApplicationRecord
     end
 
     def self.upcoming_work_anniversaries
-        Employee.where(hire_date: 20.days.ago .. 14.days.from_now)
+        upcoming_work_anniversaries = []
+        Employee.all.each do |employee|
+            if employee.hire_date
+                mmdd = employee.hire_date.strftime('%m%d').to_i
+                if mmdd <= 14.days.from_now.strftime('%m%d').to_i
+                    upcoming_work_anniversaries << employee
+                end
+            end
+        end
+        upcoming_work_anniversaries
     end
 
     def self.update_all_employee_interests(interests, pets, teams)
