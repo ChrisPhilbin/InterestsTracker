@@ -20,8 +20,16 @@ class Employee < ApplicationRecord
     end
     
     def self.upcoming_birthdays
-        #return array of employee objects who have an upcoming birthday within the next 14 days
-        Employee.where(birthday: 0.days.ago .. 14.days.from_now)
+        upcoming_birthdays = []
+        Employee.all.each do |employee|
+            if employee.birthday
+                mmdd = employee.birthday.strftime('%m%d').to_i
+                if mmdd <= 14.days.from_now.strftime('%m%d').to_i
+                    upcoming_birthdays << employee
+                end
+            end
+        end
+        upcoming_birthdays
     end
 
     def self.upcoming_work_anniversaries
