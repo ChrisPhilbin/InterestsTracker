@@ -25,16 +25,14 @@ export const getEmployeesFailure = (error) => (
 )
 
 export const fetchAllEmployees = () => {
-    return (dispatch) => {
-        dispatch(getEmployees())
-        fetch('http://localhost:3001/employees')
-        .then(response => response.json())
-        .then(data => {
-            dispatch(getEmployeesSuccess(data))
-        })
-        .catch(error => {
+    return async (dispatch) => {
+        try {
+            const response = await fetch('http://localhost:3001/employees')
+            const employees = await response.json()
+            dispatch(getEmployeesSuccess(employees))
+        } catch (error) {
             dispatch(getEmployeesFailure(error))
-        })
+        }
     }
 }
 
@@ -46,21 +44,19 @@ export const getOneEmployeeSuccess = (employee) => (
     { type: GET_ONE_EMPLOYEE_SUCCESS, payload: employee }
 )
 
-export const GetOneEmployeeFailure = (error) => (
+export const getOneEmployeeFailure = (error) => (
     { type: GET_ONE_EMPLOYEE_FAILURE, payload: error }
 )
 
 export const fetchOneEmployee = (employee_id) => {
-    return (dispatch) => {
-        dispatch(getOneEmployee())
-        fetch(`http://localhost:3001/employees/${employee_id}`)
-        .then(response => response.json())
-        .then(data => {
-            dispatch(getOneEmployeeSuccess(data))
-        })
-        .catch(error => {
-            dispatch(GetOneEmployeeFailure(error))
-        })
+    return async (dispatch) => {
+        try {
+            const success = await fetch(`http://localhost:3001/employees/${employee_id}`)
+            const employee = await success.json()
+            dispatch(getOneEmployeeSuccess(employee))
+        } catch (error) {
+            dispatch(getOneEmployeeFailure(error))
+        }
     }
 }
 
@@ -72,20 +68,19 @@ export const employeeCreatedFailure = (error) => (
     { type: EMPLOYEE_CREATED_FAILURE, payload: error }
 )
 
-export const fetchPostNewEmployee = (employee) => {
-    return (dispatch) => {
-        fetch('http://localhost:3001/employees', {
-            method: 'POST',
-            body: JSON.stringify(employee),
-            headers: { 'Content-Type': 'application/json' }
-        })
-        .then(response => response.json())
-        .then(data => {
-            dispatch(employeeCreatedSuccess(data))
-        })
-        .catch(error => {
+export const fetchPostNewEmployee = (new_employee) => {
+    return async (dispatch) => {
+        try {
+            const success = await fetch('http://localhost:3001/employees', {
+                method: 'POST',
+                body: JSON.stringify(new_employee),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            const employee = await success.json()
+            dispatch(employeeCreatedSuccess(employee))
+        } catch (error) {
             dispatch(employeeCreatedFailure(error))
-        })
+        }
     }
 }
 
@@ -98,12 +93,16 @@ export const employeeDeletedFailure = (error) => (
 )
 
 export const deleteOneEmployee = (employee_id) => {
-    return (dispatch) => {
-        fetch(`http://localhost:3001/employees/${employee_id}`, {
-            method: "DELETE",
-            headers: { 'Content-Type': 'application/json' }
-        })
-        .then(response => response.json())
-        .then(data => dispatch(employeeDeletedSuccess(data)))
+    return async (dispatch) => {
+        try {
+            const success = await fetch(`http://localhost:3001/employees/${employee_id}`, {
+                method: "DELETE",
+                headers: { 'Content-Type': 'application/json' }
+            })
+            const employee = await success.json()
+            dispatch(employeeDeletedSuccess(employee))
+        } catch (error) {
+            dispatch(employeeDeletedFailure(error))
+        }
     }
 }

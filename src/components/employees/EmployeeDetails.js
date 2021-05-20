@@ -6,6 +6,8 @@ import { fetchOneEmployee } from '../../actions/EmployeeActions'
 import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
 import Typoegraphy from '@material-ui/core/Typography'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
@@ -13,8 +15,6 @@ import useFormatDate from '../../hooks/useFormatDate'
 import useCheckDate from '../../hooks/useCheckDate'
 import ShowLoading from '../../util/ShowLoading'
 import ShowErrors from '../../util/ShowErrors'
-import IconButton from '@material-ui/core/IconButton'
-import AddCircleIcon from '@material-ui/icons/AddCircle'
 import DisplayAllEmployeeInterests from '../interests/DisplayAllEmployeeInterests'
 import DisplayAllEmployeeSports from '../sports/DisplayAllEmployeeSports'
 import DisplayAllEmployeeNotes from '../notes/DisplayAllEmployeeNotes'
@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
         right: '15px',
     },
     widget: {
+        borderRadius: 15,
         padding: 15
     }
 }))
@@ -55,10 +56,13 @@ const EmployeeDetails = (props) => {
     let loading    = useSelector(state => state.employees.loading)
     let hasErrors  = useSelector(state => state.employees.hasErrors)
 
+    console.log(employee)
+
     let lastInteraction = dayjs(employee.last_interaction).fromNow()
 
     let hireDate = useFormatDate(employee.hire_date)
     let isRecent = useCheckDate(employee.last_interaction)
+    let birthday = useFormatDate(employee.birthday)
 
     if (loading) {
         return(
@@ -76,15 +80,18 @@ const EmployeeDetails = (props) => {
         return (
             <>
                 <Container maxWidth="lg" style={{ paddingTop: 45 }}>
-                    <Paper elevation={3} style={{ padding: 15 }}>
-                        <span className={classes.editButton}><Button variant="contained" color="primary">Edit details</Button></span>
-                        <Typoegraphy variant="h4" gutterBottom>{employee.name}</Typoegraphy>
+                    <Card variant="outlined">
+                        <CardContent>
+                            <span className={classes.editButton}><Button variant="contained" color="primary">Edit details</Button></span>
+                            <Typoegraphy variant="h4" gutterBottom>{employee.name}</Typoegraphy>
 
-                        <Typoegraphy variant="subtitle1" gutterBottom>Hire date: {hireDate}</Typoegraphy>
+                            <Typoegraphy variant="subtitle1">Hire date: {hireDate}</Typoegraphy>
 
-                        <Typoegraphy variant="subtitle1" gutterBottom style={ isRecent ? { color: 'red' } : { color: 'green'} }>Last interaction: {lastInteraction}</Typoegraphy>
+                            <Typoegraphy variant="subtitle1">Birthday: {birthday}</Typoegraphy>
 
-                    </Paper>
+                            <Typoegraphy variant="subtitle1" gutterBottom style={ isRecent ? { color: 'red' } : { color: 'green'} }>Last interaction: {lastInteraction}</Typoegraphy>
+                        </CardContent>
+                    </Card>
                 </Container>
 
                 <Container maxWidth="lg" style={{ paddingTop: 45 }}>
