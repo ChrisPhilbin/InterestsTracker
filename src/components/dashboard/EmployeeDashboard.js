@@ -50,6 +50,22 @@ const EmployeeDashboard = () => {
                 <Grid container spacing={3} xs={12}>
                     <Grid item xs={3}>
                         <Paper elevation={3} style={{ padding: 20 }}>
+                            <Typoegraphy variant="h5" gutterBottom>Overdue alerts</Typoegraphy> { alerts.overdue_alerts.length ?
+                                <div>
+                                    {alerts.overdue_alerts.map((employee) => (
+                                        <span key={employee.employee_id}>{employee.name}</span>
+                                    ))}
+                                </div>
+                                    :
+                                <div>
+                                    There are no overdue alerts
+                                </div>
+                                    }
+                        </Paper>
+                    </Grid>
+                
+                    <Grid item xs={3}>
+                        <Paper elevation={3} style={{ padding: 20 }}>
                             <Typoegraphy variant="h5" gutterBottom>Today's birthdays</Typoegraphy> { alerts.todays_birthdays.length ?
                                 <div>
                                     {alerts.todays_birthdays.map((employee) => (
@@ -66,10 +82,26 @@ const EmployeeDashboard = () => {
 
                     <Grid item xs={3}>
                         <Paper elevation={3} style={{ padding: 20 }}>
-                        <Typoegraphy variant="h5" gutterBottom>Upcoming birthdays</Typoegraphy> { alerts.upcoming_birthdays.length ? 
+                            <Typoegraphy variant="h5" gutterBottom>Upcoming birthdays</Typoegraphy> { alerts.upcoming_birthdays.length ? 
                                 <div>
                                     {alerts.upcoming_birthdays.map((employee) => (
                                         <span key={employee.employee_id}>{employee.name} on {formatDate(employee.birthday)}</span>
+                                    ))}
+                                </div>
+                            :
+                                <div>
+                                    No upcoming birthdays
+                                </div>
+                            }
+                        </Paper>
+                    </Grid>
+
+                    <Grid item xs={3}>
+                        <Paper elevation={3} style={{ padding: 10 }}>
+                            <Typoegraphy variant="h5" gutterBottom>Upcoming anniversaries</Typoegraphy> { alerts.upcoming_work_anniversaries.length ? 
+                                <div>
+                                    {alerts.upcoming_work_anniversaries.map((employee) => (
+                                        <span key={employee.employee_id}>{employee.name} on {formatDate(employee.birthday)}<br /></span>
                                     ))}
                                 </div>
                             :

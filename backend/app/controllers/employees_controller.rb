@@ -45,7 +45,8 @@ class EmployeesController < ApplicationController
         @todays_birthdays            = Employee.todays_birthdays
         @upcoming_birthdays          = Employee.upcoming_birthdays
         @upcoming_work_anniversaries = Employee.upcoming_work_anniversaries
-        render :json => { todays_birthdays: @todays_birthdays, upcoming_birthdays: @upcoming_birthdays, upcoming_work_anniversaries: @upcoming_work_anniversaries }
+        @overdue_alerts              = Employee.overdue_alerts
+        render :json => { overdue_alerts: @overdue_alerts, todays_birthdays: @todays_birthdays, upcoming_birthdays: @upcoming_birthdays, upcoming_work_anniversaries: @upcoming_work_anniversaries }
     end
 
     private
