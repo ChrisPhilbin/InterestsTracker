@@ -41,6 +41,16 @@ class Employee < ApplicationRecord
         upcoming_work_anniversaries
     end
 
+    def self.overdue_alerts
+        overdue_alerts = []
+        Employee.all.each do |employee|
+            if employee.last_interaction.strftime('%m%d').to_i < 4.days.ago.strftime('%m%d').to_i
+                overdue_alerts << employee
+            end
+        end
+        overdue_alerts
+    end
+
     def self.update_all_employee_interests(interests, pets, teams)
         combinedArr = []
 
