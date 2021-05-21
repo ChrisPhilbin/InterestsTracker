@@ -54,7 +54,7 @@ export default function TopNav() {
 
   let alertIcon
 
-  if (Object.keys(alerts).length && !loading) {
+  if (Object.keys(alerts).length) {
     alertIcon = (
       <Badge badgeContent={alerts.overdue_alerts.length} color="secondary" onClick={() => setOpen(true)}>
         <MailIcon />
@@ -62,9 +62,10 @@ export default function TopNav() {
     )
   }
 
-  return (
-    <div className={classes.root}>
+  let modal
 
+  if (Object.keys(alerts).length) {
+    modal = (
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -80,10 +81,20 @@ export default function TopNav() {
         <Fade in={open}>
           <div className={classes.paper}>
             <h2 id="transition-modal-title">Active alerts</h2>
-            <p id="transition-modal-description">The following employees have upcoming events:</p>
+            <p id="transition-modal-description">Try to interact with the following employees:</p>
+            {alerts.overdue_alerts.map((employee) => (
+              <span><Link to={`/employees/${employee.id}`} onClick={() => setOpen(false)}>{employee.name}</Link></span>
+            ))}
           </div>
         </Fade>
       </Modal>
+    )
+  }
+
+  return (
+    <div className={classes.root}>
+
+      {modal}
 
       <AppBar position="static">
         <Toolbar>
