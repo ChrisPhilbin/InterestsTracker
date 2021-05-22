@@ -7,7 +7,7 @@ class Employee < ApplicationRecord
     has_many :pets,        :dependent => :delete_all
     has_many :sports,      :dependent => :delete_all
     has_many :notes,       :dependent => :delete_all
-    has_many :interactions :dependent => :delete_all
+    has_many :interactions, :dependent => :delete_all
 
     mount_uploader :headshot, HeadshotUploader
 
