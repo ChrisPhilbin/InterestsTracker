@@ -81,10 +81,30 @@ export default function TopNav() {
         <Fade in={open}>
           <div className={classes.paper}>
             <h2 id="transition-modal-title">Active alerts</h2>
-            <p id="transition-modal-description">Try to interact with the following employees:</p>
+            <p id="transition-modal-description"><strong>Try to interact with the following employees:</strong></p>
             {alerts.overdue_alerts.map((employee) => (
-              <span><Link to={`/employees/${employee.id}`} onClick={() => setOpen(false)}>{employee.name}</Link></span>
+              <span><Link to={`/employees/${employee.id}`} onClick={() => setOpen(false)}>{employee.name}</Link><br /></span>
             ))}
+            <p id="transition-modal-description"><strong>Today's birthdays:</strong></p>
+            {alerts.todays_birthdays.length ?
+              <>
+                {alerts.todays_birthdays.map((employee) => (
+                  <span>{employee.name}</span>
+                ))}
+              </>
+            :
+              <span>No birthdays today</span>
+            }
+            <p id="transition-modal-description"><strong>Upcoming birthdays:</strong></p>
+            {alerts.upcoming_birthdays.length ?
+              <>
+                {alerts.upcoming_birthdays.map((employee) => (
+                  <span><Link to={`/employees/${employee.id}`} onClick={() => setOpen(false)}>{employee.name}</Link></span>
+                ))}
+              </>
+            :
+              <span>No upcoming birthdays</span>
+            }
           </div>
         </Fade>
       </Modal>
