@@ -12,6 +12,7 @@ class InteractionsController < ApplicationController
         render :json => @interaction
     end
 
+    #DELETE /employees/:employee_id/interactions/:interaction_id
     def destroy
         @interst = Employee.find(params[:employee_id]).interests.find(params[:id])
         @interest.destroy
