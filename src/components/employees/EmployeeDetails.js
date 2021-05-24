@@ -1,14 +1,20 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import { fetchOneEmployee } from '../../actions/EmployeeActions'
 import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
+import CardActions from '@material-ui/core/CardActions'
 import Typoegraphy from '@material-ui/core/Typography'
+import TextField from '@material-ui/core/TextField'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import useFormatDate from '../../hooks/useFormatDate'
@@ -56,6 +62,13 @@ const EmployeeDetails = (props) => {
     let loading    = useSelector(state => state.employees.loading)
     let hasErrors  = useSelector(state => state.employees.hasErrors)
 
+    let [dialogOpen, setDialogOpen] = useState(false)
+
+    const handleSubmit = () => { 
+        alert("Handling submit...")
+        setDialogOpen(false)
+    }
+
     console.log(employee)
 
     let lastInteraction = dayjs(employee.last_interaction).fromNow()
@@ -79,6 +92,30 @@ const EmployeeDetails = (props) => {
     } else if (employee) {
         return (
             <>
+                <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Log an interaction</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Fill out the form below to log a recent interaction you had with Employee
+                        </DialogContentText>
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="name"
+                            label="Notes/Detsils about interaction"
+                            type="text"
+                            fullWidth
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={() => handleSubmit()} color="primary">
+                        Save
+                    </Button>
+                    <Button onClick={() => setDialogOpen(false)} color="primary">
+                        Cancel
+                    </Button>
+                    </DialogActions>
+                </Dialog>
                 <Container maxWidth="lg" style={{ paddingTop: 45 }}>
                     <Card variant="outlined">
                         <CardContent>
@@ -91,6 +128,11 @@ const EmployeeDetails = (props) => {
 
                             <Typoegraphy variant="subtitle1" gutterBottom style={ isRecent ? { color: 'red' } : { color: 'green'} }>Last interaction: {lastInteraction}</Typoegraphy>
                         </CardContent>
+                        <CardActions>
+                            <Button color="primary" variant="outlined" onClick={() => setDialogOpen(true)}>Log interaction</Button>
+                            <Button color="primary" variant="outlined">Edit details</Button>
+                            <Button color="secondary" variant="outlined">Remove employee</Button>
+                        </CardActions>
                     </Card>
                 </Container>
 

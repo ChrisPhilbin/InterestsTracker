@@ -38,7 +38,7 @@ const EmployeeCard = (props) => {
     let employee = props.employee
     let lastInteraction = dayjs(props.employee.last_interaction).fromNow()
 
-    let [openDialog, setOpenDialog] = useState(true)
+    let [openDialog, setOpenDialog] = useState(false)
     
     const handleDelete = (employee_id) => {
         if (window.confirm("Are you sure?")) {
@@ -46,13 +46,9 @@ const EmployeeCard = (props) => {
         }
     }
 
-    const handleOpenDialog = () => {
-        <CreateInteraction openDialog={openDialog} setOpenDialog={setOpenDialog} />
-    }
-    
     return(
         <>
-            
+            {openDialog && <CreateInteraction openDialog={openDialog} setOpenDialog={setOpenDialog} />}
             <Card variant="outlined">
                 <CardContent>
                     <span className={classes.checkDate}>
@@ -67,7 +63,7 @@ const EmployeeCard = (props) => {
                 </CardContent>
                 <CardActions>
                     <Link to={`/employees/${employee.id}`} style={{ textDecoration: 'none'}}><Button size="small" color="primary">View/Edit Details</Button></Link>
-                    <Button size="small" color="primary" onClick={() => handleOpenDialog()}>Log interaction</Button>
+                    <Button size="small" color="primary" onClick={() => setOpenDialog(true)}>Log interaction</Button>
                     <Button size="small" color="primary" onClick={() => handleDelete(employee.id)}>Delete</Button>
                 </CardActions>
             </Card>
