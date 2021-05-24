@@ -48,7 +48,7 @@ const EmployeeList = () => {
         )
     } else if (employees) {
         return(
-            <Container maxWidth="lg">
+            <Container maxWidth="lg" >
                 <IconButton
                     className={classes.floatingButton}
                     color="primary"
@@ -56,7 +56,7 @@ const EmployeeList = () => {
                     component={Link}
                     to="/employees/new"
                 >
-                    <AddCircleIcon style={{ fontSize: 60 }} />
+                    <AddCircleIcon style={{ color: '#005151', fontSize: 60 }} />
                 </IconButton>
 
                 <Grid container spacing={3} style={{ marginTop: 30 }}>

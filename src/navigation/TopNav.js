@@ -116,7 +116,7 @@ export default function TopNav() {
 
       {modal}
 
-      <AppBar position="static">
+      <AppBar position="static" style={{ background: '#005151' }}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />

@@ -50,6 +50,5 @@ export const fetchPostNewInteraction = (interaction) => {
         } catch (error) {
             dispatch(interactionCreatedFailure(error))
         }
-
     }
 }

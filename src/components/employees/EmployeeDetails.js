@@ -26,6 +26,8 @@ import DisplayAllEmployeeSports from '../sports/DisplayAllEmployeeSports'
 import DisplayAllEmployeeNotes from '../notes/DisplayAllEmployeeNotes'
 import DisplayAllEmployeePets from '../pets/DisplayAllEmployeePets'
 import DisplayAllEmployeeNews from '../newsfeed/DisplayAllEmployeeNews'
+import { fetchPostNewInteraction } from '../../actions/InteractionActions'
+import { deleteOneEmployee } from '../../actions/EmployeeActions'
 
 const useStyles = makeStyles((theme) => ({
     addItemIcon: {
@@ -64,9 +66,24 @@ const EmployeeDetails = (props) => {
 
     let [dialogOpen, setDialogOpen] = useState(false)
 
-    const handleSubmit = () => { 
-        alert("Handling submit...")
+    let [kind, setKind]   = useState('')
+    let [notes, setNotes] = useState('')
+
+    const handleSubmit = () => {
+        let interactionSubmit = {
+            kind: kind,
+            notes: notes,
+            employee_id: employee.employee_id
+        }
+        dispatch(fetchPostNewInteraction(interactionSubmit))
         setDialogOpen(false)
+    }
+
+    const handleDelete = () => {
+        if (window.confirm("Are you sure?")) {
+            dispatch(deleteOneEmployee(employee_id))
+            props.history.push('/employees')
+        }
     }
 
     console.log(employee)
@@ -102,8 +119,9 @@ const EmployeeDetails = (props) => {
                             autoFocus
                             margin="dense"
                             id="name"
-                            label="Notes/Detsils about interaction"
+                            label="Notes/Details about interaction"
                             type="text"
+                            onChange={(e) => setNotes(e.target.value)}
                             fullWidth
                         />
                     </DialogContent>
@@ -119,7 +137,6 @@ const EmployeeDetails = (props) => {
                 <Container maxWidth="lg" style={{ paddingTop: 45 }}>
                     <Card variant="outlined">
                         <CardContent>
-                            <span className={classes.editButton}><Button variant="contained" color="primary">Edit details</Button></span>
                             <Typoegraphy variant="h4" gutterBottom>{employee.name}</Typoegraphy>
 
                             <Typoegraphy variant="subtitle1">Hire date: {hireDate}</Typoegraphy>
@@ -129,9 +146,9 @@ const EmployeeDetails = (props) => {
                             <Typoegraphy variant="subtitle1" gutterBottom style={ isRecent ? { color: 'red' } : { color: 'green'} }>Last interaction: {lastInteraction}</Typoegraphy>
                         </CardContent>
                         <CardActions>
-                            <Button color="primary" variant="outlined" onClick={() => setDialogOpen(true)}>Log interaction</Button>
-                            <Button color="primary" variant="outlined">Edit details</Button>
-                            <Button color="secondary" variant="outlined">Remove employee</Button>
+                            <Button variant="outlined" onClick={() => setDialogOpen(true)} style={{ color: '#005151' }}>Log interaction</Button>
+                            <Button variant="outlined" style={{ color: '#005151' }}>Edit details</Button>
+                            <Button color="secondary" variant="outlined" onClick={() => handleDelete() }>Remove employee</Button>
                         </CardActions>
                     </Card>
                 </Container>

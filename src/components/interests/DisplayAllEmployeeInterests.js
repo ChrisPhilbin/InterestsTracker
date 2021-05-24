@@ -109,7 +109,7 @@ const DisplayAllEmployeeInterests = (props) => {
                     aria-label="Add new interest"
                     onClick={() => setOpen(true)}
                 >
-                    <AddCircleIcon style={{ fontSize: 30 }} />
+                    <AddCircleIcon style={{ color: '#005151', fontSize: 30 }} />
                 </IconButton>
                 
                 <Paper elevation={3} className={classes.widget} square={false}>
