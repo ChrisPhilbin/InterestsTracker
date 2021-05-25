@@ -1,8 +1,11 @@
 class InteractionsController < ApplicationController
 
+    require 'pry'
+
     #GET /employees/:employee_id/interactions
     def index
-        @interactions = Employee.find(params[:id].interactions)
+        binding.pry
+        @interactions = Employee.find(params[:employee_id]).interactions
         render :json => @interactions
     end
 
@@ -23,3 +26,6 @@ class InteractionsController < ApplicationController
 
     def interaction_parms
         params.require(:interaction).permit(:type, :notes, :employee_id)
+    end
+
+end

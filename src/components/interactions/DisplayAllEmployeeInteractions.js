@@ -49,7 +49,7 @@ const DisplayAllEmployeeInteractions = (props) => {
         )
     } else {
         return(
-            <Paper className={classes.widget} elevation={3} square={false} style={{ padding: 15 }}>
+            <Paper className={classes.widget} elevation={3} square={false} style={{ padding: 15, marginBottom: 30 }}>
                 <Typoegraphy variant="h4" gutterBottom>Recent interactions</Typoegraphy>
                 It looks like there aren't any interactions logged yet.
             </Paper>

@@ -41,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
         top: '10px',
         right: '15px',
     },
+    root: {
+        background: '#000000'
+    },
     widget: {
         borderRadius: 15,
         padding: 15
@@ -118,6 +121,15 @@ const EmployeeDetails = (props) => {
                         </DialogContentText>
                         <TextField
                             autoFocus
+                            margin="dense"
+                            id="name"
+                            label="What type of interaction?"
+                            type="text"
+                            onChange={(e) => setKind(e.target.value)}
+                            fullWidth
+                        />
+
+                        <TextField
                             margin="dense"
                             id="name"
                             label="Notes/Details about interaction"

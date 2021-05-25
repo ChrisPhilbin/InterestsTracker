@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/employees/dashboard',             to: 'employees#dashboard'
 
   resources :employees do
+    resources :interactions
     resources :interests
     resources :pets
     resources :sports
