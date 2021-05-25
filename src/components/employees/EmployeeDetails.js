@@ -26,6 +26,7 @@ import DisplayAllEmployeeSports from '../sports/DisplayAllEmployeeSports'
 import DisplayAllEmployeeNotes from '../notes/DisplayAllEmployeeNotes'
 import DisplayAllEmployeePets from '../pets/DisplayAllEmployeePets'
 import DisplayAllEmployeeNews from '../newsfeed/DisplayAllEmployeeNews'
+import DisplayAllEmployeeInteractions from '../interactions/DisplayAllEmployeeInteractions'
 import { fetchPostNewInteraction } from '../../actions/InteractionActions'
 import { deleteOneEmployee } from '../../actions/EmployeeActions'
 
@@ -175,6 +176,10 @@ const EmployeeDetails = (props) => {
 
                 <Container maxWidth="lg" style={{ paddingTop: 45 }}>
                     <DisplayAllEmployeeNews employee_id={employee_id} employee_name={employee.name} />
+                </Container>
+
+                <Container maxWidth="lg" style={{ paddingTop: 45 }}>
+                    <DisplayAllEmployeeInteractions employee_id={employee_id} />
                 </Container>
             </>
         )
