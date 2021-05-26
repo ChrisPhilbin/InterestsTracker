@@ -78,10 +78,10 @@ const EmployeeDetails = (props) => {
         let interactionSubmit = {
             kind: kind,
             notes: notes,
-            employee_id: employee.employee_id
+            employee_id: employee_id
         }
         dispatch(fetchPostNewInteraction(interactionSubmit))
-        dispatch(updateEmployeeLastInteraction(employee.employee_id))
+        dispatch(updateEmployeeLastInteraction(employee_id))
         setDialogOpen(false)
     }
 
