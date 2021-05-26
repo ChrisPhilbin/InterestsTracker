@@ -12,6 +12,9 @@ export const EMPLOYEE_CREATED_FAILURE = "EMPLOYEE_CREATED_FAILURE"
 export const EMPLOYEE_DELETED_SUCCESS = "EMPLOYEE_DELETED_SUCCESS"
 export const EMPLOYEE_DELETED_FAILURE = "EMPLOYEE_DELETED_FAILURE"
 
+export const UPDATE_EMPLOYEE_SUCCESS = "UPDATE_EMPLOYEE_SUCCESS"
+export const UPDATE_EMPLOYEE_FAILURE = "UPDATE_EMPLOYEE_FAILURE"
+
 export const getEmployees = () => (
     { type: GET_EMPLOYEES }
 )
@@ -103,6 +106,30 @@ export const deleteOneEmployee = (employee_id) => {
             dispatch(employeeDeletedSuccess(employee))
         } catch (error) {
             dispatch(employeeDeletedFailure(error))
+        }
+    }
+}
+
+export const updateEmployeeSuccess = (employee) => (
+    { type: UPDATE_EMPLOYEE_SUCCESS, payload: employee }
+)
+
+export const updateEmployeeFailure = (error) => (
+    { type: UPDATE_EMPLOYEE_FAILURE, payload: error }
+)
+
+export const updateEmployeeLastInteraction = (employee_id) => {
+    return async (dispatch) => {
+        try {
+            const success = fetch(`http://localhost:3001/employees/${employee_id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({last_interaction: new Date()})
+            })
+            const employee = await success.json()
+            dispatch(updateEmployeeSuccess(employee))
+        } catch (error) {
+            dispatch(updateEmployeeFailure(error))
         }
     }
 }

@@ -29,6 +29,7 @@ import DisplayAllEmployeeNews from '../newsfeed/DisplayAllEmployeeNews'
 import DisplayAllEmployeeInteractions from '../interactions/DisplayAllEmployeeInteractions'
 import { fetchPostNewInteraction } from '../../actions/InteractionActions'
 import { deleteOneEmployee } from '../../actions/EmployeeActions'
+import { updateEmployeeLastInteraction } from '../../actions/EmployeeActions'
 
 const useStyles = makeStyles((theme) => ({
     addItemIcon: {
@@ -80,6 +81,7 @@ const EmployeeDetails = (props) => {
             employee_id: employee.employee_id
         }
         dispatch(fetchPostNewInteraction(interactionSubmit))
+        dispatch(updateEmployeeLastInteraction(employee.employee_id))
         setDialogOpen(false)
     }
 
