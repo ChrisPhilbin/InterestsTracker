@@ -1,10 +1,7 @@
 class InteractionsController < ApplicationController
 
-    require 'pry'
-
     #GET /employees/:employee_id/interactions
     def index
-        binding.pry
         @interactions = Employee.find(params[:employee_id]).interactions
         render :json => @interactions
     end

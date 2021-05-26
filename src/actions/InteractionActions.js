@@ -9,8 +9,8 @@ export const getInteractions = () => (
     { type: GET_INTERACTIONS }
 )
 
-export const getInteractionsSucess = (interaction) => (
-    { type: GET_INTERACTIONS_SUCCESS, payload: interaction}
+export const getInteractionsSucess = (interactions) => (
+    { type: GET_INTERACTIONS_SUCCESS, payload: interactions }
 )
 
 export const getInteractionsFailure = (error) => (
