@@ -62,9 +62,9 @@ const EmployeeCard = (props) => {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Link to={`/employees/${employee.id}`} style={{ textDecoration: 'none'}}><Button size="small" color="primary">View/Edit Details</Button></Link>
-                    <Button size="small" color="primary" onClick={() => setOpenDialog(true)}>Log interaction</Button>
-                    <Button size="small" color="primary" onClick={() => handleDelete(employee.id)}>Delete</Button>
+                    <Link to={`/employees/${employee.id}`} style={{ textDecoration: 'none'}}><Button size="small" style={{ color: '#005151' }}>View/Edit Details</Button></Link>
+                    <Button size="small" onClick={() => setOpenDialog(true)} style={{ color: '#005151' }}>Log interaction</Button>
+                    <Button size="small" onClick={() => handleDelete(employee.id)} style={{ color: '#005151' }}>Delete</Button>
                 </CardActions>
             </Card>
         </>
