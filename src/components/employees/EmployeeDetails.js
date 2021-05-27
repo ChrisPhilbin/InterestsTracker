@@ -15,6 +15,10 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
+import InputLabel from '@material-ui/core/InputLabel'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+import FormHelperText from '@material-ui/core/FormHelperText'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import useFormatDate from '../../hooks/useFormatDate'
@@ -92,8 +96,6 @@ const EmployeeDetails = (props) => {
         }
     }
 
-    console.log(employee)
-
     let lastInteraction = dayjs(employee.last_interaction).fromNow()
 
     let hireDate = useFormatDate(employee.hire_date)
@@ -121,15 +123,20 @@ const EmployeeDetails = (props) => {
                         <DialogContentText>
                             Fill out the form below to log a recent interaction you had with Employee
                         </DialogContentText>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="What type of interaction?"
-                            type="text"
-                            onChange={(e) => setKind(e.target.value)}
-                            fullWidth
-                        />
+                        <InputLabel id="interaction-kind-select">Type of interaction</InputLabel>
+                        <Select
+                        labelId="interaction-kind-select"
+                        id="interaction-kind"
+                        style={{ minWidth: 180 }}
+                        value={kind}
+                        variant="outlined"
+                        onChange={(e) => setKind(e.target.value)}
+                        >
+                        <MenuItem value={"News item"}>News item</MenuItem>
+                        <MenuItem value={"Sports"}>Sports</MenuItem>
+                        <MenuItem value={"Pets"}>Pets</MenuItem>
+                        </Select>
+                        <FormHelperText>Select what type of interaction you're logging</FormHelperText>
 
                         <TextField
                             margin="dense"
@@ -138,13 +145,14 @@ const EmployeeDetails = (props) => {
                             type="text"
                             onChange={(e) => setNotes(e.target.value)}
                             fullWidth
+                            variant="outlined"
                         />
                     </DialogContent>
                     <DialogActions>
-                    <Button onClick={() => handleSubmit()} color="primary">
+                    <Button onClick={() => handleSubmit()} style={{ color: '#005151' }}>
                         Save
                     </Button>
-                    <Button onClick={() => setDialogOpen(false)} color="primary">
+                    <Button onClick={() => setDialogOpen(false)} style={{ color: '#005151' }}>
                         Cancel
                     </Button>
                     </DialogActions>

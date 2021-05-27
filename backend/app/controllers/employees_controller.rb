@@ -25,6 +25,7 @@ class EmployeesController < ApplicationController
     def update
         @employee = Employee.find(params[:id])
         @employee.update(employee_params)
+        render :json => @employee
     end
 
     #DELETE /employees/:employee_id

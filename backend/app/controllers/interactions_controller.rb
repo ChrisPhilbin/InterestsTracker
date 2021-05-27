@@ -22,7 +22,7 @@ class InteractionsController < ApplicationController
     private
 
     def interaction_parms
-        params.require(:interaction).permit(:type, :notes, :employee_id)
+        params.require(:interaction).permit(:kind, :notes, :employee_id)
     end
 
 end
