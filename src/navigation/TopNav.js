@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Badge from '@material-ui/core/Badge'
 import MailIcon from '@material-ui/icons/Mail'
+import NotificationsIcon from '@material-ui/icons/Notifications'
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -57,7 +58,7 @@ export default function TopNav() {
   if (Object.keys(alerts).length) {
     alertIcon = (
       <Badge badgeContent={alerts.overdue_alerts.length} color="secondary" onClick={() => setOpen(true)}>
-        <MailIcon />
+        <NotificationsIcon />
       </Badge>
     )
   }

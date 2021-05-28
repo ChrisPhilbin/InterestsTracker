@@ -5,6 +5,9 @@ export const GET_INTERACTIONS_FAILURE = "GET_INTERACTIONS_FAILURE"
 export const INTERACTION_CREATED_SUCCESS = "INTERACTION_CREATED_SUCCESS"
 export const INTERACTION_CREATED_FAILURE = "INTERACTION_CREATED_FAILURE"
 
+export const INTERACTION_DELETED_SUCCESS = "INTERACTION_DELETED_SUCCESS"
+export const INTERACTION_DELETED_FAILURE = "INTERACTION_DELETED_FAILURE"
+
 export const getInteractions = () => (
     { type: GET_INTERACTIONS }
 )
@@ -49,6 +52,29 @@ export const fetchPostNewInteraction = (interaction) => {
             dispatch(interactionCreatedSuccess(newInteraction))
         } catch (error) {
             dispatch(interactionCreatedFailure(error))
+        }
+    }
+}
+
+export const deleteInteractionSuccess = (interaction) => (
+    { type: INTERACTION_DELETED_SUCCESS, payload: interaction }
+)
+
+export const deleteInteractionFailure = (error) => (
+    { type: INTERACTION_DELETED_FAILURE, payload: error }
+)
+
+export const fetchDeleteInteraction = (employee_id, interaction_id) => {
+    return async (dispatch) => {
+        try {
+            const response = await fetch(`http://localhost:3001/employees/${employee_id}/interactions/${interaction_id}`, {
+                method: 'DELETE',
+                headers: { 'Content-Type':'application/json' }
+            })
+            const data = await response.json()
+            dispatch(deleteInteractionSuccess(data))
+        } catch (error) {
+            dispatch(deleteInteractionFailure(error))
         }
     }
 }

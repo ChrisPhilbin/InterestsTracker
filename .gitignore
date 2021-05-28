@@ -2,6 +2,7 @@
 
 .env
 *.env
+.todo
 
 # dependencies
 /node_modules
