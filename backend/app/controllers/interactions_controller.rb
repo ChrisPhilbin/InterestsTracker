@@ -1,5 +1,7 @@
 class InteractionsController < ApplicationController
 
+    require 'pry'
+
     #GET /employees/:employee_id/interactions
     def index
         @interactions = Employee.find(params[:employee_id]).interactions
@@ -12,11 +14,18 @@ class InteractionsController < ApplicationController
         render :json => @interaction
     end
 
+    #GET /employees/:employee_id/interactions/:interaction_id
+    def show
+        @employee = Employee.find(params[:employee_id])
+        @interaction = @employee.interactions.find(params[:id])
+        render :json => @interaction
+    end
+
     #DELETE /employees/:employee_id/interactions/:interaction_id
     def destroy
-        @interst = Employee.find(params[:employee_id]).interests.find(params[:id])
-        @interest.destroy
-        render :json => @interest
+        @interaction = Employee.find(params[:employee_id]).interactions.find(params[:id])
+        @interaction.destroy
+        render :json => @interaction
     end
 
     private

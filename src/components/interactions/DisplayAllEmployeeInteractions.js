@@ -15,6 +15,7 @@ import TableRow from '@material-ui/core/TableRow'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff'
+import { fetchDeleteInteraction } from '../../actions/InteractionActions'
 
 const useStyles = makeStyles((theme) => ({
     widget: {
@@ -40,8 +41,9 @@ const DisplayAllEmployeeInteractions = (props) => {
     let hasErrors    = useSelector(state => state.interactions.hasErrors)
 
     const handleDelete = (interaction_id) => {
+        console.log(interaction_id, "interaction id from handle delete")
         if (window.confirm("Are you sure?")) {
-            
+            dispatch(fetchDeleteInteraction(employee_id, interaction_id))
         }
     }
 
@@ -72,11 +74,11 @@ const DisplayAllEmployeeInteractions = (props) => {
                     </TableHead>
                     <TableBody>
                     {interactions.map((interaction) => (
-                        <TableRow key={interaction.interaction_id}>
+                        <TableRow key={interaction.id}>
                             <TableCell>{dayjs(interaction.created_at).fromNow()}</TableCell>
                             <TableCell>{interaction.kind}</TableCell>
                             <TableCell>{interaction.notes}</TableCell>
-                            <TableCell><HighlightOffIcon style={{ size: 10, color: 'red' }} onClick={() => handleDelete(interaction.interaction_id)} /></TableCell>
+                            <TableCell><HighlightOffIcon style={{ size: 10, color: 'red' }} onClick={() => handleDelete(interaction.id)} /></TableCell>
                         </TableRow>
                     ))}
                     </TableBody>

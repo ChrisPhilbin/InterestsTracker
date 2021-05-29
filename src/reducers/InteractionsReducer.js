@@ -14,6 +14,8 @@ export default function interactionsReducer(state =initialInteractionsState, act
             return { ...state, loading: false, interactions: action.payload }
         case actions.GET_INTERACTIONS_FAILURE:
             return { ...state, loading: false, hasErrors: true }
+        case actions.INTERACTION_DELETED_SUCCESS:
+            return { interactions: state.interactions.filter(interaction => interaction.interaction_id !== action.payload.interaction_id) }
         default:
             return state
     }
