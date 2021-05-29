@@ -4,7 +4,7 @@ class InteractionsController < ApplicationController
 
     #GET /employees/:employee_id/interactions
     def index
-        @interactions = Employee.find(params[:employee_id]).interactions
+        @interactions = Employee.find(params[:employee_id]).interactions.take(10)
         render :json => @interactions
     end
 
