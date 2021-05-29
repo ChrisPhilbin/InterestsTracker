@@ -6,8 +6,10 @@ import ShowLoading from '../../util/ShowLoading'
 import ShowErrors from '../../util/ShowErrors'
 import Paper from '@material-ui/core/Paper'
 import Typoegraphy from '@material-ui/core/Typography'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
+import Accordion from '@material-ui/core/Accordion'
+import AccordionSummary from '@material-ui/core/AccordionSummary'
+import AccordionDetails from '@material-ui/core/AccordionDetails'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 const useStyles = makeStyles((theme) => ({
     widget: {
@@ -49,7 +51,7 @@ const DisplayAllEmployeeNews = (props) => {
 
     if (newsfeed.length > 0) {
         return(
-            <>
+            <>  
                 <Paper className={classes.widget} elevation={3} square={false} style={{ padding: 15 }}>
                     <Typoegraphy variant="h4" gutterBottom>{employee_name}'s Newsfeed</Typoegraphy>
 

@@ -48,7 +48,7 @@ const EmployeeDashboard = () => {
                 <Typoegraphy variant="h3" gutterBottom>Your team: At-A-Glance</Typoegraphy>
 
                 <Grid container spacing={3} xs={12}>
-                    <Grid item xs={3}>
+                    <Grid item xs={12} md={3}>
                         <Paper elevation={3} style={{ padding: 20 }}>
                             <Typoegraphy variant="h5" gutterBottom>Overdue alerts</Typoegraphy> { alerts.overdue_alerts.length ?
                                 <div>
@@ -64,7 +64,7 @@ const EmployeeDashboard = () => {
                         </Paper>
                     </Grid>
                 
-                    <Grid item xs={3}>
+                    <Grid item xs={12} md={3}>
                         <Paper elevation={3} style={{ padding: 20 }}>
                             <Typoegraphy variant="h5" gutterBottom>Today's birthdays</Typoegraphy> { alerts.todays_birthdays.length ?
                                 <div>
@@ -80,7 +80,7 @@ const EmployeeDashboard = () => {
                         </Paper>
                     </Grid>
 
-                    <Grid item xs={3}>
+                    <Grid item xs={12} md={3}>
                         <Paper elevation={3} style={{ padding: 20 }}>
                             <Typoegraphy variant="h5" gutterBottom>Upcoming birthdays</Typoegraphy> { alerts.upcoming_birthdays.length ? 
                                 <div>
@@ -96,7 +96,7 @@ const EmployeeDashboard = () => {
                         </Paper>
                     </Grid>
 
-                    <Grid item xs={3}>
+                    <Grid item xs={12} md={3}>
                         <Paper elevation={3} style={{ padding: 10 }}>
                             <Typoegraphy variant="h5" gutterBottom>Upcoming anniversaries</Typoegraphy> { alerts.upcoming_work_anniversaries.length ? 
                                 <div>

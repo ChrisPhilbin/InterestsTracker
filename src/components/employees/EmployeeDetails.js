@@ -178,19 +178,19 @@ const EmployeeDetails = (props) => {
 
                 <Container maxWidth="lg" style={{ paddingTop: 45 }}>
                     <Grid container spacing={3}>
-                        <Grid item xs={3}>
+                        <Grid item xs={12} md={3}>
                             <DisplayAllEmployeeInterests employee_id={employee_id} />
                         </Grid>
 
-                        <Grid item xs={3}>
+                        <Grid item xs={12} md={3}>
                             <DisplayAllEmployeePets employee_id={employee_id} />
                         </Grid>
 
-                        <Grid item xs={3}>
+                        <Grid item xs={12} md={3}>
                             <DisplayAllEmployeeSports employee_id={employee_id} />
                         </Grid>
 
-                        <Grid item xs={3}>
+                        <Grid item xs={12} md={3}>
                             <DisplayAllEmployeeNotes employee_id={employee_id} />
                         </Grid>
                     </Grid>
