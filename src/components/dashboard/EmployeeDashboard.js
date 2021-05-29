@@ -42,7 +42,7 @@ const EmployeeDashboard = () => {
         )
     }
 
-    if (Object.keys(alerts).length) {
+    if (Object.keys(alerts).length > 0) {
         return(
             <>
                 <Typoegraphy variant="h3" gutterBottom>Your team: At-A-Glance</Typoegraphy>
