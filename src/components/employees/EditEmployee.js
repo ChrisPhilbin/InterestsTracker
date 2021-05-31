@@ -1,20 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchOneEmployee } from '../../actions/EmployeeActions'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import 'date-fns'
+import DateFnsUtils from '@date-io/date-fns'
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers'
 
 const EditEmployee = (props) => {
 
     const dispatch = useDispatch()
 
-    let employee = useSelector(state => state.employees.employee)
+    const employee_id = props.match.params.employee_id
 
-    let [name, setName]                       = useState(employee.name)
-    let [hireDate, setHireDate]               = useState(employee.hire_date)
-    let [lastInteraction, setLastInteraction] = useState(employee.last_interaction)
-    let [birthday, setBirthday]               = useState(employee.birthday)
+    const employee = useSelector(state => state.employees.employee)
+
+    let [editEmployee, setEditEmployee] = useState(employee)
+
+    console.log(editEmployee, "employee")
 
     useEffect(() => {
-        dispatch(fetchOneEmployee(props.employee_id))
+        dispatch(fetchOneEmployee(employee_id))
     }, [])
 
     const handleSubmit = () => {
@@ -32,8 +44,8 @@ const EditEmployee = (props) => {
                         id="fullname"
                         label="Full name"
                         variant="outlined"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        defaultValue={employee.name}
+                        onChange={(e) => setEditEmployee({...editEmployee, name: e.target.value})}
                     />
                 </Grid>
 
@@ -47,8 +59,8 @@ const EditEmployee = (props) => {
                             margin="normal"
                             id="date-picker-inline"
                             label="Hire date"
-                            value={hireDate}
-                            onChange={date => setHireDate(date)}
+                            
+
                             KeyboardButtonProps={{
                                 'aria-label': 'change date',
                             }}
