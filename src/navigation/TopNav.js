@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Badge from '@material-ui/core/Badge'
-import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -46,10 +45,9 @@ export default function TopNav() {
 
   useEffect(() => {
     dispatch(fetchEmployeeAlerts)
-  }, [])
+  }, [dispatch])
 
   let alerts = useSelector(state => state.alerts.alerts)
-  let loading = useSelector(state => state.alerts.loading)
 
   let [open, setOpen] = useState(false)
 
@@ -84,7 +82,7 @@ export default function TopNav() {
             <h2 id="transition-modal-title">Active alerts</h2>
             <p id="transition-modal-description"><strong>Try to interact with the following employees:</strong></p>
             {alerts.overdue_alerts.map((employee) => (
-              <span><Link to={`/employees/${employee.id}`} onClick={() => setOpen(false)}>{employee.name}</Link><br /></span>
+              <span key={employee.id}><Link to={`/employees/${employee.id}`} onClick={() => setOpen(false)}>{employee.name}</Link><br /></span>
             ))}
             <p id="transition-modal-description"><strong>Today's birthdays:</strong></p>
             {alerts.todays_birthdays.length ?
@@ -100,7 +98,7 @@ export default function TopNav() {
             {alerts.upcoming_birthdays.length ?
               <>
                 {alerts.upcoming_birthdays.map((employee) => (
-                  <span><Link to={`/employees/${employee.id}`} onClick={() => setOpen(false)}>{employee.name}</Link></span>
+                  <span key={employee.id}><Link to={`/employees/${employee.id}`} onClick={() => setOpen(false)}>{employee.name}</Link></span>
                 ))}
               </>
             :

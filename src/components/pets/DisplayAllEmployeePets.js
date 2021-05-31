@@ -42,7 +42,7 @@ const DisplayAllEmployeePets = (props) => {
 
     useEffect(() => {
         dispatch(fetchEmployeePets(employee_id))
-    },[dispatch])
+    },[dispatch, employee_id])
 
     let [open, setOpen]               = useState(false)
     let [newPet, setNewPet]           = useState('')

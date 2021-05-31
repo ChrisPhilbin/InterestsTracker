@@ -6,10 +6,7 @@ import ShowLoading from '../../util/ShowLoading'
 import ShowErrors from '../../util/ShowErrors'
 import Paper from '@material-ui/core/Paper'
 import Typoegraphy from '@material-ui/core/Typography'
-import Accordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
-import AccordionDetails from '@material-ui/core/AccordionDetails'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+
 
 const useStyles = makeStyles((theme) => ({
     widget: {
@@ -31,11 +28,9 @@ const DisplayAllEmployeeNews = (props) => {
     let loading   = useSelector(state => state.newsfeeds.loading)
     let hasErrors = useSelector(state => state.newsfeeds.hasErrors)
 
-    console.log(newsfeed, "data inside newsfeed array")
-
     useEffect(() => {
         dispatch(fetchEmployeeNewsfeed(employee_id))
-    },[])
+    },[dispatch, employee_id])
 
     if (loading) {
         return(
@@ -56,7 +51,7 @@ const DisplayAllEmployeeNews = (props) => {
                     <Typoegraphy variant="h4" gutterBottom>{employee_name}'s Newsfeed</Typoegraphy>
 
                     {newsfeed.map((article) => (
-                        <div >
+                        <div key={article.author}>
                             <Typoegraphy variant="h6"><a href={article.url} target="new">{article.title}</a></Typoegraphy>
                             <Typoegraphy variant="subtitle2">{article.description}</Typoegraphy><br />
                         </div>

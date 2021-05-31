@@ -42,7 +42,7 @@ const DisplayAllEmployeeSports = (props) => {
 
     useEffect(() => {
         dispatch(fetchEmployeeSports(employee_id))
-    },[dispatch])
+    },[dispatch, employee_id])
 
     let [open, setOpen]               = useState(false)
     let [newSport, setNewSport]           = useState('')

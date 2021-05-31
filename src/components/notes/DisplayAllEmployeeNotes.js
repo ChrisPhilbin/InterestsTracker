@@ -42,7 +42,7 @@ const DisplayAllEmployeeNotes = (props) => {
 
     useEffect(() => {
         dispatch(fetchEmployeeNotes(employee_id))
-    },[dispatch])
+    },[dispatch, employee_id])
 
     let [open, setOpen]       = useState(false)
     let [newNote, setNewNote] = useState('')

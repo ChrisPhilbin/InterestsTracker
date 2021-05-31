@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import { fetchOneEmployee } from '../../actions/EmployeeActions'
 import Grid from '@material-ui/core/Grid'
-import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardActions from '@material-ui/core/CardActions'
@@ -35,26 +34,6 @@ import { fetchPostNewInteraction } from '../../actions/InteractionActions'
 import { deleteOneEmployee } from '../../actions/EmployeeActions'
 import { updateEmployeeLastInteraction } from '../../actions/EmployeeActions'
 
-const useStyles = makeStyles((theme) => ({
-    addItemIcon: {
-        float: 'right',
-        bottom: '0px',
-        left: 0
-    },
-    editButton: {
-        float: 'right',
-        top: '10px',
-        right: '15px',
-    },
-    root: {
-        background: '#000000'
-    },
-    widget: {
-        borderRadius: 15,
-        padding: 15
-    }
-}))
-
 const EmployeeDetails = (props) => {
 
     const dispatch = useDispatch()
@@ -65,9 +44,7 @@ const EmployeeDetails = (props) => {
 
     useEffect(() => {
         dispatch(fetchOneEmployee(employee_id))
-    },[dispatch])
-
-    const classes = useStyles()
+    },[dispatch, employee_id])
 
     let employee   = useSelector(state => state.employees.employee)
     let loading    = useSelector(state => state.employees.loading)

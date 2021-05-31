@@ -9,7 +9,6 @@ import Typoegraphy from '@material-ui/core/Typography'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import dayjs from 'dayjs'
@@ -34,7 +33,7 @@ const DisplayAllEmployeeInteractions = (props) => {
 
     useEffect(() => {
         dispatch(fetchEmployeeInteractions(employee_id))
-    }, [])
+    }, [dispatch, employee_id])
 
     let interactions = useSelector(state => state.interactions.interactions)
     let loading      = useSelector(state => state.interactions.loading)

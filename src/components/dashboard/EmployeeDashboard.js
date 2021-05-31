@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchEmployeeAlerts } from '../../actions/AlertActions'
 import Grid from '@material-ui/core/Grid'
@@ -12,11 +12,10 @@ const EmployeeDashboard = () => {
 
     useEffect(() => {
         dispatch(fetchEmployeeAlerts())
-    }, [])
+    }, [dispatch])
 
     let alerts    = useSelector(state => state.alerts.alerts)
     let loading   = useSelector(state => state.alerts.loading)
-    let hasErrors = useSelector(state => state.alerts.hasErrors)
 
     const formatDate = (date) => {
         let d = new Date(date),
@@ -47,13 +46,13 @@ const EmployeeDashboard = () => {
             <>
                 <Typoegraphy variant="h3" gutterBottom>Your team: At-A-Glance</Typoegraphy>
 
-                <Grid container spacing={3} xs={12}>
+                <Grid container spacing={3}>
                     <Grid item xs={12} md={3}>
                         <Paper elevation={3} style={{ padding: 20 }}>
                             <Typoegraphy variant="h5" gutterBottom>Overdue alerts</Typoegraphy> { alerts.overdue_alerts.length ?
                                 <div>
                                     {alerts.overdue_alerts.map((employee) => (
-                                        <span key={employee.employee_id}>{employee.name}</span>
+                                        <span key={employee.id}>{employee.name}</span>
                                     ))}
                                 </div>
                                     :
@@ -69,7 +68,7 @@ const EmployeeDashboard = () => {
                             <Typoegraphy variant="h5" gutterBottom>Today's birthdays</Typoegraphy> { alerts.todays_birthdays.length ?
                                 <div>
                                     {alerts.todays_birthdays.map((employee) => (
-                                        <span key={employee.employee_id}>{employee.name}</span>
+                                        <span key={employee.id}>{employee.name}</span>
                                     ))}
                                 </div>
                             :
@@ -85,7 +84,7 @@ const EmployeeDashboard = () => {
                             <Typoegraphy variant="h5" gutterBottom>Upcoming birthdays</Typoegraphy> { alerts.upcoming_birthdays.length ? 
                                 <div>
                                     {alerts.upcoming_birthdays.map((employee) => (
-                                        <span key={employee.employee_id}>{employee.name} on {formatDate(employee.birthday)}</span>
+                                        <span key={employee.id}>{employee.name} on {formatDate(employee.birthday)}</span>
                                     ))}
                                 </div>
                             :
@@ -101,7 +100,7 @@ const EmployeeDashboard = () => {
                             <Typoegraphy variant="h5" gutterBottom>Upcoming anniversaries</Typoegraphy> { alerts.upcoming_work_anniversaries.length ? 
                                 <div>
                                     {alerts.upcoming_work_anniversaries.map((employee) => (
-                                        <span key={employee.employee_id}>{employee.name} on {formatDate(employee.birthday)}<br /></span>
+                                        <span key={employee.id}>{employee.name} on {formatDate(employee.birthday)}<br /></span>
                                     ))}
                                 </div>
                             :

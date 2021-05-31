@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchOneEmployee } from '../../actions/EmployeeActions'
 import Grid from '@material-ui/core/Grid'
@@ -9,7 +9,6 @@ import 'date-fns'
 import DateFnsUtils from '@date-io/date-fns'
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers'
 
@@ -21,13 +20,11 @@ const EditEmployee = (props) => {
 
     const employee = useSelector(state => state.employees.employee)
 
-    let [editEmployee, setEditEmployee] = useState(employee)
-
-    console.log(editEmployee, "employee")
+    console.log(employee.name, "employee name")
 
     useEffect(() => {
         dispatch(fetchOneEmployee(employee_id))
-    }, [])
+    }, [dispatch, employee_id])
 
     const handleSubmit = () => {
         alert("Editing!")
@@ -44,8 +41,8 @@ const EditEmployee = (props) => {
                         id="fullname"
                         label="Full name"
                         variant="outlined"
-                        defaultValue={employee.name}
-                        onChange={(e) => setEditEmployee({...editEmployee, name: e.target.value})}
+                        value={employee.name}
+                        
                     />
                 </Grid>
 

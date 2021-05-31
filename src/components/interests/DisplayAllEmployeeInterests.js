@@ -42,7 +42,7 @@ const DisplayAllEmployeeInterests = (props) => {
 
     useEffect(() => {
         dispatch(fetchEmployeeInterests(employee_id))
-    },[dispatch])
+    },[dispatch, employee_id])
 
     let [open, setOpen]               = useState(false)
     let [newInterest, setNewInterest] = useState('')
