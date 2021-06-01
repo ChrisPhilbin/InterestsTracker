@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchOneEmployee } from '../../actions/EmployeeActions'
+import ShowLoading from '../../util/ShowLoading'
+import useFormatDate from '../../hooks/useFormatDate'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
@@ -14,13 +16,13 @@ import {
 
 const EditEmployee = (props) => {
 
-    const dispatch = useDispatch()
-
     const employee_id = props.match.params.employee_id
 
-    const employee = useSelector(state => state.employees.employee)
+    const dispatch = useDispatch()
 
-    console.log(employee.name, "employee name")
+    let loading   = useSelector(state => state.employees.loading)
+    let employee  = useSelector(state => state.employees.employee)
+    let hasErrors = useSelector(state => state.employees.hasErrors)
 
     useEffect(() => {
         dispatch(fetchOneEmployee(employee_id))
@@ -29,48 +31,60 @@ const EditEmployee = (props) => {
     const handleSubmit = () => {
         alert("Editing!")
     }
+
+    if (loading) {
+        return(
+            <ShowLoading />
+        )
+    }
     
-    return (
-        <>
-            <Grid style={{ padding: 40 }}>
-                <Typography variant="h4" gutterBottom>Editing details for {employee.name}</Typography>
+    if (Object.keys(employee).length > 0) {
+        return (
+            <>
+                <Grid style={{ padding: 40 }}>
+                    <Typography variant="h4" gutterBottom>Editing details for {employee.name}</Typography>
 
-                <Grid item>
-                    <TextField
-                        required
-                        id="fullname"
-                        label="Full name"
-                        variant="outlined"
-                        value={employee.name}
-                        
-                    />
-                </Grid>
-
-
-                <Grid item>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <KeyboardDatePicker
-                            disableToolbar
-                            variant="inline"
-                            format="MM/dd/yyyy"
-                            margin="normal"
-                            id="date-picker-inline"
-                            label="Hire date"
+                    <Grid item>
+                        <TextField
+                            id="fullname"
+                            label="Full name"
                             
-
-                            KeyboardButtonProps={{
-                                'aria-label': 'change date',
-                            }}
+                            defaultValue={employee.name}
+                            
+                            
                         />
-                    </MuiPickersUtilsProvider>
-                </Grid>
+                    </Grid>
 
-                <Grid item>
-                    <Button variant="contained" color="primary" style={{ marginTop: 15 }} onClick={() => handleSubmit()}>Save changes</Button>
+
+                    <Grid item>
+                        <MuiPickersUtilsProvider utils={DateFnsUtils} >
+                            <KeyboardDatePicker
+                                disableToolbar
+                                variant="inline"
+                                format="MM/dd/yyyy"
+                                margin="normal"
+                                id="date-picker-inline"
+                                value={employee.hire_date}
+                                
+                                label="Hire date"                           
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change date',
+                                }}
+                            />
+                        </MuiPickersUtilsProvider>
+                    </Grid>
+
+                    <Grid item>
+                        <Button variant="contained" color="primary" style={{ marginTop: 15 }} onClick={() => handleSubmit()}>Save changes</Button>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </>
-    )
+            </>
+        )
+    } else {
+        return(
+            null
+        )
+    }
 }
 
 export default EditEmployee
