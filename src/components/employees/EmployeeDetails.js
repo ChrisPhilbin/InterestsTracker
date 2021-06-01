@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import { fetchOneEmployee } from '../../actions/EmployeeActions'
@@ -147,7 +148,7 @@ const EmployeeDetails = (props) => {
                         </CardContent>
                         <CardActions>
                             <Button variant="outlined" onClick={() => setDialogOpen(true)} style={{ color: '#005151' }}>Log interaction</Button>
-                            <Button variant="outlined" style={{ color: '#005151' }}>Edit details</Button>
+                            <Button variant="outlined" style={{ color: '#005151' }} component={Link} to={`/employees/${employee_id}/edit`}>Edit details</Button>
                             <Button color="secondary" variant="outlined" onClick={() => handleDelete() }>Remove employee</Button>
                         </CardActions>
                     </Card>
