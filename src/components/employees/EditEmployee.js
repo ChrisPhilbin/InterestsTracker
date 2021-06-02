@@ -24,6 +24,11 @@ const EditEmployee = (props) => {
     let employee  = useSelector(state => state.employees.employee)
     let hasErrors = useSelector(state => state.employees.hasErrors)
 
+    let [newEmployee, setNewEmployee] = useState(employee)
+
+    console.log(employee, "employee object")
+    console.log(newEmployee, "newEmployee object")
+
     useEffect(() => {
         dispatch(fetchOneEmployee(employee_id))
     }, [dispatch, employee_id])
@@ -48,8 +53,8 @@ const EditEmployee = (props) => {
                         <TextField
                             id="fullname"
                             label="Full name"
-                            
                             defaultValue={employee.name}
+                            onChange={(e) => setNewEmployee({...newEmployee, name: e.target.value})}
                             
                             
                         />
@@ -64,8 +69,8 @@ const EditEmployee = (props) => {
                                 format="MM/dd/yyyy"
                                 margin="normal"
                                 id="date-picker-inline"
-                                value={employee.hire_date}
-                                
+                                value={newEmployee.hire_date}
+                                onChange={(date) => setNewEmployee({...newEmployee, hire_date: date})}
                                 label="Hire date"                           
                                 KeyboardButtonProps={{
                                     'aria-label': 'change date',
