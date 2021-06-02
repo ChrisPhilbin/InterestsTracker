@@ -3,6 +3,7 @@ class Employee < ApplicationRecord
     require 'pry'
     require 'hash_dot'
 
+    belongs_to :user
     has_many :interests,   :dependent => :delete_all
     has_many :pets,        :dependent => :delete_all
     has_many :sports,      :dependent => :delete_all

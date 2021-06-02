@@ -8,6 +8,7 @@ gem 'pry'
 gem 'dotenv-rails'
 gem 'hash_dot'
 gem 'webpacker'
+gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
