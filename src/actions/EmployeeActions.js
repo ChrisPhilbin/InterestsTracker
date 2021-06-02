@@ -118,10 +118,26 @@ export const updateEmployeeFailure = (error) => (
     { type: UPDATE_EMPLOYEE_FAILURE, payload: error }
 )
 
+export const updateEmployee = (employee) => {
+    return async (dispatch) => {
+        try {
+            const success = await fetch(`http://localhost:3001/employees/${employee.id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(employee)
+            })
+            const employee = await success.json()
+            dispatch(updateEmployeeSuccess(employee))
+        } catch (error) {
+            dispatch(updateEmployeeFailure(error))
+        }
+    }
+}
+
 export const updateEmployeeLastInteraction = (employee_id) => {
     return async (dispatch) => {
         try {
-            const success = fetch(`http://localhost:3001/employees/${employee_id}`, {
+            const success = await fetch(`http://localhost:3001/employees/${employee_id}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({last_interaction: new Date()})
