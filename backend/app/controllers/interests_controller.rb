@@ -1,4 +1,4 @@
-class V1::InterestsController < ApplicationController
+class InterestsController < ApplicationController
 
     #GET /employees/:employee_id/interests
     def index

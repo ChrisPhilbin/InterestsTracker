@@ -1,6 +1,6 @@
-class V1::EmployeesController < ApplicationController
+class EmployeesController < ApplicationController
 
-    before_action :authenticate_user!
+    require 'pry'
 
     #GET /employees
     def index

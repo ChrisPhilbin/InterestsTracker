@@ -55,6 +55,5 @@
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.2"
-  },
-  "proxy": "http://localhost:3000/v1"
+  }
 }

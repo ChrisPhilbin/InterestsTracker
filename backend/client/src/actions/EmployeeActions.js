@@ -30,7 +30,7 @@ export const getEmployeesFailure = (error) => (
 export const fetchAllEmployees = () => {
     return async (dispatch) => {
         try {
-            const response = await fetch('http://localhost:3000/v1/employees')
+            const response = await fetch('http://localhost:3001/employees')
             const employees = await response.json()
             dispatch(getEmployeesSuccess(employees))
         } catch (error) {
@@ -54,7 +54,7 @@ export const getOneEmployeeFailure = (error) => (
 export const fetchOneEmployee = (employee_id) => {
     return async (dispatch) => {
         try {
-            const success = await fetch(`http://localhost:3000/v1/employees/${employee_id}`)
+            const success = await fetch(`http://localhost:3001/employees/${employee_id}`)
             const employee = await success.json()
             dispatch(getOneEmployeeSuccess(employee))
         } catch (error) {
@@ -74,7 +74,7 @@ export const employeeCreatedFailure = (error) => (
 export const fetchPostNewEmployee = (new_employee) => {
     return async (dispatch) => {
         try {
-            const success = await fetch('http://localhost:3000/v1/employees', {
+            const success = await fetch('http://localhost:3001/employees', {
                 method: 'POST',
                 body: JSON.stringify(new_employee),
                 headers: { 'Content-Type': 'application/json' }
@@ -98,7 +98,7 @@ export const employeeDeletedFailure = (error) => (
 export const deleteOneEmployee = (employee_id) => {
     return async (dispatch) => {
         try {
-            const success = await fetch(`http://localhost:3000/v1/employees/${employee_id}`, {
+            const success = await fetch(`http://localhost:3001/employees/${employee_id}`, {
                 method: "DELETE",
                 headers: { 'Content-Type': 'application/json' }
             })
@@ -121,7 +121,7 @@ export const updateEmployeeFailure = (error) => (
 export const updateEmployee = (employee) => {
     return async (dispatch) => {
         try {
-            const success = await fetch(`http://localhost:3000/v1/employees/${employee.id}`, {
+            const success = await fetch(`http://localhost:3001/employees/${employee.id}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(employee)
@@ -137,7 +137,7 @@ export const updateEmployee = (employee) => {
 export const updateEmployeeLastInteraction = (employee_id) => {
     return async (dispatch) => {
         try {
-            const success = await fetch(`http://localhost:3000/v1/employees/${employee_id}`, {
+            const success = await fetch(`http://localhost:3001/employees/${employee_id}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({last_interaction: new Date()})
