@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-  get '/', to: 'static#home'
   get '/employees/:employee_id/newsfeed', to: 'employees#newsfeed'
   get '/employees/dashboard',             to: 'employees#dashboard'
 
