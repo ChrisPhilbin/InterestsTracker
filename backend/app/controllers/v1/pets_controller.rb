@@ -1,4 +1,4 @@
-class PetsController < ApplicationController
+class V1::PetsController < ApplicationController
 
     #GET /employees/:employee_id/pets
     def index

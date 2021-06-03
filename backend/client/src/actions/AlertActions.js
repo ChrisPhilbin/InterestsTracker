@@ -17,7 +17,7 @@ export const getAlertsFailure = (error) => (
 export const fetchEmployeeAlerts = () => {
     return (dispatch) => {
         dispatch(getAlerts)
-        fetch('http://localhost:3001/employees/dashboard')
+        fetch('http://localhost:3000/v1/employees/dashboard')
         .then(response => response.json())
         .then(data => {
             dispatch(getAlertsSuccess(data))

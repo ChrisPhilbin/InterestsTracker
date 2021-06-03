@@ -1,4 +1,4 @@
-class InteractionsController < ApplicationController
+class V1::InteractionsController < ApplicationController
 
     require 'pry'
 

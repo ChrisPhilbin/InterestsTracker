@@ -1,4 +1,4 @@
-class SportsController < ApplicationController
+class V1::SportsController < ApplicationController
 
     #GET /employees/:employee_id/sports
     def index

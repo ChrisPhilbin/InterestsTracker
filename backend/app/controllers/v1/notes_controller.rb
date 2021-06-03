@@ -1,4 +1,4 @@
-class NotesController < ApplicationController
+class V1::NotesController < ApplicationController
 
     #GET /employees/:employee_id/notes
     def index
