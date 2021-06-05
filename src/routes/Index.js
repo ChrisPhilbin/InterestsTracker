@@ -7,6 +7,7 @@ import EmployeeDetails from '../components/employees/EmployeeDetails'
 import TopNav from '../navigation/TopNav'
 import CreateEmployee from '../components/employees/CreateEmployee'
 import EditEmployee from '../components/employees/EditEmployee'
+import SignIn from '../components/auth/SignIn'
 
 const Routes = () => {
     return(
@@ -14,6 +15,7 @@ const Routes = () => {
             <TopNav />
             <Switch>
                 <Route exact path="/" component={Home} />
+                <Route exact path="/sign_in" component={SignIn} />
                 <Route exact path="/employees" component={EmployeeList} />
                 <Route exact path="/employees/new" component={CreateEmployee} />
                 <Route exact path="/employees/:employee_id" component={EmployeeDetails} />
