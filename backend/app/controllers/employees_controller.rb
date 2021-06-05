@@ -1,5 +1,7 @@
 class EmployeesController < ApplicationController
 
+    before_action :authenticate_user!
+
     require 'pry'
 
     #GET /employees
