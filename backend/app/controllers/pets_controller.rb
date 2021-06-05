@@ -1,5 +1,7 @@
 class PetsController < ApplicationController
 
+    before_action :authenticate_user!
+
     #GET /employees/:employee_id/pets
     def index
         @pets = Pet.where(employee_id: params[:employee_id])

@@ -1,6 +1,6 @@
 class InteractionsController < ApplicationController
 
-    require 'pry'
+    before_action :authenticate_user!
 
     #GET /employees/:employee_id/interactions
     def index

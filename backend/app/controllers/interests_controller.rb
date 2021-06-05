@@ -1,5 +1,7 @@
 class InterestsController < ApplicationController
 
+    before_action :authenticate_user!
+
     #GET /employees/:employee_id/interests
     def index
         @interests = Interest.where(employee_id: params[:employee_id])

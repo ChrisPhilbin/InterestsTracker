@@ -1,5 +1,7 @@
 class NotesController < ApplicationController
 
+    before_action :authenticate_user!
+
     #GET /employees/:employee_id/notes
     def index
         @notes = Note.where(employee_id: params[:employee_id])

@@ -1,5 +1,7 @@
 class SportsController < ApplicationController
 
+    before_action :authenticate_user!
+
     #GET /employees/:employee_id/sports
     def index
         @sports = Sport.where(employee_id: params[:employee_id])
