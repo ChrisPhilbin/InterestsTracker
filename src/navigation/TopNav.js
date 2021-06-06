@@ -14,6 +14,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade'
 import { Link } from 'react-router-dom'
 import { fetchEmployeeAlerts } from '../actions/AlertActions';
+import useIsLoggedIn from '../hooks/useIsLoggedIn'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +43,8 @@ export default function TopNav() {
   const classes = useStyles();
 
   const dispatch = useDispatch()
+
+  const isLoggedIn = useIsLoggedIn()
 
   useEffect(() => {
     dispatch(fetchEmployeeAlerts)
@@ -124,7 +127,7 @@ export default function TopNav() {
             Realationships
           </Typography>
             {alertIcon}
-          <Button color="inherit" style={{ paddingLeft: 20 }}>Login</Button>
+            { isLoggedIn ? <Button color="inherit" style={{ paddingLeft: 20 }}>Logout</Button> : <Button color="inherit" component={Link} to="/sign_in" style={{ paddingLeft: 20 }}>Login</Button>}
         </Toolbar>
       </AppBar>
     </div>
