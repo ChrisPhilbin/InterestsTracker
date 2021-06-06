@@ -8,6 +8,7 @@ import TopNav from '../navigation/TopNav'
 import CreateEmployee from '../components/employees/CreateEmployee'
 import EditEmployee from '../components/employees/EditEmployee'
 import SignIn from '../components/auth/SignIn'
+import NotFound from '../util/NotFound'
 
 const Routes = () => {
     return(
@@ -20,6 +21,7 @@ const Routes = () => {
                 <Route exact path="/employees/new" component={CreateEmployee} />
                 <Route exact path="/employees/:employee_id" component={EmployeeDetails} />
                 <Route exact path="/employees/:employee_id/edit" component={EditEmployee} />
+                <Route component={NotFound} />
                 {/* <Route exact path="/employees/:employee_id" render={(props) => <EmployeeDetails {...props}/>} /> */}
             </Switch>
         </Router>
