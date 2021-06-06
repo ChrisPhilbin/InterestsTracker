@@ -27,10 +27,16 @@ export const getEmployeesFailure = (error) => (
     { type: GET_EMPLOYEES_FAILURE, payload: error }
 )
 
-export const fetchAllEmployees = () => {
+export const fetchAllEmployees = (authToken) => {
+    console.log(authToken, "auth token passed in to EE action")
     return async (dispatch) => {
         try {
-            const response = await fetch('http://localhost:3001/employees')
+            const response = await fetch('http://localhost:3001/employees', {
+                headers: {
+                    'Authorization': authToken,
+                    'Content-Type':'application/json'
+                }
+            })
             const employees = await response.json()
             dispatch(getEmployeesSuccess(employees))
         } catch (error) {

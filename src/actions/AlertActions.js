@@ -14,10 +14,15 @@ export const getAlertsFailure = (error) => (
     { type: GET_ALERTS_FAILURE, payload: error }
 )
 
-export const fetchEmployeeAlerts = () => {
+export const fetchEmployeeAlerts = (authToken) => {
     return (dispatch) => {
         dispatch(getAlerts)
-        fetch('http://localhost:3001/employees/dashboard')
+        fetch('http://localhost:3001/employees/dashboard', {
+            headers: {
+                'Authorization' : authToken,
+                'Content-Type' : 'application/json'
+            }
+        })
         .then(response => response.json())
         .then(data => {
             dispatch(getAlertsSuccess(data))
