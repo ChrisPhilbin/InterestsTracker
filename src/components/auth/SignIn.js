@@ -57,31 +57,38 @@ const SignIn = (props) => {
                 password: password
             }
         };
-        // fetch('http://localhost:3001/users/sign_in', {
-        //     method: 'POST',
-        //     body: JSON.stringify(userData),
-        //     headers: { 'Content-Type' : 'application/json' }
+        fetch('http://localhost:3001/users/sign_in', {
+            method: 'POST',
+            body: JSON.stringify(userData),
+            headers: { 
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/json' 
+            }
 
-        // })
-        // .then(response => console.log(response.headers, "response from auth request"))
-        // .catch(error => console.log(error, "error from auth request"))
-        axios
-            .post('http://localhost:3001/users/sign_in', JSON.stringify(userData),  {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then((response) => {
-                console.log(response, "response from auth request")
-                localStorage.setItem('AuthToken', `Bearer ${response.data.Authorization}`);
-                setLoading(false)		
-                props.history.push('/');
-            })
-            .catch((error) => {		
-                console.log(error, "error from auth request")
-                setErrors(error.response.data)		
-                setLoading(false)
-            });
+        })
+        .then(response => {
+            localStorage.setItem('AuthToken', response.headers.get('Authorization'))
+            props.history.push('/')
+        })
+        .catch(error => console.log(error, "error from auth request"))
+        // axios
+        //     .post('http://localhost:3001/users/sign_in', JSON.stringify(userData),  {
+        //         headers: {
+        //             Accept: 'application/json',
+        //             'Content-Type': 'application/json'
+        //         }
+        //     })
+        //     .then((response) => {
+        //         console.log(response, "response from auth request")
+        //         localStorage.setItem('AuthToken', `Bearer ${response.data.Authorization}`);
+        //         setLoading(false)		
+        //         props.history.push('/');
+        //     })
+            // .catch((error) => {		
+            //     console.log(error, "error from auth request")
+            //     setErrors(error.response.data)		
+            //     setLoading(false)
+            // });
     };
 
     const { classes } = props

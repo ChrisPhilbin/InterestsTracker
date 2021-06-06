@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import { Link } from 'react-router-dom'
+import useCheckAuthStatus from '../hooks/useCheckAuthStatus'
 
 const useStyles = makeStyles((theme) => ({
     introContainer: {
@@ -14,7 +15,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const Home = () => {
+const Home = (props) => {
+
+    useCheckAuthStatus(props)
+
     const classes = useStyles()
 
     return(
