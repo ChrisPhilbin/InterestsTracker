@@ -1,3 +1,5 @@
+import defaultFetchOptions from "../config/FetchDefault"
+
 export const GET_ALERTS = "GET_ALERTS"
 export const GET_ALERTS_SUCCESS = "GET_ALERTS_SUCCESS"
 export const GET_ALERTS_FAILURE = "GET_ALERTS_FAILURE"
@@ -14,15 +16,10 @@ export const getAlertsFailure = (error) => (
     { type: GET_ALERTS_FAILURE, payload: error }
 )
 
-export const fetchEmployeeAlerts = (authToken) => {
+export const fetchEmployeeAlerts = () => {
     return (dispatch) => {
         dispatch(getAlerts)
-        fetch('http://localhost:3001/employees/dashboard', {
-            headers: {
-                'Authorization' : authToken,
-                'Content-Type' : 'application/json'
-            }
-        })
+        fetch('http://localhost:3001/employees/dashboard', defaultFetchOptions)
         .then(response => response.json())
         .then(data => {
             dispatch(getAlertsSuccess(data))

@@ -1,3 +1,5 @@
+import defaultFetchOptions from '../config/FetchDefault'
+
 export const GET_EMPLOYEES            = "GET_EMPLOYEES"
 export const GET_EMPLOYEES_SUCCESS    = "GET_EMPLOYEES_SUCCESS"
 export const GET_EMPLOYEES_FAILURE    = "GET_EMPLOYEES_FAILURE"
@@ -28,15 +30,10 @@ export const getEmployeesFailure = (error) => (
 )
 
 export const fetchAllEmployees = (authToken) => {
-    console.log(authToken, "auth token passed in to EE action")
+    console.log(defaultFetchOptions, "default fetch options")
     return async (dispatch) => {
         try {
-            const response = await fetch('http://localhost:3001/employees', {
-                headers: {
-                    'Authorization': authToken,
-                    'Content-Type':'application/json'
-                }
-            })
+            const response = await fetch('http://localhost:3001/employees', defaultFetchOptions)
             const employees = await response.json()
             dispatch(getEmployeesSuccess(employees))
         } catch (error) {
@@ -60,7 +57,7 @@ export const getOneEmployeeFailure = (error) => (
 export const fetchOneEmployee = (employee_id) => {
     return async (dispatch) => {
         try {
-            const success = await fetch(`http://localhost:3001/employees/${employee_id}`)
+            const success = await fetch(`http://localhost:3001/employees/${employee_id}`, defaultFetchOptions)
             const employee = await success.json()
             dispatch(getOneEmployeeSuccess(employee))
         } catch (error) {
@@ -81,9 +78,9 @@ export const fetchPostNewEmployee = (new_employee) => {
     return async (dispatch) => {
         try {
             const success = await fetch('http://localhost:3001/employees', {
+                ...defaultFetchOptions,
                 method: 'POST',
                 body: JSON.stringify(new_employee),
-                headers: { 'Content-Type': 'application/json' }
             })
             const employee = await success.json()
             dispatch(employeeCreatedSuccess(employee))
@@ -105,8 +102,8 @@ export const deleteOneEmployee = (employee_id) => {
     return async (dispatch) => {
         try {
             const success = await fetch(`http://localhost:3001/employees/${employee_id}`, {
+                ...defaultFetchOptions,
                 method: "DELETE",
-                headers: { 'Content-Type': 'application/json' }
             })
             const employee = await success.json()
             dispatch(employeeDeletedSuccess(employee))
@@ -128,8 +125,8 @@ export const updateEmployee = (employee) => {
     return async (dispatch) => {
         try {
             const success = await fetch(`http://localhost:3001/employees/${employee.id}`, {
+                ...defaultFetchOptions,
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(employee)
             })
             const employee = await success.json()
@@ -144,8 +141,8 @@ export const updateEmployeeLastInteraction = (employee_id) => {
     return async (dispatch) => {
         try {
             const success = await fetch(`http://localhost:3001/employees/${employee_id}`, {
+                ...defaultFetchOptions,
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({last_interaction: new Date()})
             })
             const employee = await success.json()

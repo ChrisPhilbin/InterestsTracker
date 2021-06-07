@@ -1,3 +1,5 @@
+import defaultFetchOptions from "../config/FetchDefault"
+
 export const GET_INTERACTIONS         = "GET_INTERACTIONS"
 export const GET_INTERACTIONS_SUCCESS = "GET_INTERACTIONS_SUCCESS"
 export const GET_INTERACTIONS_FAILURE = "GET_INTERACTIONS_FAILURE"
@@ -23,7 +25,7 @@ export const getInteractionsFailure = (error) => (
 export const fetchEmployeeInteractions = (employee_id) => {
     return async (dispatch) => {
         try {
-            const response = await fetch(`http://localhost:3001/employees/${employee_id}/interactions`)
+            const response = await fetch(`http://localhost:3001/employees/${employee_id}/interactions`, defaultFetchOptions)
             const interactions = await response.json()
             dispatch(getInteractionsSucess(interactions))
         } catch (error) {
@@ -44,9 +46,9 @@ export const fetchPostNewInteraction = (interaction) => {
     return async (dispatch) => {
         try {
             const response = await fetch(`http://localhost:3001/employees/${interaction.employee_id}/interactions`, {
+                ...defaultFetchOptions,
                 method: 'POST',
                 body: JSON.stringify(interaction),
-                headers: { 'Content-Type':'application/json'}
             })
             const newInteraction = await response.json()
             dispatch(interactionCreatedSuccess(newInteraction))
@@ -68,8 +70,8 @@ export const fetchDeleteInteraction = (employee_id, interaction_id) => {
     return async (dispatch) => {
         try {
             const response = await fetch(`http://localhost:3001/employees/${employee_id}/interactions/${interaction_id}`, {
+                ...defaultFetchOptions,
                 method: 'DELETE',
-                headers: { 'Content-Type':'application/json' }
             })
             const data = await response.json()
             dispatch(deleteInteractionSuccess(data))

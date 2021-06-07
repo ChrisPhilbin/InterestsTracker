@@ -1,3 +1,5 @@
+import defaultFetchOptions from "../config/FetchDefault"
+
 export const GET_NOTES            = "GET_NOTES"
 export const GET_NOTES_SUCCESS    = "GET_NOTES_SUCCESS"
 export const GET_NOTES_FAILURE    = "GET_NOTES_FAILURE"
@@ -23,7 +25,7 @@ export const getNotesFailure = (error) => (
 export const fetchEmployeeNotes = (employee_id) => {
     return (dispatch) => {
         dispatch(getNotes)
-        fetch(`http://localhost:3001/employees/${employee_id}/notes`)
+        fetch(`http://localhost:3001/employees/${employee_id}/notes`, defaultFetchOptions)
         .then(response => response.json())
         .then(data => {
             dispatch(GetNotesSuccess(data))
@@ -45,9 +47,9 @@ export const notecreatedFailure = (error) => (
 export const fetchPostNewNote = (note) => {
     return (dispatch) => {
         fetch(`http://localhost:3001/employees/${note.employee_id}/notes`, {
+            ...defaultFetchOptions,
             method: 'POST',
             body: JSON.stringify(note),
-            headers: { 'Content-Type': 'application/json' }
         })
         .then(response => response.json())
         .then(data => {
@@ -70,8 +72,8 @@ export const noteDeletedFailure = (error) => (
 export const fetchDeleteNote = (employee_id, note_id) => {
     return (dispatch) => {
         fetch(`http://localhost:3001/employees/${employee_id}/notes/${note_id}`, {
+            ...defaultFetchOptions,
             method: 'DELETE',
-            headers: { 'Content-Type':'application/json' }
         })
         .then(response => response.json())
         .then(data => {
