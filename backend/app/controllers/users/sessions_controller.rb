@@ -1,10 +1,17 @@
 class Users::SessionsController < Devise::SessionsController
     respond_to :json
+    require 'pry'
   
     private
   
     def respond_with(resource, _opts = {})
-      render json: { message: 'You are logged in.', user: current_user }, status: :ok
+      if resource.id == nil && resource.email == ""
+        binding.pry
+        render json: { message: 'You are not logged in.' }, status: :unauthorized
+      else
+        binding.pry
+        render json: { message: 'You are logged in.' }, status: :ok
+      end
     end
   
     def respond_to_on_destroy

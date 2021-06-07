@@ -29,14 +29,17 @@ export const getEmployeesFailure = (error) => (
     { type: GET_EMPLOYEES_FAILURE, payload: error }
 )
 
-export const fetchAllEmployees = (authToken) => {
-    console.log(defaultFetchOptions, "default fetch options")
+export const fetchAllEmployees = () => {
     return async (dispatch) => {
         try {
             const response = await fetch('http://localhost:3001/employees', defaultFetchOptions)
-            const employees = await response.json()
-            dispatch(getEmployeesSuccess(employees))
+            if (response.status === 200) {
+                const employees = await response.json()
+                console.log("response status was 200 - everything is ok")
+                dispatch(getEmployeesSuccess(employees))
+            }
         } catch (error) {
+            console.log("Error fetching all employees - status is 401")
             dispatch(getEmployeesFailure(error))
         }
     }
