@@ -6,10 +6,8 @@ class Users::SessionsController < Devise::SessionsController
   
     def respond_with(resource, _opts = {})
       if resource.id == nil && resource.email == ""
-        binding.pry
         render json: { message: 'You are not logged in.' }, status: :unauthorized
       else
-        binding.pry
         render json: { message: 'You are logged in.' }, status: :ok
       end
     end

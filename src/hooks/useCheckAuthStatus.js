@@ -1,7 +1,8 @@
 const useCheckAuthStatus = (props) => {
     const authToken = localStorage.getItem('AuthToken')
     if (authToken === "null" || !authToken) {
-        props.history.push('/sign_in')
+        // props.history.push('/sign_in')
+        window.location.href = '/sign_in'
     } else {
         return authToken
     }

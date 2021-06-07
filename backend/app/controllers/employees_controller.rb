@@ -13,7 +13,6 @@ class EmployeesController < ApplicationController
     #POST /employees
     def create
         @employee = Employee.create!(employee_params)
-        binding.pry
         render :json => @employee
     end
 

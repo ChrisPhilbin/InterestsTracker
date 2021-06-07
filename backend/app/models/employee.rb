@@ -9,9 +9,9 @@ class Employee < ApplicationRecord
     has_many :notes,       :dependent => :delete_all
     has_many :interactions, :dependent => :delete_all
 
-    validates_presence_of :name, message: "Employee name cannot be blank"
-    validates_presence_of :hire_date, message: "Employee hire date cannot be blank"
-    validates_presence_of :last_interaction, message: "Employee last interaction date cannot be blank"
+    # validates_presence_of :name, message: "Employee name cannot be blank"
+    # validates_presence_of :hire_date, message: "Employee hire date cannot be blank"
+    # validates_presence_of :last_interaction, message: "Employee last interaction date cannot be blank"
 
     mount_uploader :headshot, HeadshotUploader
 
