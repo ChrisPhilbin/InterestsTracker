@@ -15,6 +15,7 @@ import Fade from '@material-ui/core/Fade'
 import { Link } from 'react-router-dom'
 import { fetchEmployeeAlerts } from '../actions/AlertActions';
 import useIsLoggedIn from '../hooks/useIsLoggedIn'
+import defaultFetchOptions from '../config/FetchDefault'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,6 +50,16 @@ export default function TopNav() {
   useEffect(() => {
     dispatch(fetchEmployeeAlerts)
   }, [dispatch])
+
+  const handleLogout = () => {
+    console.log("handling logging out!")
+    fetch('http://localhost:3001/users/sign_out', {
+      ...defaultFetchOptions,
+      method: 'DELETE'
+    })
+    localStorage.removeItem("AuthToken")
+    window.location.replace("/")
+  }
 
   let alerts = useSelector(state => state.alerts.alerts)
 
@@ -127,7 +138,7 @@ export default function TopNav() {
             Realationships
           </Typography>
             {alertIcon}
-            { isLoggedIn ? <Button color="inherit" style={{ paddingLeft: 20 }}>Logout</Button> : <Button color="inherit" component={Link} to="/sign_in" style={{ paddingLeft: 20 }}>Login</Button>}
+            { isLoggedIn ? <Button color="inherit" style={{ paddingLeft: 20 }} onClick={() => handleLogout()}>Logout</Button> : <Button color="inherit" component={Link} to="/sign_in" style={{ paddingLeft: 20 }}>Login</Button>}
         </Toolbar>
       </AppBar>
     </div>
