@@ -5,16 +5,14 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import ShowLoading from '../../util/ShowLoading'
 import Typoegraphy from '@material-ui/core/Typography'
-import useCheckAuthStatus from '../../hooks/useCheckAuthStatus'
 
 const EmployeeDashboard = () => {
 
     const dispatch = useDispatch()
 
-    const authToken = useCheckAuthStatus()
 
     useEffect(() => {
-        dispatch(fetchEmployeeAlerts(authToken))
+        dispatch(fetchEmployeeAlerts())
     }, [dispatch])
 
     let alerts    = useSelector(state => state.alerts.alerts)

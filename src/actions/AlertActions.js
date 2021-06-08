@@ -20,9 +20,15 @@ export const fetchEmployeeAlerts = () => {
     return (dispatch) => {
         dispatch(getAlerts)
         fetch('http://localhost:3001/employees/dashboard', defaultFetchOptions)
-        .then(response => response.json())
-        .then(data => {
-            dispatch(getAlertsSuccess(data))
+        .then(response => {
+            if (response.status === 200) {
+                response.json()
+                .then(data => {
+                    dispatch(getAlertsSuccess(data))
+                })
+            } else {
+                window.location.replace("/sign_in")
+            }
         })
         .catch(error => {
             dispatch(getAlertsFailure(error))

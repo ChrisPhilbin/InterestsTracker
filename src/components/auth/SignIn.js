@@ -11,8 +11,6 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import axios from 'axios';
-
 const styles = (theme) => ({
 	paper: {
 		marginTop: theme.spacing(8),
@@ -70,25 +68,10 @@ const SignIn = (props) => {
             localStorage.setItem('AuthToken', response.headers.get('Authorization'))
             props.history.push('/')
         })
-        .catch(error => console.log(error, "error from auth request"))
-        // axios
-        //     .post('http://localhost:3001/users/sign_in', JSON.stringify(userData),  {
-        //         headers: {
-        //             Accept: 'application/json',
-        //             'Content-Type': 'application/json'
-        //         }
-        //     })
-        //     .then((response) => {
-        //         console.log(response, "response from auth request")
-        //         localStorage.setItem('AuthToken', `Bearer ${response.data.Authorization}`);
-        //         setLoading(false)		
-        //         props.history.push('/');
-        //     })
-            // .catch((error) => {		
-            //     console.log(error, "error from auth request")
-            //     setErrors(error.response.data)		
-            //     setLoading(false)
-            // });
+        .catch(error => {
+            setErrors(error)
+            console.log(error, "error from auth request")
+        })
     };
 
     const { classes } = props

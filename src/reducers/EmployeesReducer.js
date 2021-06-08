@@ -14,7 +14,7 @@ export default function employeesReducer(state = initialEmployeesState, action) 
         case actions.GET_EMPLOYEES_SUCCESS:
             return { ...state, loading: false, employees: action.payload }
         case actions.GET_EMPLOYEES_FAILURE:
-            return { ...state, loading: false, hasErrors: true }
+            return { ...state, loading: false, hasErrors: action.payload }
         case actions.GET_ONE_EMPLOYEE:
             return { ...state, loading: true }
         case actions.GET_ONE_EMPLOYEE_SUCCESS:

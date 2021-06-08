@@ -11,7 +11,6 @@ import ShowLoading from '../util/ShowLoading'
 import ShowErrors from '../util/ShowErrors'
 import Container from '@material-ui/core/Container'
 import EmployeeDashboard from '../components/dashboard/EmployeeDashboard'
-import useCheckAuthStatus from '../hooks/useCheckAuthStatus'
 
 const useStyles = makeStyles((theme) => ({
     floatingButton: {
@@ -27,14 +26,12 @@ const EmployeeList = () => {
 
     const classes = useStyles()
 
-    const authToken = useCheckAuthStatus()
-
     let loading   = useSelector(state => state.employees.loading)
     let hasErrors = useSelector(state => state.employees.hasErrors)
     let employees = useSelector(state => state.employees.employees)
 
     useEffect(() => {
-        dispatch(fetchAllEmployees(authToken))
+        dispatch(fetchAllEmployees())
     },[dispatch])
 
     if (loading) {
@@ -46,7 +43,7 @@ const EmployeeList = () => {
     } else if (hasErrors) {
         return(
             <>
-                <ShowErrors />
+                <ShowErrors message={hasErrors}/>
             </>
         )
     } else if (employees) {

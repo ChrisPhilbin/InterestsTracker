@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchOneEmployee } from '../../actions/EmployeeActions'
+import { fetchOneEmployee, updateEmployee } from '../../actions/EmployeeActions'
 import ShowLoading from '../../util/ShowLoading'
-import useFormatDate from '../../hooks/useFormatDate'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
@@ -22,7 +21,6 @@ const EditEmployee = (props) => {
 
     let loading   = useSelector(state => state.employees.loading)
     let employee  = useSelector(state => state.employees.employee)
-    let hasErrors = useSelector(state => state.employees.hasErrors)
 
     let [newEmployee, setNewEmployee] = useState(employee)
 
@@ -33,8 +31,9 @@ const EditEmployee = (props) => {
         dispatch(fetchOneEmployee(employee_id))
     }, [dispatch, employee_id])
 
-    const handleSubmit = () => {
+    const handleSubmit = (newEmployee) => {
         alert("Editing!")
+        updateEmployee(newEmployee)
     }
 
     if (loading) {

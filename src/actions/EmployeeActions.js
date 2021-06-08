@@ -35,11 +35,12 @@ export const fetchAllEmployees = () => {
             const response = await fetch('http://localhost:3001/employees', defaultFetchOptions)
             if (response.status === 200) {
                 const employees = await response.json()
-                console.log("response status was 200 - everything is ok")
                 dispatch(getEmployeesSuccess(employees))
+            } else {
+                dispatch(getEmployeesFailure(response.statusText))
+                window.location.replace("/sign_in")
             }
         } catch (error) {
-            console.log("Error fetching all employees - status is 401")
             dispatch(getEmployeesFailure(error))
         }
     }
