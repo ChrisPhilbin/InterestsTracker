@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade'
@@ -66,6 +68,15 @@ export default function TopNav() {
   let [open, setOpen] = useState(false)
 
   let alertIcon
+
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const openMenu = Boolean(anchorEl)
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
 
   if (Object.keys(alerts).length) {
     alertIcon = (
@@ -132,7 +143,21 @@ export default function TopNav() {
       <AppBar position="static" style={{ background: '#005151' }}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
+            <MenuIcon onClick={handleClick} />
+
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={openMenu}
+              onClose={handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+            >
+              <MenuItem component={Link} to="/" onClick={handleClose}>Home</MenuItem>
+              <MenuItem component={Link} to="/employees" onClick={handleClose}>My team</MenuItem>
+              <MenuItem component={Link} to="/" onClick={handleLogout}>Logout</MenuItem>
+            </Menu>
           </IconButton>
           <Typography variant="h6" className={classes.title} component={Link} to="/employees" style={{ color: 'white', textDecoration: 'none' }}>
             Realationships

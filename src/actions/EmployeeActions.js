@@ -32,6 +32,7 @@ export const getEmployeesFailure = (error) => (
 export const fetchAllEmployees = () => {
     return async (dispatch) => {
         try {
+            console.log(defaultFetchOptions, "default fetch options")
             const response = await fetch('http://localhost:3001/employees', defaultFetchOptions)
             if (response.status === 200) {
                 const employees = await response.json()
