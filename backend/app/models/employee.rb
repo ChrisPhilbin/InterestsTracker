@@ -25,7 +25,7 @@ class Employee < ApplicationRecord
         Employee.all.each do |employee|
             if employee.birthday
                 mmdd = employee.birthday.strftime('%m%d').to_i
-                if mmdd <= 14.days.from_now.strftime('%m%d').to_i
+                if Date.yesterday.strftime('%m%d').to_i <= mmdd && mmdd <= 14.days.from_now.strftime('%m%d').to_i
                     upcoming_birthdays << employee
                 end
             end
@@ -38,7 +38,7 @@ class Employee < ApplicationRecord
         Employee.all.each do |employee|
             if employee.hire_date
                 mmdd = employee.hire_date.strftime('%m%d').to_i
-                if mmdd <= 14.days.from_now.strftime('%m%d').to_i
+                if Date.yesterday.strftime('%m%d').to_i <= mmdd && mmdd <= 14.days.from_now.strftime('%m%d').to_i
                     upcoming_work_anniversaries << employee
                 end
             end
