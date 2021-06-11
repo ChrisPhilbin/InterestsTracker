@@ -53,7 +53,7 @@ const EmployeeDashboard = () => {
                             <Typoegraphy variant="h5" gutterBottom>Overdue alerts</Typoegraphy> { alerts.overdue_alerts.length ?
                                 <div>
                                     {alerts.overdue_alerts.map((employee) => (
-                                        <span key={employee.id}>{employee.name}</span>
+                                        <span key={employee.id}>{employee.name}<br /></span>
                                     ))}
                                 </div>
                                     :
