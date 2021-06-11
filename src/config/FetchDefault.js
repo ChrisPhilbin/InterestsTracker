@@ -1,8 +1,8 @@
 const defaultFetchOptions = {
-    headers: {
-        'Authorization': localStorage.getItem('AuthToken'),
-        'Content-Type':'application/json'
-    }
-}
+  headers: {
+    Authorization: localStorage.getItem("AuthToken"),
+    "Content-Type": "application/json",
+  },
+};
 
-export default defaultFetchOptions
+export default defaultFetchOptions;

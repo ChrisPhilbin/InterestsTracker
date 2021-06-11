@@ -43,76 +43,48 @@
   "components/sports/DisplayAllEmployeeSports.js.map": "/packs/js/components/sports/DisplayAllEmployeeSports-ff0109d2ab3467ad1cd4.js.map",
   "entrypoints": {
     "actions/AlertActions": {
-      "js": [
-        "/packs/js/actions/AlertActions-f101c18c305b1607d0ab.js"
-      ],
-      "js.map": [
-        "/packs/js/actions/AlertActions-f101c18c305b1607d0ab.js.map"
-      ]
+      "js": ["/packs/js/actions/AlertActions-f101c18c305b1607d0ab.js"],
+      "js.map": ["/packs/js/actions/AlertActions-f101c18c305b1607d0ab.js.map"]
     },
     "actions/EmployeeActions": {
-      "js": [
-        "/packs/js/actions/EmployeeActions-082139b5e0c9775d4def.js"
-      ],
+      "js": ["/packs/js/actions/EmployeeActions-082139b5e0c9775d4def.js"],
       "js.map": [
         "/packs/js/actions/EmployeeActions-082139b5e0c9775d4def.js.map"
       ]
     },
     "actions/InteractionActions": {
-      "js": [
-        "/packs/js/actions/InteractionActions-5c5ecb793e8a1ba6276d.js"
-      ],
+      "js": ["/packs/js/actions/InteractionActions-5c5ecb793e8a1ba6276d.js"],
       "js.map": [
         "/packs/js/actions/InteractionActions-5c5ecb793e8a1ba6276d.js.map"
       ]
     },
     "actions/InterestActions": {
-      "js": [
-        "/packs/js/actions/InterestActions-31ab9ad072b7b834e0e3.js"
-      ],
+      "js": ["/packs/js/actions/InterestActions-31ab9ad072b7b834e0e3.js"],
       "js.map": [
         "/packs/js/actions/InterestActions-31ab9ad072b7b834e0e3.js.map"
       ]
     },
     "actions/NewsfeedActions": {
-      "js": [
-        "/packs/js/actions/NewsfeedActions-d75963a88aa8ddfc6917.js"
-      ],
+      "js": ["/packs/js/actions/NewsfeedActions-d75963a88aa8ddfc6917.js"],
       "js.map": [
         "/packs/js/actions/NewsfeedActions-d75963a88aa8ddfc6917.js.map"
       ]
     },
     "actions/NoteActions": {
-      "js": [
-        "/packs/js/actions/NoteActions-5e93c7b641a9b73ac99f.js"
-      ],
-      "js.map": [
-        "/packs/js/actions/NoteActions-5e93c7b641a9b73ac99f.js.map"
-      ]
+      "js": ["/packs/js/actions/NoteActions-5e93c7b641a9b73ac99f.js"],
+      "js.map": ["/packs/js/actions/NoteActions-5e93c7b641a9b73ac99f.js.map"]
     },
     "actions/PetActions": {
-      "js": [
-        "/packs/js/actions/PetActions-9a2b98063d8921599767.js"
-      ],
-      "js.map": [
-        "/packs/js/actions/PetActions-9a2b98063d8921599767.js.map"
-      ]
+      "js": ["/packs/js/actions/PetActions-9a2b98063d8921599767.js"],
+      "js.map": ["/packs/js/actions/PetActions-9a2b98063d8921599767.js.map"]
     },
     "actions/SportActions": {
-      "js": [
-        "/packs/js/actions/SportActions-a911daacb9543df8c08d.js"
-      ],
-      "js.map": [
-        "/packs/js/actions/SportActions-a911daacb9543df8c08d.js.map"
-      ]
+      "js": ["/packs/js/actions/SportActions-a911daacb9543df8c08d.js"],
+      "js.map": ["/packs/js/actions/SportActions-a911daacb9543df8c08d.js.map"]
     },
     "App": {
-      "js": [
-        "/packs/js/App-a15b64a7644650bede70.js"
-      ],
-      "js.map": [
-        "/packs/js/App-a15b64a7644650bede70.js.map"
-      ]
+      "js": ["/packs/js/App-a15b64a7644650bede70.js"],
+      "js.map": ["/packs/js/App-a15b64a7644650bede70.js.map"]
     },
     "components/dashboard/EmployeeDashboard": {
       "js": [
@@ -211,188 +183,104 @@
       ]
     },
     "hello_react": {
-      "js": [
-        "/packs/js/hello_react-a89e2dd4e847ba742596.js"
-      ],
-      "js.map": [
-        "/packs/js/hello_react-a89e2dd4e847ba742596.js.map"
-      ]
+      "js": ["/packs/js/hello_react-a89e2dd4e847ba742596.js"],
+      "js.map": ["/packs/js/hello_react-a89e2dd4e847ba742596.js.map"]
     },
     "hooks/useCheckDate": {
-      "js": [
-        "/packs/js/hooks/useCheckDate-8fbc03a1e8d9a3f1d5e7.js"
-      ],
-      "js.map": [
-        "/packs/js/hooks/useCheckDate-8fbc03a1e8d9a3f1d5e7.js.map"
-      ]
+      "js": ["/packs/js/hooks/useCheckDate-8fbc03a1e8d9a3f1d5e7.js"],
+      "js.map": ["/packs/js/hooks/useCheckDate-8fbc03a1e8d9a3f1d5e7.js.map"]
     },
     "hooks/useFormatDate": {
-      "js": [
-        "/packs/js/hooks/useFormatDate-d971d84484dab921ed89.js"
-      ],
-      "js.map": [
-        "/packs/js/hooks/useFormatDate-d971d84484dab921ed89.js.map"
-      ]
+      "js": ["/packs/js/hooks/useFormatDate-d971d84484dab921ed89.js"],
+      "js.map": ["/packs/js/hooks/useFormatDate-d971d84484dab921ed89.js.map"]
     },
     "index": {
-      "js": [
-        "/packs/js/index-28cc9282f7872efc6fa9.js"
-      ],
-      "js.map": [
-        "/packs/js/index-28cc9282f7872efc6fa9.js.map"
-      ]
+      "js": ["/packs/js/index-28cc9282f7872efc6fa9.js"],
+      "js.map": ["/packs/js/index-28cc9282f7872efc6fa9.js.map"]
     },
     "logo": {
-      "js": [
-        "/packs/js/logo-fd9304574e059ec8e765.js"
-      ],
-      "js.map": [
-        "/packs/js/logo-fd9304574e059ec8e765.js.map"
-      ]
+      "js": ["/packs/js/logo-fd9304574e059ec8e765.js"],
+      "js.map": ["/packs/js/logo-fd9304574e059ec8e765.js.map"]
     },
     "navigation/BottomNav": {
-      "js": [
-        "/packs/js/navigation/BottomNav-4f4b165fcaf13b414b59.js"
-      ],
-      "js.map": [
-        "/packs/js/navigation/BottomNav-4f4b165fcaf13b414b59.js.map"
-      ]
+      "js": ["/packs/js/navigation/BottomNav-4f4b165fcaf13b414b59.js"],
+      "js.map": ["/packs/js/navigation/BottomNav-4f4b165fcaf13b414b59.js.map"]
     },
     "navigation/TopNav": {
-      "js": [
-        "/packs/js/navigation/TopNav-22ef1b322b3dbd160b8e.js"
-      ],
-      "js.map": [
-        "/packs/js/navigation/TopNav-22ef1b322b3dbd160b8e.js.map"
-      ]
+      "js": ["/packs/js/navigation/TopNav-22ef1b322b3dbd160b8e.js"],
+      "js.map": ["/packs/js/navigation/TopNav-22ef1b322b3dbd160b8e.js.map"]
     },
     "reducers/AlertsReducer": {
-      "js": [
-        "/packs/js/reducers/AlertsReducer-f0526100d437d3532943.js"
-      ],
-      "js.map": [
-        "/packs/js/reducers/AlertsReducer-f0526100d437d3532943.js.map"
-      ]
+      "js": ["/packs/js/reducers/AlertsReducer-f0526100d437d3532943.js"],
+      "js.map": ["/packs/js/reducers/AlertsReducer-f0526100d437d3532943.js.map"]
     },
     "reducers/EmployeesReducer": {
-      "js": [
-        "/packs/js/reducers/EmployeesReducer-837b0e53b873d8ec570a.js"
-      ],
+      "js": ["/packs/js/reducers/EmployeesReducer-837b0e53b873d8ec570a.js"],
       "js.map": [
         "/packs/js/reducers/EmployeesReducer-837b0e53b873d8ec570a.js.map"
       ]
     },
     "reducers/Index": {
-      "js": [
-        "/packs/js/reducers/Index-5d31d611a6f60781f189.js"
-      ],
-      "js.map": [
-        "/packs/js/reducers/Index-5d31d611a6f60781f189.js.map"
-      ]
+      "js": ["/packs/js/reducers/Index-5d31d611a6f60781f189.js"],
+      "js.map": ["/packs/js/reducers/Index-5d31d611a6f60781f189.js.map"]
     },
     "reducers/InteractionsReducer": {
-      "js": [
-        "/packs/js/reducers/InteractionsReducer-52fecacd6594d6d2500c.js"
-      ],
+      "js": ["/packs/js/reducers/InteractionsReducer-52fecacd6594d6d2500c.js"],
       "js.map": [
         "/packs/js/reducers/InteractionsReducer-52fecacd6594d6d2500c.js.map"
       ]
     },
     "reducers/InterestsReducer": {
-      "js": [
-        "/packs/js/reducers/InterestsReducer-abc09187d87bd0bebc35.js"
-      ],
+      "js": ["/packs/js/reducers/InterestsReducer-abc09187d87bd0bebc35.js"],
       "js.map": [
         "/packs/js/reducers/InterestsReducer-abc09187d87bd0bebc35.js.map"
       ]
     },
     "reducers/NewsfeedsReducer": {
-      "js": [
-        "/packs/js/reducers/NewsfeedsReducer-25b4883472469785981f.js"
-      ],
+      "js": ["/packs/js/reducers/NewsfeedsReducer-25b4883472469785981f.js"],
       "js.map": [
         "/packs/js/reducers/NewsfeedsReducer-25b4883472469785981f.js.map"
       ]
     },
     "reducers/NotesReducer": {
-      "js": [
-        "/packs/js/reducers/NotesReducer-eb5b556d936f1dd9c9bc.js"
-      ],
-      "js.map": [
-        "/packs/js/reducers/NotesReducer-eb5b556d936f1dd9c9bc.js.map"
-      ]
+      "js": ["/packs/js/reducers/NotesReducer-eb5b556d936f1dd9c9bc.js"],
+      "js.map": ["/packs/js/reducers/NotesReducer-eb5b556d936f1dd9c9bc.js.map"]
     },
     "reducers/PetsReducer": {
-      "js": [
-        "/packs/js/reducers/PetsReducer-e9443ad597ed58d4593e.js"
-      ],
-      "js.map": [
-        "/packs/js/reducers/PetsReducer-e9443ad597ed58d4593e.js.map"
-      ]
+      "js": ["/packs/js/reducers/PetsReducer-e9443ad597ed58d4593e.js"],
+      "js.map": ["/packs/js/reducers/PetsReducer-e9443ad597ed58d4593e.js.map"]
     },
     "reducers/SportsReducer": {
-      "js": [
-        "/packs/js/reducers/SportsReducer-1df1279d443eac893617.js"
-      ],
-      "js.map": [
-        "/packs/js/reducers/SportsReducer-1df1279d443eac893617.js.map"
-      ]
+      "js": ["/packs/js/reducers/SportsReducer-1df1279d443eac893617.js"],
+      "js.map": ["/packs/js/reducers/SportsReducer-1df1279d443eac893617.js.map"]
     },
     "reportWebVitals": {
-      "js": [
-        "/packs/js/reportWebVitals-9738cba27614c1365dc6.js"
-      ],
-      "js.map": [
-        "/packs/js/reportWebVitals-9738cba27614c1365dc6.js.map"
-      ]
+      "js": ["/packs/js/reportWebVitals-9738cba27614c1365dc6.js"],
+      "js.map": ["/packs/js/reportWebVitals-9738cba27614c1365dc6.js.map"]
     },
     "routes/Index": {
-      "js": [
-        "/packs/js/routes/Index-93f7769b9921120e76e9.js"
-      ],
-      "js.map": [
-        "/packs/js/routes/Index-93f7769b9921120e76e9.js.map"
-      ]
+      "js": ["/packs/js/routes/Index-93f7769b9921120e76e9.js"],
+      "js.map": ["/packs/js/routes/Index-93f7769b9921120e76e9.js.map"]
     },
     "setupTests": {
-      "js": [
-        "/packs/js/setupTests-dfab82074c1681ceca0a.js"
-      ],
-      "js.map": [
-        "/packs/js/setupTests-dfab82074c1681ceca0a.js.map"
-      ]
+      "js": ["/packs/js/setupTests-dfab82074c1681ceca0a.js"],
+      "js.map": ["/packs/js/setupTests-dfab82074c1681ceca0a.js.map"]
     },
     "static/EmployeeList": {
-      "js": [
-        "/packs/js/static/EmployeeList-c19ce65ae577c79b60de.js"
-      ],
-      "js.map": [
-        "/packs/js/static/EmployeeList-c19ce65ae577c79b60de.js.map"
-      ]
+      "js": ["/packs/js/static/EmployeeList-c19ce65ae577c79b60de.js"],
+      "js.map": ["/packs/js/static/EmployeeList-c19ce65ae577c79b60de.js.map"]
     },
     "static/Home": {
-      "js": [
-        "/packs/js/static/Home-01cadb8fa90b7f4774ca.js"
-      ],
-      "js.map": [
-        "/packs/js/static/Home-01cadb8fa90b7f4774ca.js.map"
-      ]
+      "js": ["/packs/js/static/Home-01cadb8fa90b7f4774ca.js"],
+      "js.map": ["/packs/js/static/Home-01cadb8fa90b7f4774ca.js.map"]
     },
     "util/ShowErrors": {
-      "js": [
-        "/packs/js/util/ShowErrors-fc94fbddb4ccf11a64d3.js"
-      ],
-      "js.map": [
-        "/packs/js/util/ShowErrors-fc94fbddb4ccf11a64d3.js.map"
-      ]
+      "js": ["/packs/js/util/ShowErrors-fc94fbddb4ccf11a64d3.js"],
+      "js.map": ["/packs/js/util/ShowErrors-fc94fbddb4ccf11a64d3.js.map"]
     },
     "util/ShowLoading": {
-      "js": [
-        "/packs/js/util/ShowLoading-2f1f0b8466324940746c.js"
-      ],
-      "js.map": [
-        "/packs/js/util/ShowLoading-2f1f0b8466324940746c.js.map"
-      ]
+      "js": ["/packs/js/util/ShowLoading-2f1f0b8466324940746c.js"],
+      "js.map": ["/packs/js/util/ShowLoading-2f1f0b8466324940746c.js.map"]
     }
   },
   "hello_react.js": "/packs/js/hello_react-a89e2dd4e847ba742596.js",

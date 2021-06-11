@@ -1,11 +1,11 @@
 const useIsLoggedIn = () => {
-    const authToken = localStorage.getItem('AuthToken')
+  const authToken = localStorage.getItem("AuthToken");
 
-    if (authToken === "null" || !authToken) {
-        return false
-    } else {
-        return true
-    }
-}
+  if (authToken === "null" || !authToken) {
+    return false;
+  } else {
+    return true;
+  }
+};
 
-export default useIsLoggedIn
+export default useIsLoggedIn;
