@@ -9,6 +9,7 @@ import CreateEmployee from "../components/employees/CreateEmployee";
 import EditEmployee from "../components/employees/EditEmployee";
 import SignIn from "../components/auth/SignIn";
 import NotFound from "../util/NotFound";
+import SignUp from "../components/auth/SignUp";
 
 const Routes = () => {
   return (
@@ -17,6 +18,7 @@ const Routes = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/sign_in" component={SignIn} />
+        <Route exact path="/sign_up" component={SignUp} />
         <Route exact path="/employees" component={EmployeeList} />
         <Route exact path="/employees/new" component={CreateEmployee} />
         <Route
