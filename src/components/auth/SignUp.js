@@ -43,26 +43,43 @@ const SignUp = (props) => {
   let [errors, setErrors] = useState("");
   let [loading, setLoading] = useState("");
 
-  const handleSubmit = (event) => {
-    // event.preventDefault();
-    // setLoading(true);
-    // const newUserData = {
-    //   email: email,
-    //   password: password,
-    //   confirmPassword: confirmPassword,
-    // };
-    // axios
-    //   .post("/signup", newUserData)
-    //   .then((response) => {
-    //     localStorage.setItem("AuthToken", `${response.data.token}`);
-    //     setLoading(false);
-    //     props.history.push("/");
-    //   })
-    //   .catch((error) => {
-    //     setErrors(error.response.data);
-    //     setLoading(false);
-    //   });
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    const newUserData = {
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+    };
+    try {
+      const success = await fetch("http://localhost:3001/users/sign_in", {
+        method: "POST",
+        body: JSON.stringify(newUserData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const newEmployeeResponse = await success.json();
+      console.log(newEmployeeResponse, "New EE response");
+    } catch (error) {
+      console.log(error);
+      setErrors(true);
+    }
   };
+  // axios
+  //   .post("http://localhost:3001/users", newUserData)
+  //   .then((response) => {
+  //     localStorage.setItem(
+  //       "AuthToken",
+  //       response.headers.get("Authorization")
+  //     );
+  //     setLoading(false);
+  //     props.history.push("/employees");
+  //   })
+  //   .catch((error) => {
+  //     setErrors(error.response.data);
+  //     setLoading(false);
+  //   });
 
   const { classes } = props;
 
