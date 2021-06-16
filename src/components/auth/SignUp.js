@@ -52,34 +52,21 @@ const SignUp = (props) => {
       confirmPassword: confirmPassword,
     };
     try {
-      const success = await fetch("http://localhost:3001/users/sign_in", {
+      const success = await fetch("http://localhost:3001/users", {
         method: "POST",
-        body: JSON.stringify(newUserData),
+        body: JSON.stringify({ user: newUserData }),
         headers: {
           "Content-Type": "application/json",
         },
       });
       const newEmployeeResponse = await success.json();
-      console.log(newEmployeeResponse, "New EE response");
+      alert(newEmployeeResponse.message);
+      props.history.push("/sign_in");
     } catch (error) {
       console.log(error);
       setErrors(true);
     }
   };
-  // axios
-  //   .post("http://localhost:3001/users", newUserData)
-  //   .then((response) => {
-  //     localStorage.setItem(
-  //       "AuthToken",
-  //       response.headers.get("Authorization")
-  //     );
-  //     setLoading(false);
-  //     props.history.push("/employees");
-  //   })
-  //   .catch((error) => {
-  //     setErrors(error.response.data);
-  //     setLoading(false);
-  //   });
 
   const { classes } = props;
 
