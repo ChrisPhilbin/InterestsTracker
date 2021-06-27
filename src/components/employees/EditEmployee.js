@@ -26,16 +26,12 @@ const EditEmployee = (props) => {
 
   let [newEmployee, setNewEmployee] = useState(employee);
 
-  console.log(employee, "employee object");
-  console.log(newEmployee, "newEmployee object");
-
   useEffect(() => {
     dispatch(fetchOneEmployee(employee_id));
   }, [dispatch, employee_id]);
 
   const handleSubmit = (newEmployee) => {
-    alert("Editing!");
-    updateEmployee(newEmployee);
+    dispatch(updateEmployee(newEmployee));
   };
 
   if (loading) {
@@ -86,7 +82,7 @@ const EditEmployee = (props) => {
               variant="contained"
               color="primary"
               style={{ marginTop: 15 }}
-              onClick={() => handleSubmit()}
+              onClick={() => handleSubmit(newEmployee)}
             >
               Save changes
             </Button>

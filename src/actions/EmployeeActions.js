@@ -152,8 +152,8 @@ export const updateEmployee = (employee) => {
           body: JSON.stringify(employee),
         }
       );
-      const employee = await success.json();
-      dispatch(updateEmployeeSuccess(employee));
+      const updatedEmployee = await success.json();
+      dispatch(updateEmployeeSuccess(updatedEmployee));
     } catch (error) {
       dispatch(updateEmployeeFailure(error));
     }
