@@ -1,4 +1,4 @@
-import defaultFetchOptions from "../config/FetchDefault";
+import defaultFetchOptions, { prefix } from "../config/FetchDefault";
 
 export const GET_NEWSFEED = "GET_NEWSFEED";
 export const GET_NEWSFEED_SUCCESS = "GET_NEWSFEED_SUCCESS";
@@ -18,10 +18,7 @@ export const getNewsfeedFailure = (error) => ({
 
 export const fetchEmployeeNewsfeed = (employee_id) => {
   return (dispatch) => {
-    fetch(
-      `http://localhost:3001/employees/${employee_id}/newsfeed`,
-      defaultFetchOptions
-    )
+    fetch(`${prefix}/employees/${employee_id}/newsfeed`, defaultFetchOptions)
       .then((response) => response.json())
       .then((data) => {
         dispatch(getNewsfeedSuccess(data));

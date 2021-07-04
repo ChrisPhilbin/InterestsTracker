@@ -1,4 +1,4 @@
-import defaultFetchOptions from "../config/FetchDefault";
+import defaultFetchOptions, { prefix } from "../config/FetchDefault";
 
 export const GET_INTERACTIONS = "GET_INTERACTIONS";
 export const GET_INTERACTIONS_SUCCESS = "GET_INTERACTIONS_SUCCESS";
@@ -26,7 +26,7 @@ export const fetchEmployeeInteractions = (employee_id) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/employees/${employee_id}/interactions`,
+        `${prefix}/employees/${employee_id}/interactions`,
         defaultFetchOptions
       );
       const interactions = await response.json();
@@ -51,7 +51,7 @@ export const fetchPostNewInteraction = (interaction) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/employees/${interaction.employee_id}/interactions`,
+        `${prefix}/employees/${interaction.employee_id}/interactions`,
         {
           ...defaultFetchOptions,
           method: "POST",
@@ -80,7 +80,7 @@ export const fetchDeleteInteraction = (employee_id, interaction_id) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/employees/${employee_id}/interactions/${interaction_id}`,
+        `${prefix}/employees/${employee_id}/interactions/${interaction_id}`,
         {
           ...defaultFetchOptions,
           method: "DELETE",

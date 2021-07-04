@@ -1,4 +1,4 @@
-import defaultFetchOptions from "../config/FetchDefault";
+import defaultFetchOptions, { prefix } from "../config/FetchDefault";
 
 export const GET_ALERTS = "GET_ALERTS";
 export const GET_ALERTS_SUCCESS = "GET_ALERTS_SUCCESS";
@@ -19,7 +19,7 @@ export const getAlertsFailure = (error) => ({
 export const fetchEmployeeAlerts = () => {
   return (dispatch) => {
     dispatch(getAlerts);
-    fetch("http://localhost:3001/employees/dashboard", defaultFetchOptions)
+    fetch(`${prefix}/employees/dashboard`, defaultFetchOptions)
       .then((response) => {
         if (response.status === 200) {
           response.json().then((data) => {

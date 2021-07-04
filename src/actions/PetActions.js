@@ -1,4 +1,4 @@
-import defaultFetchOptions from "../config/FetchDefault";
+import defaultFetchOptions, { prefix } from "../config/FetchDefault";
 
 export const GET_PETS = "GET_PETS";
 export const GET_PETS_SUCCESS = "GET_PETS_SUCCESS";
@@ -25,10 +25,7 @@ export const getPetsFailure = (error) => ({
 export const fetchEmployeePets = (employee_id) => {
   return (dispatch) => {
     dispatch(getPets);
-    fetch(
-      `http://localhost:3001/employees/${employee_id}/pets`,
-      defaultFetchOptions
-    )
+    fetch(`${prefix}/employees/${employee_id}/pets`, defaultFetchOptions)
       .then((response) => response.json())
       .then((data) => {
         dispatch(getPetsSuccess(data));
@@ -51,7 +48,7 @@ export const petCreatedFailure = (error) => ({
 
 export const fetchPostNewPet = (pet) => {
   return (dispatch) => {
-    fetch(`http://localhost:3001/employees/${pet.employee_id}/pets`, {
+    fetch(`${prefix}/employees/${pet.employee_id}/pets`, {
       ...defaultFetchOptions,
       method: "POST",
       body: JSON.stringify(pet),
@@ -78,7 +75,7 @@ export const petDeletedFailure = (error) => ({
 
 export const fetchDeletePet = (employee_id, pet_id) => {
   return (dispatch) => {
-    fetch(`http://localhost:3001/employees/${employee_id}/pets/${pet_id}`, {
+    fetch(`${prefix}/employees/${employee_id}/pets/${pet_id}`, {
       ...defaultFetchOptions,
       method: "DELETE",
     })

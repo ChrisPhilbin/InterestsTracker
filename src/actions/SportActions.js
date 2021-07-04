@@ -1,4 +1,4 @@
-import defaultFetchOptions from "../config/FetchDefault";
+import defaultFetchOptions, { prefix } from "../config/FetchDefault";
 import { GET_PETS } from "./PetActions";
 
 export const GET_SPORTS = "GET_SPORTS";
@@ -25,10 +25,7 @@ export const getSportsFailure = (error) => ({
 
 export const fetchEmployeeSports = (employee_id) => {
   return (dispatch) => {
-    fetch(
-      `http://localhost:3001/employees/${employee_id}/sports`,
-      defaultFetchOptions
-    )
+    fetch(`${prefix}/employees/${employee_id}/sports`, defaultFetchOptions)
       .then((response) => response.json())
       .then((data) => {
         dispatch(getSportsSuccess(data));
@@ -51,7 +48,7 @@ export const sportCreatedFailure = (error) => ({
 
 export const fetchPostNewSport = (sport) => {
   return (dispatch) => {
-    fetch(`http://localhost:3001/employees/${sport.employee_id}/sports`, {
+    fetch(`${prefix}/employees/${sport.employee_id}/sports`, {
       ...defaultFetchOptions,
       method: "POST",
       body: JSON.stringify(sport),
@@ -78,7 +75,7 @@ export const sportDeletedFailure = (error) => ({
 
 export const fetchDeleteSport = (employee_id, sport_id) => {
   return (dispatch) => {
-    fetch(`http://localhost:3001/employees/${employee_id}/sports/${sport_id}`, {
+    fetch(`${prefix}/employees/${employee_id}/sports/${sport_id}`, {
       ...defaultFetchOptions,
       method: "DELETE",
     })

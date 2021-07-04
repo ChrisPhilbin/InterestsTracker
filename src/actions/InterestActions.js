@@ -1,4 +1,4 @@
-import defaultFetchOptions from "../config/FetchDefault";
+import defaultFetchOptions, { prefix } from "../config/FetchDefault";
 
 export const GET_INTERESTS = "GET_INTERESTS";
 export const GET_INTERESTS_SUCCESS = "GET_INTERESTS_SUCCESS";
@@ -25,10 +25,7 @@ export const getInterestsFailure = (error) => ({
 export const fetchEmployeeInterests = (employee_id) => {
   return (dispatch) => {
     dispatch(getInterests);
-    fetch(
-      `http://localhost:3001/employees/${employee_id}/interests`,
-      defaultFetchOptions
-    )
+    fetch(`${prefix}/employees/${employee_id}/interests`, defaultFetchOptions)
       .then((response) => response.json())
       .then((data) => {
         dispatch(getInterestsSuccess(data));
@@ -51,7 +48,7 @@ export const interestCreatedFailure = (error) => ({
 
 export const fetchPostNewInterest = (interest) => {
   return (dispatch) => {
-    fetch(`http://localhost:3001/employees/${interest.employee_id}/interests`, {
+    fetch(`${prefix}/employees/${interest.employee_id}/interests`, {
       ...defaultFetchOptions,
       method: "POST",
       body: JSON.stringify(interest),
@@ -78,13 +75,10 @@ export const interestDeletedFailure = (error) => ({
 
 export const fetchDeleteInterest = (employee_id, interest_id) => {
   return (dispatch) => {
-    fetch(
-      `http://localhost:3001/employees/${employee_id}/interests/${interest_id}`,
-      {
-        ...defaultFetchOptions,
-        method: "DELETE",
-      }
-    )
+    fetch(`${prefix}/employees/${employee_id}/interests/${interest_id}`, {
+      ...defaultFetchOptions,
+      method: "DELETE",
+    })
       .then((response) => response.json())
       .then((data) => {
         dispatch(interestDeletedSuccess(data));
