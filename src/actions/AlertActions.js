@@ -17,20 +17,20 @@ export const getAlertsFailure = (error) => ({
 });
 
 export const fetchEmployeeAlerts = () => {
-  return (dispatch) => {
-    dispatch(getAlerts);
-    fetch(`${prefix}/employees/dashboard`, defaultFetchOptions)
-      .then((response) => {
-        if (response.status === 200) {
-          response.json().then((data) => {
-            dispatch(getAlertsSuccess(data));
-          });
-        } else {
-          window.location.replace("/sign_in");
-        }
-      })
-      .catch((error) => {
-        dispatch(getAlertsFailure(error));
-      });
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `${prefix}/employees/dashboard`,
+        defaultFetchOptions
+      );
+      if (response.status === 200) {
+        const alerts = await response.json();
+        dispatch(getAlertsSuccess(alerts));
+      } else {
+        dispatch(getAlertsFailure(response.statusText));
+      }
+    } catch (error) {
+      dispatch(getAlertsFailure(error));
+    }
   };
 };
