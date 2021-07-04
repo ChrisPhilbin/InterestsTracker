@@ -6,3 +6,5 @@ const defaultFetchOptions = {
 };
 
 export default defaultFetchOptions;
+
+export const prefix = "http://localhost:3001";

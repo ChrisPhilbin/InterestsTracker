@@ -1,4 +1,4 @@
-import defaultFetchOptions from "../config/FetchDefault";
+import defaultFetchOptions, { prefix } from "../config/FetchDefault";
 
 export const GET_EMPLOYEES = "GET_EMPLOYEES";
 export const GET_EMPLOYEES_SUCCESS = "GET_EMPLOYEES_SUCCESS";
@@ -33,10 +33,7 @@ export const fetchAllEmployees = () => {
   return async (dispatch) => {
     try {
       console.log(defaultFetchOptions, "default fetch options");
-      const response = await fetch(
-        "http://localhost:3001/employees",
-        defaultFetchOptions
-      );
+      const response = await fetch(`${prefix}/employees`, defaultFetchOptions);
       if (response.status === 200) {
         const employees = await response.json();
         dispatch(getEmployeesSuccess(employees));
@@ -66,7 +63,7 @@ export const fetchOneEmployee = (employee_id) => {
   return async (dispatch) => {
     try {
       const success = await fetch(
-        `http://localhost:3001/employees/${employee_id}`,
+        `${prefix}/employees/${employee_id}`,
         defaultFetchOptions
       );
       const employee = await success.json();
@@ -90,7 +87,7 @@ export const employeeCreatedFailure = (error) => ({
 export const fetchPostNewEmployee = (new_employee) => {
   return async (dispatch) => {
     try {
-      const success = await fetch("http://localhost:3001/employees", {
+      const success = await fetch(`${prefix}/employees`, {
         ...defaultFetchOptions,
         method: "POST",
         body: JSON.stringify(new_employee),
@@ -116,13 +113,10 @@ export const employeeDeletedFailure = (error) => ({
 export const deleteOneEmployee = (employee_id) => {
   return async (dispatch) => {
     try {
-      const success = await fetch(
-        `http://localhost:3001/employees/${employee_id}`,
-        {
-          ...defaultFetchOptions,
-          method: "DELETE",
-        }
-      );
+      const success = await fetch(`${prefix}/employees/${employee_id}`, {
+        ...defaultFetchOptions,
+        method: "DELETE",
+      });
       const employee = await success.json();
       dispatch(employeeDeletedSuccess(employee));
     } catch (error) {
@@ -144,14 +138,11 @@ export const updateEmployeeFailure = (error) => ({
 export const updateEmployee = (employee) => {
   return async (dispatch) => {
     try {
-      const success = await fetch(
-        `http://localhost:3001/employees/${employee.id}`,
-        {
-          ...defaultFetchOptions,
-          method: "PATCH",
-          body: JSON.stringify(employee),
-        }
-      );
+      const success = await fetch(`${prefix}/employees/${employee.id}`, {
+        ...defaultFetchOptions,
+        method: "PATCH",
+        body: JSON.stringify(employee),
+      });
       const updatedEmployee = await success.json();
       dispatch(updateEmployeeSuccess(updatedEmployee));
     } catch (error) {
@@ -163,14 +154,11 @@ export const updateEmployee = (employee) => {
 export const updateEmployeeLastInteraction = (employee_id) => {
   return async (dispatch) => {
     try {
-      const success = await fetch(
-        `http://localhost:3001/employees/${employee_id}`,
-        {
-          ...defaultFetchOptions,
-          method: "PATCH",
-          body: JSON.stringify({ last_interaction: new Date() }),
-        }
-      );
+      const success = await fetch(`${prefix}/employees/${employee_id}`, {
+        ...defaultFetchOptions,
+        method: "PATCH",
+        body: JSON.stringify({ last_interaction: new Date() }),
+      });
       const employee = await success.json();
       dispatch(updateEmployeeSuccess(employee));
     } catch (error) {
