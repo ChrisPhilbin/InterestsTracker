@@ -23,16 +23,18 @@ export const getPetsFailure = (error) => ({
 });
 
 export const fetchEmployeePets = (employee_id) => {
-  return (dispatch) => {
-    dispatch(getPets);
-    fetch(`${prefix}/employees/${employee_id}/pets`, defaultFetchOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(getPetsSuccess(data));
-      })
-      .catch((error) => {
-        dispatch(getPetsFailure(error));
-      });
+  return async (dispatch) => {
+    try {
+      dispatch(getPets);
+      const success = await fetch(
+        `${prefix}/employees/${employee_id}/pets`,
+        defaultFetchOptions
+      );
+      const employeePets = await success.json();
+      dispatch(getPetsSuccess(employeePets));
+    } catch (error) {
+      dispatch(getPetsFailure(error));
+    }
   };
 };
 
@@ -47,19 +49,21 @@ export const petCreatedFailure = (error) => ({
 });
 
 export const fetchPostNewPet = (pet) => {
-  return (dispatch) => {
-    fetch(`${prefix}/employees/${pet.employee_id}/pets`, {
-      ...defaultFetchOptions,
-      method: "POST",
-      body: JSON.stringify(pet),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(petCreatedSuccess(data));
-      })
-      .catch((error) => {
-        dispatch(petCreatedFailure(error));
-      });
+  return async (dispatch) => {
+    try {
+      const success = await fetch(
+        `${prefix}/employees/${pet.employee_id}/pets`,
+        {
+          ...defaultFetchOptions,
+          method: "POST",
+          body: JSON.stringify(pet),
+        }
+      );
+      const newPet = await success.json();
+      dispatch(petCreatedSuccess(newPet));
+    } catch (error) {
+      dispatch(petCreatedFailure(error));
+    }
   };
 };
 
@@ -74,17 +78,19 @@ export const petDeletedFailure = (error) => ({
 });
 
 export const fetchDeletePet = (employee_id, pet_id) => {
-  return (dispatch) => {
-    fetch(`${prefix}/employees/${employee_id}/pets/${pet_id}`, {
-      ...defaultFetchOptions,
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(petDeletedSuccess(data));
-      })
-      .catch((error) => {
-        dispatch(petDeletedFailure(error));
-      });
+  return async (dispatch) => {
+    try {
+      const success = await fetch(
+        `${prefix}/employees/${employee_id}/pets/${pet_id}`,
+        {
+          ...defaultFetchOptions,
+          method: "DELETE",
+        }
+      );
+      const deletedPet = success.json();
+      dispatch(petDeletedSuccess(deletedPet));
+    } catch (error) {
+      dispatch(petDeletedFailure(error));
+    }
   };
 };

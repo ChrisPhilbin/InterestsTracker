@@ -26,7 +26,7 @@ export const fetchEmployeeNotes = (employee_id) => {
   return async (dispatch) => {
     try {
       dispatch(getNotes);
-      const success = fetch(
+      const success = await fetch(
         `${prefix}/employees/${employee_id}/notes`,
         defaultFetchOptions
       );
@@ -49,19 +49,21 @@ export const notecreatedFailure = (error) => ({
 });
 
 export const fetchPostNewNote = (note) => {
-  return (dispatch) => {
-    fetch(`${prefix}/employees/${note.employee_id}/notes`, {
-      ...defaultFetchOptions,
-      method: "POST",
-      body: JSON.stringify(note),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(noteCreatedSuccess(data));
-      })
-      .catch((error) => {
-        dispatch(notecreatedFailure(error));
-      });
+  return async (dispatch) => {
+    try {
+      const success = await fetch(
+        `${prefix}/employees/${note.employee_id}/notes`,
+        {
+          ...defaultFetchOptions,
+          method: "POST",
+          body: JSON.stringify(note),
+        }
+      );
+      const newNote = await success.json();
+      dispatch(noteCreatedSuccess(newNote));
+    } catch (error) {
+      dispatch(notecreatedFailure(error));
+    }
   };
 };
 
@@ -76,17 +78,19 @@ export const noteDeletedFailure = (error) => ({
 });
 
 export const fetchDeleteNote = (employee_id, note_id) => {
-  return (dispatch) => {
-    fetch(`${prefix}/employees/${employee_id}/notes/${note_id}`, {
-      ...defaultFetchOptions,
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(noteDeletedSuccess(data));
-      })
-      .catch((error) => {
-        dispatch(noteDeletedFailure(error));
-      });
+  return async (dispatch) => {
+    try {
+      const success = await fetch(
+        `${prefix}/employees/${employee_id}/notes/${note_id}`,
+        {
+          ...defaultFetchOptions,
+          method: "DELETE",
+        }
+      );
+      const deletedNote = await success.json();
+      dispatch(noteDeletedSuccess(deletedNote));
+    } catch (error) {
+      dispatch(noteDeletedFailure(error));
+    }
   };
 };

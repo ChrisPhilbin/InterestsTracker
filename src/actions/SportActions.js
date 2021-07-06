@@ -24,15 +24,17 @@ export const getSportsFailure = (error) => ({
 });
 
 export const fetchEmployeeSports = (employee_id) => {
-  return (dispatch) => {
-    fetch(`${prefix}/employees/${employee_id}/sports`, defaultFetchOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(getSportsSuccess(data));
-      })
-      .catch((error) => {
-        dispatch(getSportsFailure(error));
-      });
+  return async (dispatch) => {
+    try {
+      const success = await fetch(
+        `${prefix}/employees/${employee_id}/sports`,
+        defaultFetchOptions
+      );
+      const employeeSports = await success.json();
+      dispatch(getSportsSuccess(employeeSports));
+    } catch (error) {
+      dispatch(getSportsFailure(error));
+    }
   };
 };
 
@@ -47,19 +49,21 @@ export const sportCreatedFailure = (error) => ({
 });
 
 export const fetchPostNewSport = (sport) => {
-  return (dispatch) => {
-    fetch(`${prefix}/employees/${sport.employee_id}/sports`, {
-      ...defaultFetchOptions,
-      method: "POST",
-      body: JSON.stringify(sport),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(sportCreatedSuccess(data));
-      })
-      .catch((error) => {
-        dispatch(sportCreatedFailure(error));
-      });
+  return async (dispatch) => {
+    try {
+      const success = await fetch(
+        `${prefix}/employees/${sport.employee_id}/sports`,
+        {
+          ...defaultFetchOptions,
+          method: "POST",
+          body: JSON.stringify(sport),
+        }
+      );
+      const newSport = await success.json();
+      dispatch(sportCreatedSuccess(newSport));
+    } catch (error) {
+      dispatch(sportCreatedFailure(error));
+    }
   };
 };
 
@@ -74,17 +78,19 @@ export const sportDeletedFailure = (error) => ({
 });
 
 export const fetchDeleteSport = (employee_id, sport_id) => {
-  return (dispatch) => {
-    fetch(`${prefix}/employees/${employee_id}/sports/${sport_id}`, {
-      ...defaultFetchOptions,
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(sportDeletedSucess(data));
-      })
-      .catch((error) => {
-        dispatch(sportDeletedFailure(error));
-      });
+  return async (dispatch) => {
+    try {
+      const success = await fetch(
+        `${prefix}/employees/${employee_id}/sports/${sport_id}`,
+        {
+          ...defaultFetchOptions,
+          method: "DELETE",
+        }
+      );
+      const deletedSport = await success.json();
+      dispatch(sportDeletedSucess(deletedSport));
+    } catch (error) {
+      dispatch(sportDeletedFailure(error));
+    }
   };
 };
