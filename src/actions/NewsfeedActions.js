@@ -17,14 +17,16 @@ export const getNewsfeedFailure = (error) => ({
 });
 
 export const fetchEmployeeNewsfeed = (employee_id) => {
-  return (dispatch) => {
-    fetch(`${prefix}/employees/${employee_id}/newsfeed`, defaultFetchOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(getNewsfeedSuccess(data));
-      })
-      .catch((error) => {
-        dispatch(getNewsfeedFailure(error));
-      });
+  return async (dispatch) => {
+    try {
+      const success = fetch(
+        `${prefix}/employees/${employee_id}/newsfeed`,
+        defaultFetchOptions
+      );
+      const newsFeedItems = await (await success).json();
+      dispatch(getNewsfeedSuccess(newsFeedItems));
+    } catch (error) {
+      dispatch(getNewsfeedFailure(error));
+    }
   };
 };
