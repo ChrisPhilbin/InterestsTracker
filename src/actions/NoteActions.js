@@ -23,16 +23,18 @@ export const getNotesFailure = (error) => ({
 });
 
 export const fetchEmployeeNotes = (employee_id) => {
-  return (dispatch) => {
-    dispatch(getNotes);
-    fetch(`${prefix}/employees/${employee_id}/notes`, defaultFetchOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(GetNotesSuccess(data));
-      })
-      .catch((error) => {
-        dispatch(getNotesFailure(error));
-      });
+  return async (dispatch) => {
+    try {
+      dispatch(getNotes);
+      const success = fetch(
+        `${prefix}/employees/${employee_id}/notes`,
+        defaultFetchOptions
+      );
+      const employeeNotes = await success.json();
+      dispatch(GetNotesSuccess(employeeNotes));
+    } catch (error) {
+      getNotesFailure(error);
+    }
   };
 };
 
