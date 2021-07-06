@@ -23,16 +23,18 @@ export const getInterestsFailure = (error) => ({
 });
 
 export const fetchEmployeeInterests = (employee_id) => {
-  return (dispatch) => {
-    dispatch(getInterests);
-    fetch(`${prefix}/employees/${employee_id}/interests`, defaultFetchOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(getInterestsSuccess(data));
-      })
-      .catch((error) => {
-        dispatch(getInterestsFailure(error));
-      });
+  return async (dispatch) => {
+    try {
+      dispatch(getInterests);
+      const success = await fetch(
+        `${prefix}/employees/${employee_id}/interests`,
+        defaultFetchOptions
+      );
+      const interests = await success.json();
+      dispatch(getInterestsSuccess(interests));
+    } catch (error) {
+      dispatch(getInterestsFailure(error));
+    }
   };
 };
 
@@ -47,19 +49,21 @@ export const interestCreatedFailure = (error) => ({
 });
 
 export const fetchPostNewInterest = (interest) => {
-  return (dispatch) => {
-    fetch(`${prefix}/employees/${interest.employee_id}/interests`, {
-      ...defaultFetchOptions,
-      method: "POST",
-      body: JSON.stringify(interest),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(interestCreatedSuccess(data));
-      })
-      .catch((error) => {
-        dispatch(interestCreatedFailure(error));
-      });
+  return async (dispatch) => {
+    try {
+      const success = fetch(
+        `${prefix}/employees/${interest.employee_id}/interests`,
+        {
+          ...defaultFetchOptions,
+          method: "POST",
+          body: JSON.stringify(interest),
+        }
+      );
+      const newInterest = await success.json();
+      dispatch(interestCreatedSuccess(newInterest));
+    } catch (error) {
+      dispatch(interestCreatedFailure(error));
+    }
   };
 };
 
@@ -74,17 +78,19 @@ export const interestDeletedFailure = (error) => ({
 });
 
 export const fetchDeleteInterest = (employee_id, interest_id) => {
-  return (dispatch) => {
-    fetch(`${prefix}/employees/${employee_id}/interests/${interest_id}`, {
-      ...defaultFetchOptions,
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(interestDeletedSuccess(data));
-      })
-      .catch((error) => {
-        dispatch(interestDeletedFailure(error));
-      });
+  return async (dispatch) => {
+    try {
+      const success = fetch(
+        `${prefix}/employees/${employee_id}/interests/${interest_id}`,
+        {
+          ...defaultFetchOptions,
+          method: "DELETE",
+        }
+      );
+      const deletedInterest = await success.json();
+      dispatch(interestDeletedSuccess(deletedInterest));
+    } catch (error) {
+      dispatch(interestDeletedFailure(error));
+    }
   };
 };
