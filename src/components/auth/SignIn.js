@@ -45,7 +45,7 @@ const SignIn = (props) => {
   let [errors, setErrors] = useState([]);
   let [loading, setLoading] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
     const userData = {
@@ -54,25 +54,24 @@ const SignIn = (props) => {
         password: password,
       },
     };
-    fetch("http://localhost:3001/users/sign_in", {
-      method: "POST",
-      body: JSON.stringify(userData),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        localStorage.setItem(
-          "AuthToken",
-          response.headers.get("Authorization")
-        );
-        props.history.push("/");
-      })
-      .catch((error) => {
-        setErrors(error);
-        console.log(error, "error from auth request");
+    try {
+      let success = await fetch("http://localhost:3001/users/sign_in", {
+        method: "POST",
+        body: JSON.stringify(userData),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
       });
+      let response = await localStorage.setItem(
+        "AuthToken",
+        success.headers.get("Authorization")
+      );
+      props.history.push("/employees");
+    } catch (error) {
+      setErrors(error);
+      console.log(error, "error from auth request");
+    }
   };
 
   const { classes } = props;

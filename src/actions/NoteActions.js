@@ -12,7 +12,7 @@ export const NOTE_DELETED_FAILURE = "NOTE_DELETED_FAILURE";
 
 export const getNotes = () => ({ type: GET_NOTES });
 
-export const GetNotesSuccess = (notes) => ({
+export const getNotesSuccess = (notes) => ({
   type: GET_NOTES_SUCCESS,
   payload: notes,
 });
@@ -31,7 +31,7 @@ export const fetchEmployeeNotes = (employee_id) => {
         defaultFetchOptions
       );
       const employeeNotes = await success.json();
-      dispatch(GetNotesSuccess(employeeNotes));
+      dispatch(getNotesSuccess(employeeNotes));
     } catch (error) {
       getNotesFailure(error);
     }
