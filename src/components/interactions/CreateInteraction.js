@@ -10,12 +10,6 @@
 
 // const CreateInteraction = (props) => {
 
-//     console.log(props, "props from Create Interaction")
-
-//     useEffect(() => {
-//         let [open, setOpen] = useState(props.openDialog)
-//     },[])
-
 //     const handleSubmit = () => {
 //         alert("Handling submit...")
 //         props.setOpen(false)

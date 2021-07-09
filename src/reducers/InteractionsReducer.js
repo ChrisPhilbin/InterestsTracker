@@ -17,6 +17,14 @@ export default function interactionsReducer(
       return { ...state, loading: false, interactions: action.payload };
     case actions.GET_INTERACTIONS_FAILURE:
       return { ...state, loading: false, hasErrors: true };
+    case actions.INTERACTION_CREATED_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        interactions: state.interactions.concat(action.payload),
+      };
+    case actions.INTERACTION_CREATED_FAILURE:
+      return { ...state, loading: false, hasErrors: true };
     case actions.INTERACTION_DELETED_SUCCESS:
       return {
         interactions: state.interactions.filter(

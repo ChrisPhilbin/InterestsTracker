@@ -42,13 +42,13 @@ const EmployeeDetails = (props) => {
 
   dayjs.extend(relativeTime);
 
-  useEffect(() => {
-    dispatch(fetchOneEmployee(employee_id));
-  }, [dispatch, employee_id]);
-
   let employee = useSelector((state) => state.employees.employee);
   let loading = useSelector((state) => state.employees.loading);
   let hasErrors = useSelector((state) => state.employees.hasErrors);
+
+  useEffect(() => {
+    dispatch(fetchOneEmployee(employee_id));
+  }, [dispatch, employee_id]);
 
   let [dialogOpen, setDialogOpen] = useState(false);
 

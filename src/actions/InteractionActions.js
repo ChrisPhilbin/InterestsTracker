@@ -12,7 +12,7 @@ export const INTERACTION_DELETED_FAILURE = "INTERACTION_DELETED_FAILURE";
 
 export const getInteractions = () => ({ type: GET_INTERACTIONS });
 
-export const getInteractionsSucess = (interactions) => ({
+export const getInteractionsSuccess = (interactions) => ({
   type: GET_INTERACTIONS_SUCCESS,
   payload: interactions,
 });
@@ -30,7 +30,7 @@ export const fetchEmployeeInteractions = (employee_id) => {
         defaultFetchOptions
       );
       const interactions = await response.json();
-      dispatch(getInteractionsSucess(interactions));
+      dispatch(getInteractionsSuccess(interactions));
     } catch (error) {
       dispatch(getInteractionsFailure(error));
     }
